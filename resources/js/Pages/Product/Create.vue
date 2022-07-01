@@ -18,8 +18,9 @@ export default {
       name: null,
       category_id : null , 
       brand :null , 
-      quantity : null , 
+      stock : null , 
       price : null ,
+      image : null , 
     })
 
 
@@ -105,14 +106,14 @@ export default {
 
                                 <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
-                                Quantity(kg)
+                                Stock(kg)
                             </label>
 
-                            <div v-if="errors.quantity" class="text-red-700 " role="alert">
-                                    <li>{{errors.quantity }}</li>
+                            <div v-if="errors.stock" class="text-red-700 " role="alert">
+                                    <li>{{errors.stock }}</li>
                             </div>
 
-                            <input required v-model="form.quantity" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter Quantity">
+                            <input required v-model="form.stock" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter how many Stock">
                             </div>
 
                             <div class="mb-4">
@@ -132,7 +133,7 @@ export default {
                                     Image
                                 </label>
 
-                                <div v-if="errors.price" class="text-red-700 " role="alert">
+                                <div v-if="errors.image" class="text-red-700 " role="alert">
                                     <li>{{errors.image }}</li>
                                 </div>
 

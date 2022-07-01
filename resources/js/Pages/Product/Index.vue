@@ -106,7 +106,7 @@ export default {
                                         brand 
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        quantity 
+                                        stock 
                                     </th>
 
                                     <th scope="col" class="px-6 py-3">
@@ -133,10 +133,10 @@ export default {
                                         {{product.brand}}
                                     </td>
                                     <td class="px-2 py-1" :class="{'bg-gray-200' : index % 2 == 0 }">
-                                        {{product.quantity}}
+                                        {{product.stock}}<small>(kg)</small>
                                     </td>
                                     <td class="px-2 py-1" :class="{'bg-gray-200' : index % 2 == 0 }">
-                                        {{product.price}}
+                                        ₱ {{product.price}}<small>(kg)</small>
                                     </td>
 
                                     <td class="px-2 py-3" :class="{'bg-gray-200' : index % 2 == 0 }">

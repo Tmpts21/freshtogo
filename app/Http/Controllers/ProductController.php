@@ -40,9 +40,14 @@ class ProductController extends Controller
             'name' => 'required|max:255',
             'category_id' => 'required|numeric',
             'brand' => 'required|max:255',
-            'quantity' => 'required|numeric',
+            'stock' => 'required|numeric',
             'price' => 'required|numeric',
+            'image' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048'
         ]);
+        
+        $image_path = $request->file('image')->store('image/products', 'public');
+
+        $validated['image'] = $image_path ; 
 
         $product = Product::Create($validated);
 
@@ -58,16 +63,21 @@ class ProductController extends Controller
         return Inertia::render('Product/Edit' , ['product' => $product , 'categories' => $categories ]);
     }
 
-    public function put(Request $request) { 
+    public function update(Request $request) { 
 
 
         $validated = $request->validate([
             'name' => 'required|max:255',
             'category_id' => 'required|numeric',
             'brand' => 'required|max:255',
-            'quantity' => 'required|numeric',
+            'stock' => 'required|numeric',
             'price' => 'required|numeric',
         ]);
+
+        if ($request->hasFile('image')) {
+            $image_path = $request->file('image')->store('image/products', 'public');
+            $validated['image'] = $image_path ; 
+        }
 
         $product = Product::findorfail($request->productId)->update($validated);
 
@@ -83,5 +93,10 @@ class ProductController extends Controller
 
         return Inertia::render('Product/View' , ['product' => $product , 'categories' => $categories ]);
 
+    }
+
+    public function show_shopping_cart(Request $request) { 
+        dd($request->all()); 
+        return Inertia::render('Customer/Cart' , ['cart' => $request->cart]);
     }
 }

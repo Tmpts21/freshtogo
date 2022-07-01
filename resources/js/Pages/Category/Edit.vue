@@ -18,7 +18,7 @@ export default {
 
 
     function submit() { 
-         Inertia.post('/admin/put/category', form)
+         Inertia.post('/admin/update/category', form)
     }
 
     return { form , submit}

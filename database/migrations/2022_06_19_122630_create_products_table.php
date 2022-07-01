@@ -18,8 +18,9 @@ return new class extends Migration
             $table->foreignId('category_id');
             $table->string('name');
             $table->string('brand');
-            $table->string('quantity');
+            $table->string('stock');
             $table->string('price'); 
+            $table->string('image')->nullable(); 
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@ export default {
       name: props.product.name,
       category_id : props.product.category_id , 
       brand : props.product.brand , 
-      quantity : props.product.quantity , 
+      stock : props.product.stock , 
       price : props.product.price ,
       image : null ,
       productId : props.product.id
@@ -27,7 +27,7 @@ export default {
 
 
     function submit() { 
-         Inertia.post('/admin/put/product', form)
+         Inertia.post('/admin/update/product', form)
     }
 
     return { form , submit}
@@ -64,7 +64,7 @@ export default {
                                 <br>
                             </div>
                         
-                        <div class="w-full max-w-xs">
+                        <div class="w-full max-w-lg">
                         <form @submit.prevent="submit()"  class="bg-white rounded px-8 pt-6 pb-8 mb-4">
                             <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
@@ -109,14 +109,14 @@ export default {
 
                                 <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
-                                Quantity(kg)
+                                Stock(kg)
                             </label>
 
-                            <div v-if="errors.quantity" class="text-red-700 " role="alert">
-                                    <li>{{errors.quantity }}</li>
+                            <div v-if="errors.stock" class="text-red-700 " role="alert">
+                                    <li>{{errors.stock }}</li>
                             </div>
 
-                            <input required v-model="form.quantity" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter Quantity">
+                            <input required v-model="form.stock" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter How many stock">
                             </div>
 
                             <div class="mb-4">
@@ -135,6 +135,8 @@ export default {
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
                                     Image
                                 </label>
+
+                                <img v-if="product.image" :src="'/storage/' + product.image" height="500" width="500" alt=""  class="mb-4">
 
                                 <div v-if="errors.price" class="text-red-700 " role="alert">
                                     <li>{{errors.image }}</li>

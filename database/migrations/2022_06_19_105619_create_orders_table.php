@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('status'); 
             $table->string('driver_name')->nullable(); 
             $table->string('product_name');
-            $table->string('quantity');
+            $table->string('total');
 
             $table->timestamps();
         });

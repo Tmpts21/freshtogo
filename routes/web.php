@@ -53,17 +53,21 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth' ,'verified' ]], funct
     Route::get('/create/category', [CategoryController::class, 'create'])->name('create.category');
     Route::post('/save/category', [CategoryController::class, 'save'])->name('save.category');
     Route::get('/edit/category/{id}', [CategoryController::class, 'edit'])->name('edit.category');
-    Route::post('/put/category', [CategoryController::class, 'put'])->name('put.category');
+    Route::post('/update/category', [CategoryController::class, 'update'])->name('put.category');
     Route::post('/delete/category/{id}', [CategoryController::class, 'delete'])->name('delete.category');
 
     Route::get('/products', [ProductController::class, 'index'])->name('admin.products');
     Route::get('/create/product', [ProductController::class, 'create'])->name('create.product');
     Route::post('/save/product', [ProductController::class, 'save'])->name('save.product');
     Route::get('/edit/product/{id}', [ProductController::class, 'edit'])->name('edit.product');
-    Route::post('/put/product', [ProductController::class, 'put'])->name('put.product');
+    Route::post('/update/product', [ProductController::class, 'update'])->name('put.product');
     Route::get('/show/product/{id}', [ProductController::class, 'show'])->name('show.product');
 
 });
 
+
+Route::group(['prefix' => 'customer', 'middleware' => ['auth' ,'verified' ]], function(){
+    Route::get('/cart', [ProductController::class, 'show_shopping_cart'])->name('customer.cart');
+});
 
 require __DIR__.'/auth.php';

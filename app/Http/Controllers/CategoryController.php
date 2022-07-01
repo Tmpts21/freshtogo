@@ -46,7 +46,7 @@ class CategoryController extends Controller
 
     }
 
-    public function put(Request $request) {
+    public function update(Request $request) {
 
         //check if category name exists
         if(Category::where('name' ,'=',$request->name)->count()) { 

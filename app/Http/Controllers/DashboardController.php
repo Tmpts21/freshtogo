@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Product ;
 
 class DashboardController extends Controller
 {
@@ -23,7 +25,11 @@ class DashboardController extends Controller
 
     
     public function customer_index() { 
-        return Inertia::render('Customer/Dashboard'); 
+        $products = Product::all();
+        $categories = Category::all();  
+        return Inertia::render('Customer/Dashboard' , [
+            'products' => $products ,
+            'categories' => $categories]); 
     }
 
     public function admin_index() { 
