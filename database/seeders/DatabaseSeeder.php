@@ -21,6 +21,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'driver',
             'email' => 'driver@mail.com',
             'role' => 'driver',
+            'street_address' => 'Blk 23 Lt 2 Ph 6 Dasma3' ,
+            'city' => 'Dasmarinas',
+            'postal_code' => 'Valenzuela' ,
+            'barangay' => 'Brngy valenzuela',
+            'contact_no' => '09163410823' 
 
         ]);
 
@@ -28,6 +33,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'customer',
             'email' => 'customer@mail.com',
             'role' => 'customer',
+            'street_address' => 'Blk 23 Lt 2 Ph 6 Dasma3' ,
+            'city' => 'Makati',
+            'postal_code' => '4114' ,
+            'barangay' => 'Brngy makati',
+            'contact_no' => '09163410823' 
 
         ]);
 
@@ -35,6 +45,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@mail.com',
             'role' => 'admin',
+            'street_address' => 'Blk 23 Lt 2 Ph 6 Dasma3' ,
+            'city' => 'Dasmarinas',
+            'postal_code' => 'Cavite' ,
+            'barangay' => 'Brngy Salawag' ,
+            'contact_no' => '09163410823' 
 
         ]);
 

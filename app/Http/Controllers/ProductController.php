@@ -96,7 +96,7 @@ class ProductController extends Controller
     }
 
     public function show_shopping_cart(Request $request) { 
-        dd($request->all()); 
+
         return Inertia::render('Customer/Cart' , ['cart' => $request->cart]);
     }
 }

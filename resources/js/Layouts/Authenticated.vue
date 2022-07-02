@@ -27,26 +27,22 @@ const showingNavigationDropdown = ref(false);
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                
-
+                              
                                      <!-- Admin Links  -->
                                     <BreezeNavLink v-if="$page.props.auth.user.role === 'admin'" :href="route('admin')" :active="route().current('admin')">
-                                        Dashboard
+                                       <i class="fa-solid fa-chart-pie text-orange-500 mr-2 "></i>   Dashboard
                                     </BreezeNavLink>
                                     <BreezeNavLink v-if="$page.props.auth.user.role === 'admin'" :href="route('admin.products')" :active="route().current('admin.products')">
-                                        Products 
+                                       <i class="fa-solid fa-bacon text-orange-500 mr-2 "></i>  Products 
                                     </BreezeNavLink>
                                     <BreezeNavLink v-if="$page.props.auth.user.role === 'admin'" :href="route('admin.category')" :active="route().current('admin.category')">
-                                        Category
-                                    </BreezeNavLink>
-                                     <BreezeNavLink v-if="$page.props.auth.user.role === 'admin'" :href="route('dashboard')" :active="route().current('dashboard')">
-                                        sales
+                                      <i class="fas fa-list-alt text-orange-500 mr-2 "></i>  Category
                                     </BreezeNavLink>
                                      <BreezeNavLink v-if="$page.props.auth.user.role === 'admin'" :href="route('admin.orders')" :active="route().current('admin.orders')">
-                                        orders
+                                        <i class="fa-solid fa-cart-shopping text-orange-500 mr-2 "></i> orders
                                     </BreezeNavLink>
-                                     <BreezeNavLink v-if="$page.props.auth.user.role === 'admin'" :href="route('dashboard')" :active="route().current('dashboard')">
-                                        drivers
+                                     <BreezeNavLink v-if="$page.props.auth.user.role === 'admin'" :href="route('admin.orders')" :active="route().current('admin.orders')">
+                                       <i class="fa-solid fa-car text-orange-500 mr-2 "></i> drivers
                                     </BreezeNavLink>
 
 
@@ -56,6 +52,11 @@ const showingNavigationDropdown = ref(false);
                                     </BreezeNavLink>
                                     <BreezeNavLink v-if="$page.props.auth.user.role === 'driver'" :href="route('dashboard')" :active="route().current('dashboard')">
                                         delivery orders
+                                    </BreezeNavLink>
+
+
+                                    <BreezeNavLink v-if="$page.props.auth.user.role === 'customer'" :href="route('dashboard')" :active="route().current('dashboard')">
+                                        Products
                                     </BreezeNavLink>
                                
                              
