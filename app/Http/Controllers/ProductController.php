@@ -99,4 +99,8 @@ class ProductController extends Controller
 
         return Inertia::render('Customer/Cart' , ['cart' => $request->cart]);
     }
+
+    public function getALlProducts() { 
+        return Product::all(); 
+    }
 }

@@ -6,13 +6,20 @@ use Illuminate\Http\Request;
 use Inertia\Inertia ;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
+use App\Models\Order;
+use Illuminate\Support\Facades\DB;
+
 
 
 class AdminController extends Controller
 {
 
     public function orders() { 
-        return Inertia::render('Admin/Orders');
+        
+        $orders = DB::table('orders')->orderBy('id' ,'desc')->get();
+        
+        return Inertia::render('Admin/Orders' , ['orders' => $orders]);
     }
 
     public function category() { 
@@ -78,6 +85,54 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success' , 'Category Successfully updated ! ');
         
+    }
+
+    public function users()  {
+       
+       $users = User::all(); 
+
+       return Inertia::render('Admin/Users', ['users' => $users ] ); 
+
+    }
+    
+    public function create_user() { 
+        return Inertia::render('Admin/UserCreate');
+    }
+
+    public function save_user(Request $request) { 
+
+        $fields = $request->all();
+        $fields['password'] = 'password123';
+
+        $user = User::create($fields);
+        
+        if($user) { 
+            return redirect()->back()->with('success' , 'User Successfully created ! ');
+        }
+
+        return redirect()->back()->with('error' , 'Something went wrong please check your inputs !');
+
+    }   
+
+    public function edit_user($id) { 
+        $user = User::findorfail($id); 
+        return Inertia::render('Admin/UserEdit' , ['user' => $user ]);
+    }
+
+    public function update_user(Request $request) { 
+        $fields = $request->all(); 
+        unset($fields[0]);
+
+        $user = User::findorfail($request->id); 
+
+        
+        if($user){ 
+            $user->update($fields); 
+            return redirect()->back()->with('success' , 'User Successfully updated ! ');
+        }
+
+        return redirect()->back()->with('error' , 'Something went wrong please check your inputs !');
+
     }
 
 }

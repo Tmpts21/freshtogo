@@ -3,6 +3,7 @@ import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 import Cart from '@/Pages/Customer/Cart.vue';
 import { deliveryFares } from './Fares';
+import { Inertia } from '@inertiajs/inertia'
 
 export default { 
     props : ['products' , 'categories'] ,
@@ -18,11 +19,15 @@ export default {
             fareCharge : null ,
             fareSelect : this.$page.props.auth.user.city,
             isCheckout : false ,
+            modeOfPayment : 'Cash on Delivery',
+            displayError : false ,
    
         }
     },
     mounted() { 
         this.fillCart(); 
+        this.getDeliveryFare();
+        console.log(this.fareSelect);
     },
     methods : {
         fillCart() { 
@@ -38,8 +43,6 @@ export default {
                     stock : parseInt(this.freshToGo[i].stock) , 
                     image : this.freshToGo[i].image , 
                     total  : parseInt(this.freshToGo[i].price) ,
-
-
                 }
                 this.cart.push(product); 
             }
@@ -78,11 +81,11 @@ export default {
                 });
 
                 return this.displayCart = true ; 
+                 
             }
 
             return this.displayCart = false ;
             
-            // return Inertia.get('customer/cart', {cart:shoppingCart})
 
         },
 
@@ -133,16 +136,46 @@ export default {
             const city = this.fareSelect;
             for (let i = 0 ; i < this.fares.length ; i ++ ) { 
                 if (this.fares[i].city === city ) {
-                    console.log(this.fares[i].fare)
                     return this.fareCharge =  this.fares[i].fare; 
                 }
             }
         },
 
-        displayCheckout() { 
-            this.displayCart = false 
-            this.isCheckout = true ; 
+        placeOrder() { 
+            let orders = [];
+
+            // check quantity 
+
+            if(this.validateQuantity()) { 
+                for (let i = 0 ; i < this.cartProducts.length ; i ++ ) { 
+                orders.push(JSON.stringify(this.cartProducts[i]))
+                }
+
+            const orderdata = { 
+                cart : orders ,
+                deliveryCharge : this.fareCharge  ,
+                mop : this.modeOfPayment 
+            }
+                this.displayError = false  ; 
+                return Inertia.post('customer/placeorder', {data:orderdata})
+            }
+
+            this.displayError = true ; 
+
+            
+
         },
+
+        validateQuantity(){ 
+            for(let i = 0 ; i < this.cartProducts.length; i++ ) { 
+                if(this.cartProducts[i].quantity < 5 ) { 
+                    return false ; 
+                }
+            }
+
+            return true ; 
+
+            }
     }
 
 }
@@ -153,8 +186,8 @@ export default {
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Our products
+            <h2 class="font-semibold text-xl text-orange-500 leading-tight">
+                Our Products ✨
             </h2>
         </template>
 
@@ -165,15 +198,20 @@ export default {
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                     <div class="p-6 bg-white border-b border-gray-200">
+
+
+                      
+
                         <button  v-if="!displayCart" @click="shoppingCart()" class="fixed rounded-full z-90 bottom-10 text-green-500 right-8 float-right bg-gray-100 hover:bg-gray-200 text-white font-bold py-2 px-4 border-2 border-gray-700 ">
                            <span><i class="fa-solid fa-cart-shopping text-orange-500 text-lg "></i> </span>  View Shopping Cart
                          </button>
 
-                          <button  v-else @click="shoppingCart()" class="fixed rounded-full z-90 bottom-10 text-green-500 right-8 float-right bg-gray-100 hover:bg-gray-200 text-white font-bold py-2 px-4 border-2 border-gray-700 ">
+                          <button  v-if="displayCart" @click="shoppingCart()" class="fixed rounded-full z-90 bottom-10 text-green-500 right-8 float-right bg-gray-100 hover:bg-gray-200 text-white font-bold py-2 px-4 border-2 border-gray-700 ">
                            <span><i class="fa-solid fa-cart-shopping text-orange-500 text-lg "></i> </span>  Back to products
                          </button>
 
 
+            <Transition name="slide-fade">
 
                     <div v-if="!displayCart  && !isCheckout" class="p-6 flex flex-wrap items-center justify-center">
                         
@@ -197,23 +235,20 @@ export default {
                             <span class="float-right mt-1 text-sm text-gray-500">Stock {{product.stock}}<small>(kg)</small></span>
                         </div>
                             <button v-if="!isAddedToCart(product.id)" @click="addToCart(product.id)" class="mt-3 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 border border-orange-700 rounded">
-                                <span> add to cart </span>   
+                                <span> add to cart 🛒</span>   
                             </button>
                             <button v-else @click="removeToCart(product.id)" class="mt-3 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 border border-gray-700 rounded">
-                                added to cart
+                                added to cart 🛒
                             </button>
                         </div>
 
                     </div>
 
-
-
-
-
-
                              
                     </div>
 
+                    </Transition>
+                <Transition name="slide-fade">
                     <div v-if="displayCart">
                          <div v-if="cartProducts.length">
 
@@ -289,8 +324,8 @@ export default {
                                         Total Price : ₱ {{getTotalPrice()}}
                                     </td>
 
-                                    <td class="px-2 py-1" >
-                                        <button @click="displayCheckout()" class="ml-3 float-right font-bold text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800" >Check Out</button>
+                                    <td class="px-2 py-1 font-bold text-lg" >
+                                        Delivery Fee : ₱ {{fareCharge}}
                                     </td>
                                 </tr>
                                 </tbody>
@@ -299,24 +334,9 @@ export default {
 
 
 
-                        </div>
-                        <div v-else>
-                             <div class="bg-orange-100 text-center border-l-4 rounded-lg border-orange-500 text-orange-700 p-4" role="alert">
-                                <p class="font-bold">Nothing here :( </p>
-                                
-                            </div>
-
-
-                        </div>
-     
-
-
-                    </div>
-
-
-                       <div v-if="isCheckout">
+                         <div>
                             <div class="leading-loose">
-                        <form class="max-w-2xl m-4 p-10 ">
+                        <div class="max-w-2xl m-4 p-10 " >
                             <p class="text-gray-800 font-medium text-2xl font-bold">Checkout information</p>
                             <br>
                             <hr>
@@ -366,15 +386,44 @@ export default {
                             </select>
 
                            </div>
+
+                           <Transition name="slide-fade">
+
+                             <div v-if="displayError" class="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                            <strong class="font-bold">Sorry 😔</strong>
+                            <span class="block sm:inline"> minimum of 5kg per product </span>
+                         
+                        </div>
+                        </Transition>
                     <br>
-                           
-                            <button class="ml-3 float-right font-bold text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800" >Place Order</button>
 
+                            <button @click="placeOrder()" class="ml-3 float-right font-bold text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800" >Place Order</button>
 
+                        </div>
 
-                        </form>
                     </div>
+
                 </div>
+
+
+
+                        </div>
+                        <div v-else>
+                             <div class="bg-orange-100 text-center border-l-4 rounded-lg border-orange-500 text-orange-700 p-4" role="alert">
+                                <p class="font-bold">Nothing here :( </p>
+                            </div>
+
+
+                        </div>
+     
+
+
+                    </div>
+
+                    </Transition>
+
+
+                      
 
 
 
@@ -390,3 +439,21 @@ export default {
         </div>
     </BreezeAuthenticatedLayout>
 </template>
+
+<style>
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(50px);
+  opacity: 0;
+}
+
+</style>

@@ -29,34 +29,38 @@ const showingNavigationDropdown = ref(false);
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                               
                                      <!-- Admin Links  -->
-                                    <BreezeNavLink v-if="$page.props.auth.user.role === 'admin'" :href="route('admin')" :active="route().current('admin')">
-                                       <i class="fa-solid fa-chart-pie text-orange-500 mr-2 "></i>   Dashboard
+                                    <BreezeNavLink class="font-bold" v-if="$page.props.auth.user.role === 'admin'" :href="route('admin')" :active="route().current('admin')">
+                                       📈   Dashboard
                                     </BreezeNavLink>
-                                    <BreezeNavLink v-if="$page.props.auth.user.role === 'admin'" :href="route('admin.products')" :active="route().current('admin.products')">
-                                       <i class="fa-solid fa-bacon text-orange-500 mr-2 "></i>  Products 
+                                    <BreezeNavLink class="font-bold" v-if="$page.props.auth.user.role === 'admin'" :href="route('admin.products')" :active="route().current('admin.products')">
+                                       🥩  Products 
                                     </BreezeNavLink>
-                                    <BreezeNavLink v-if="$page.props.auth.user.role === 'admin'" :href="route('admin.category')" :active="route().current('admin.category')">
-                                      <i class="fas fa-list-alt text-orange-500 mr-2 "></i>  Category
+                                    <BreezeNavLink class="font-bold" v-if="$page.props.auth.user.role === 'admin'" :href="route('admin.category')" :active="route().current('admin.category')">
+                                       🧮 Category
                                     </BreezeNavLink>
-                                     <BreezeNavLink v-if="$page.props.auth.user.role === 'admin'" :href="route('admin.orders')" :active="route().current('admin.orders')">
-                                        <i class="fa-solid fa-cart-shopping text-orange-500 mr-2 "></i> orders
+                                     <BreezeNavLink class="font-bold"  v-if="$page.props.auth.user.role === 'admin'" :href="route('admin.orders')" :active="route().current('admin.orders')">
+                                       🛍 Order Management 
                                     </BreezeNavLink>
-                                     <BreezeNavLink v-if="$page.props.auth.user.role === 'admin'" :href="route('admin.orders')" :active="route().current('admin.orders')">
-                                       <i class="fa-solid fa-car text-orange-500 mr-2 "></i> drivers
+                                     <BreezeNavLink class="font-bold" v-if="$page.props.auth.user.role === 'admin'" :href="route('admin.users')" :active="route().current('admin.users')">
+                                       🙍‍♂️ User management 
                                     </BreezeNavLink>
 
 
                                     <!-- Driver Links -->
-                                    <BreezeNavLink v-if="$page.props.auth.user.role === 'driver'" :href="route('driver')" :active="route().current('driver')">
+                                    <BreezeNavLink class="font-bold" v-if="$page.props.auth.user.role === 'driver'" :href="route('driver')" :active="route().current('driver')">
                                         dashboard
                                     </BreezeNavLink>
-                                    <BreezeNavLink v-if="$page.props.auth.user.role === 'driver'" :href="route('dashboard')" :active="route().current('dashboard')">
+                                    <BreezeNavLink class="font-bold" v-if="$page.props.auth.user.role === 'driver'" :href="route('dashboard')" :active="route().current('dashboard')">
                                         delivery orders
                                     </BreezeNavLink>
 
 
-                                    <BreezeNavLink v-if="$page.props.auth.user.role === 'customer'" :href="route('dashboard')" :active="route().current('dashboard')">
-                                        Products
+                                    <BreezeNavLink class="font-bold" v-if="$page.props.auth.user.role === 'customer'" :href="route('dashboard')" :active="route().current('dashboard')">
+                                      🥩  Products
+                                    </BreezeNavLink>
+
+                                    <BreezeNavLink class="font-bold" v-if="$page.props.auth.user.role === 'customer'" :href="route('customer.orders')" :active="route().current('customer.orders')">
+                                       🛍 My Orders 
                                     </BreezeNavLink>
                                
                              
@@ -83,6 +87,11 @@ const showingNavigationDropdown = ref(false);
                                     </template>
 
                                     <template #content>
+
+                                         <BreezeDropdownLink :href="route('profile')" method="get" as="button">
+                                            Profile
+                                        </BreezeDropdownLink>
+                                        
                                         <BreezeDropdownLink :href="route('logout')" method="post" as="button">
                                             Log Out
                                         </BreezeDropdownLink>
@@ -118,11 +127,20 @@ const showingNavigationDropdown = ref(false);
                             <div class="font-medium text-sm text-gray-500">{{ $page.props.auth.user.email }}</div>
                         </div>
 
+
+                        <div class="mt-3 space-y-1">
+                            <BreezeResponsiveNavLink :href="route('logout')" method="post" as="button">
+                                Profile
+                            </BreezeResponsiveNavLink>
+                        </div>
+
                         <div class="mt-3 space-y-1">
                             <BreezeResponsiveNavLink :href="route('logout')" method="post" as="button">
                                 Log Out
                             </BreezeResponsiveNavLink>
                         </div>
+
+                       
                     </div>
                 </div>
             </nav>

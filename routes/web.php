@@ -8,7 +8,9 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
-use App\Models\Order;
+use App\Http\Controllers\CustomerController;
+use App\Models\Category;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,13 +24,18 @@ use App\Models\Order;
 */
 
 Route::get('/', function () {
+    $productController = new ProductController ;
+    $categories = Category::all();  
+    
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+        'products' => $productController->getAllProducts(),
+        'categories' => $categories 
     ]);
-});
+})->name('welcome');
 
 
 Route::get('/redirects', [DashboardController::class, 'redirects'])->middleware(['auth', 'verified'])->name('redirects');
@@ -41,13 +48,34 @@ Route::get('/driver', [DashboardController::class, 'driver_index'])->middleware(
 
 
 
+Route::get('/feedback', function () {
 
+    
+})->name('feedback');
+
+Route::get('/contact', function () {
+
+    
+})->name('contact');
+
+
+Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
+
+Route::post('/profile/update', [DashboardController::class, 'update_profile'])->name('profile.update');
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth' ,'verified' ]], function(){
 
+    Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/users/create', [AdminController::class, 'create_user'])->name('admin.create_user');
+    Route::post('/users/save', [AdminController::class, 'save_user'])->name('admin.save_user');
+    Route::get('/users/edit/{id}', [AdminController::class, 'edit_user'])->name('admin.edit_user');
+    Route::post('/users/update', [AdminController::class, 'update_user'])->name('admin.update_user');
+
+
     Route::get('/orders', [AdminController::class, 'orders'])->name('admin.orders');
-    Route::get('/products', [AdminController::class, 'index'])->name('admin.products');
+    Route::get('/orders/edit/{id}', [OrderController::class, 'edit'])->name('order.edit');
+    Route::post('/update/order', [OrderController::class, 'update'])->name('update.order');
 
     Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
     Route::get('/create/category', [CategoryController::class, 'create'])->name('create.category');
@@ -67,7 +95,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth' ,'verified' ]], funct
 
 
 Route::group(['prefix' => 'customer', 'middleware' => ['auth' ,'verified' ]], function(){
-    Route::get('/cart', [ProductController::class, 'show_shopping_cart'])->name('customer.cart');
+    Route::post('/placeorder', [CustomerController::class, 'place_order'])->name('customer.placeorder');
+    Route::get('/orders', [CustomerController::class, 'orders'])->name('customer.orders');
 });
 
 require __DIR__.'/auth.php';

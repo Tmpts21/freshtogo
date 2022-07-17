@@ -18,10 +18,14 @@ return new class extends Migration
             $table->foreignId('product_id')->nullable(); 
             $table->foreignId('user_id')->nullable(); 
             $table->string('status'); 
+            $table->string('customer_name'); 
             $table->string('driver_name')->nullable(); 
+            $table->string('driver_id')->nullable(); 
             $table->string('product_name');
-            $table->string('total');
-
+            $table->string('total_price');
+            $table->string('deliveryFee');
+            $table->string('quantity');
+            $table->string('mop');
             $table->timestamps();
         });
     }

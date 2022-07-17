@@ -20,7 +20,7 @@ export default {
     } ,
 
     computed : { 
-                onChangeInput() { 
+            onChangeInput() { 
 
             if(this.searchInput === '' ) { 
                 this.listOfProducts = this.products 
@@ -120,26 +120,26 @@ export default {
 
                                 <tbody>
                                     <tr v-for="(product , index) in listOfProducts" :key="index" class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                    <th scope="row" :class="{'bg-gray-200' : index % 2 == 0 }"  class="px-2 py-1 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                    <th scope="row"     class="border border-2 px-2 py-1 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                                         {{product.id}} 
                                     </th>
-                                    <td class="px-2 py-1" :class="{'bg-gray-200' : index % 2 == 0 }">
+                                    <td class="px-2 py-1 border border-2 "   >
                                         {{product.name}}
                                     </td>
-                                    <td class="px-2 py-1" :class="{'bg-gray-200' : index % 2 == 0 }">
+                                    <td class="px-2 py-1 border border-2 " >
                                         {{categories[product.category_id - 1 ].name}}
                                     </td>
-                                    <td class="px-2 py-1" :class="{'bg-gray-200' : index % 2 == 0 }">
+                                    <td class="px-2 py-1 border border-2 " >
                                         {{product.brand}}
                                     </td>
-                                    <td class="px-2 py-1" :class="{'bg-gray-200' : index % 2 == 0 }">
+                                    <td class="px-2 py-1 border border-2 "   >
                                         {{product.stock}}<small>(kg)</small>
                                     </td>
-                                    <td class="px-2 py-1" :class="{'bg-gray-200' : index % 2 == 0 }">
+                                    <td class="px-2 py-1 border border-2 "   >
                                         ₱ {{product.price}}<small>(kg)</small>
                                     </td>
 
-                                    <td class="px-2 py-3" :class="{'bg-gray-200' : index % 2 == 0 }">
+                                    <td class="px-2 py-3 border border-2 "   >
                                         <Link :href="route('edit.product' , {id : product.id })" class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Edit'" />
                                         <Link :href="route('show.product' , {id : product.id })" class="ml-3 font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"  v-html="'View'" />
 

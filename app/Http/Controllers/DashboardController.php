@@ -39,5 +39,35 @@ class DashboardController extends Controller
     public function driver_index() { 
         return Inertia::render('Driver/DriverDashboard'); 
     }
+
+    public function profile() { 
+        return Inertia::render('Profile'); 
+    }
+
+    public function update_profile(Request $request) { 
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'barangay' => 'required|string|max:255',
+            'street_address' => 'required|string|max:255',
+            'postal_code' => 'required|integer',
+            'contact_no' => 'required|string|max:11',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image_path = $request->file('image')->store('image/profile', 'public');
+            $validated['image'] = $image_path ; 
+        }
+
+        
+
+        if(Auth::user()->update($validated)) { 
+            return redirect()->back()->with('success' , 'Profile Successfully Updated ! ');
+        }
+
+        return redirect()->back()->with('error' , 'Something went wrong please check your inputs ! ');
+
+    }   
     
 }

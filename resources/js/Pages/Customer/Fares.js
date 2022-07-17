@@ -5,40 +5,64 @@ var deliveryFares = [
         },
          {
             city : 'Las Pinas',
-            fare : '120',
+            fare : '101',
         },
 
          {
             city : 'Makati',
-            fare : '100',
+            fare : '102',
         },
          {
             city : 'Malabon',
-            fare : '100',
+            fare : '103',
         },
          {
             city : 'Mandaluyong ',
-            fare : '100',
+            fare : '104',
         },
          {
             city : 'Manila',
-            fare : '100',
+            fare : '105',
         },
          {
             city : 'Marikina',
-            fare : '100',
+            fare : '106',
         },
          {
             city : 'Muntinlupa',
-            fare : '100',
+            fare : '107',
         },
          {
-            city : 'Caloocan',
-            fare : '100',
+            city : 'Navotas',
+            fare : '108',
         },
          {
-            city : 'Caloocan',
-            fare : '100',
+            city : 'Paranaque',
+            fare : '109',
+        },
+        {
+            city : 'Pasay',
+            fare : '110',
+        },
+        {
+            city : 'pasig',
+            fare : '111',
+        },
+        {
+            city : 'Quezon City',
+            fare : '112',
+        },
+        {
+            city : 'San Juan',
+            fare : '113',
+        },
+        {
+            city : 'Taguig',
+            fare : '114',   
+        },
+        {
+            city : 'Valenzuela',
+            fare : '115',   
         },
 
     ]
