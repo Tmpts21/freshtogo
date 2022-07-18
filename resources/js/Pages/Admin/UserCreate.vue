@@ -13,6 +13,7 @@ export default {
     BreezeAuthenticatedLayout ,
     Head
   },
+  props : ['errors'],
 
   setup (props) {
     const form = reactive({
@@ -61,6 +62,12 @@ export default {
                                     <p>{{ $page.props.flash.error }}</p>
                                 </div>
                                 <br>
+                            </div>
+
+                            <div v-if="errors">
+                                <ul class="mt-3 list-disc list-inside text-sm text-red-600">
+                                    <li v-for="(error, key) in errors" :key="key">{{ error }}</li>
+                                </ul>
                             </div>
                     
                         <div class="w-full max-w-xs">

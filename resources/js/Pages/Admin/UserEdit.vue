@@ -14,11 +14,11 @@ export default {
     Head
   },
 
-  props : ['user'],
+  props : ['user' , 'errors'],
 
   setup (props) {
     const form = reactive({
-      user_id : props.user.id , 
+      id : props.user.id , 
       name: props.user.name,
       email: props.user.email,
       city :  props.user.city,
@@ -27,6 +27,7 @@ export default {
       postal_code :  props.user.postal_code,
       contact_no : props.user.contact_no,
       role :  props.user.role , 
+      status : props.user.status 
     })
 
 
@@ -66,6 +67,12 @@ export default {
                                 </div>
                                 <br>
                             </div>
+
+                            <div v-if="errors">
+                                <ul class="mt-3 list-disc list-inside text-sm text-red-600">
+                                    <li v-for="(error, key) in errors" :key="key">{{ error }}</li>
+                                </ul>
+                            </div>
                     
                         <div class="w-full max-w-xs">
                         <form @submit.prevent="submit()"  class="bg-white rounded px-8 pt-6 pb-8 mb-4">
@@ -74,13 +81,6 @@ export default {
                                 Name
                             </label>
                             <input v-model="form.name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter Name">
-                            </div>
-
-                            <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
-                                Email
-                            </label>
-                            <input v-model="form.email" type="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category"  placeholder="Enter Email">
                             </div>
 
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
@@ -125,6 +125,14 @@ export default {
                                 <option  value='customer' selected>Customer</option>
                                 <option  value='driver' >Driver</option>
                                 <option  value='admin' >Admin</option>
+                            </select>
+
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                User status 
+                            </label>
+                             <select v-model="form.status" class="mb-4 block appearance-none w-full  rounded border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                <option  value='active' selected>Active</option>
+                                <option  value='inactive' >Inactive</option>
                             </select>
 
                             <button :disabled="form.processing" type="submit" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">save</button>

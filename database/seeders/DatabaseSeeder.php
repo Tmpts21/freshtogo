@@ -23,9 +23,11 @@ class DatabaseSeeder extends Seeder
             'role' => 'driver',
             'street_address' => 'Blk 23 Lt 2 Ph 6 Dasma3' ,
             'city' => 'Dasmarinas',
-            'postal_code' => 'Valenzuela' ,
+            'postal_code' => '4114' ,
             'barangay' => 'Brngy valenzuela',
-            'contact_no' => '09163410823' 
+            'contact_no' => '09163410823',
+            'status' => 'active' 
+
 
         ]);
 
@@ -35,9 +37,11 @@ class DatabaseSeeder extends Seeder
             'role' => 'driver',
             'street_address' => 'Blk 23 Lt 2 Ph 6 Dasma3' ,
             'city' => 'Dasmarinas',
-            'postal_code' => 'Valenzuela' ,
+            'postal_code' => '4114' ,
             'barangay' => 'Brngy valenzuela',
-            'contact_no' => '09163410823' 
+            'contact_no' => '09163410823' ,
+            'status' => 'active' 
+
         ]);
 
         \App\Models\User::factory()->create([
@@ -46,9 +50,11 @@ class DatabaseSeeder extends Seeder
             'role' => 'driver',
             'street_address' => 'Blk 23 Lt 2 Ph 6 Dasma3' ,
             'city' => 'Dasmarinas',
-            'postal_code' => 'Valenzuela' ,
+            'postal_code' => '4114' ,
             'barangay' => 'Brngy valenzuela',
-            'contact_no' => '09163410823' 
+            'contact_no' => '09163410823' ,
+            'status' => 'active' 
+
         ]);
 
         \App\Models\User::factory()->create([
@@ -59,7 +65,9 @@ class DatabaseSeeder extends Seeder
             'city' => 'Makati',
             'postal_code' => '4114' ,
             'barangay' => 'Brngy makati',
-            'contact_no' => '09163410823' 
+            'contact_no' => '09163410823' ,
+            'status' => 'active' 
+
 
         ]);
 
@@ -71,7 +79,9 @@ class DatabaseSeeder extends Seeder
             'city' => 'Las Pinas',
             'postal_code' => '4114' ,
             'barangay' => 'Brngy makati',
-            'contact_no' => '09163410823' 
+            'contact_no' => '09163410823',
+            'status' => 'active' 
+
 
         ]);
 
@@ -83,7 +93,9 @@ class DatabaseSeeder extends Seeder
             'city' => 'Las Pinas',
             'postal_code' => '4114' ,
             'barangay' => 'Brngy makati',
-            'contact_no' => '09163410823' 
+            'contact_no' => '09163410823',
+            'status' => 'active' 
+
 
         ]);
 
@@ -95,7 +107,8 @@ class DatabaseSeeder extends Seeder
             'city' => 'Dasmarinas',
             'postal_code' => '4114' ,
             'barangay' => 'Brngy Salawag' ,
-            'contact_no' => '09163410823' 
+            'contact_no' => '09163410823',
+            'status' => 'active' 
         ]);
 
         // generate Category 

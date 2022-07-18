@@ -80,6 +80,9 @@ export default {
                                     <th scope="col" class="px-6 py-3">
                                          Product Name 
                                     </th>
+                                    <th scope="col" class="px-6 py-3">
+                                         Image 
+                                    </th>
                                      <th scope="col" class="px-6 py-3">
                                          Total Price 
                                     </th>
@@ -108,6 +111,12 @@ export default {
                                         {{order.product_name}}
                                         <!-- <img :src="'/storage/' + product.image" height="150" width="150" alt=""> -->
                                     </td>
+
+                                    <td class="px-2 py-1 mx-auto border border-2 " >
+                                        <img :src="'/storage/' + order.image " class="ml-5 w-20 h-20 rounded-full">
+                                    </td>
+
+
                                      <td class="px-2 py-1 border border-2 " >
                                        ₱  {{order.total_price}}
                                     </td>

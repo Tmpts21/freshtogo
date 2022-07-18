@@ -100,6 +100,9 @@ export default {
                                          Name 
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                         Image 
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Category Name 
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -126,6 +129,18 @@ export default {
                                     <td class="px-2 py-1 border border-2 "   >
                                         {{product.name}}
                                     </td>
+
+
+                                    <td v-if="product.image" class="px-2 py-1 border border-2 "   >
+                                        <img :src="'/storage/' + product.image " class="ml-5 w-20 h-20 rounded-full">
+                                    </td>
+
+                                    <td v-else>
+                                        <div class="mb-5 rounded flex items-center bg-orange-500 text-white text-sm font-bold px-4 py-3" role="alert">
+                                        <p>Not available 🙁  </p>
+                                        </div>
+                                    </td>
+
                                     <td class="px-2 py-1 border border-2 " >
                                         {{categories[product.category_id - 1 ].name}}
                                     </td>

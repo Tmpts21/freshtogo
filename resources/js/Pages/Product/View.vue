@@ -1,6 +1,6 @@
 <script >
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import { Head , Link } from '@inertiajs/inertia-vue3';
 import { reactive } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 
@@ -8,7 +8,8 @@ export default {
    props: ['product','categories' ,'errors'] ,  
   components : {  
     BreezeAuthenticatedLayout ,
-    Head
+    Head ,
+    Link 
   },
   setup (props) {
     console.log(props);
@@ -30,9 +31,27 @@ export default {
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
                     <div class="p-6 flex flex-col justify-center items-center">
                         <div class="w-full max-w-lg">
+
+
                         <form class="bg-white rounded px-8 pt-6 pb-8 mb-4">
+
+                                <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                Image
+                            </label>
+
+                            <div v-if="product.image">
+                                <img :src="'/storage/' + product.image" height="200" width="200"  class="ml-32" alt="" >
+                            </div>
+
+                            <div v-else>
+                                <h5 class="text-red-500">Image unavailable for this product ! </h5>
+                            </div>
+                            </div>
+
                             <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
                                 Product Name
@@ -79,22 +98,8 @@ export default {
                             <input readonly :value="'₱ ' + product.price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter product price">
                             </div>
 
-
-
-                            <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
-                                Image
-                            </label>
-                            <div v-if="product.image">
-                                <img :src="'/storage/' + product.image" height="500" width="500" alt="" >
-                            </div>
-
-                            <div v-else>
-                                <h5 class="text-red-500">Image unavailable for this product ! </h5>
-                            </div>
-                            </div>
+                            <Link :href="route('edit.product' , {id : product.id })" class="float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Edit'" />
                            
-
                         </form>
                
                         </div>

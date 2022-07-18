@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('deliveryFee');
             $table->string('quantity');
             $table->string('mop');
+            $table->string('image');
             $table->timestamps();
         });
     }

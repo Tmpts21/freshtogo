@@ -101,7 +101,18 @@ class AdminController extends Controller
 
     public function save_user(Request $request) { 
 
-        $fields = $request->all();
+        $validated =  $request->validate([
+            'name' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'barangay' => 'required|string|max:255',
+            'street_address' => 'required|string|max:255',
+            'postal_code' => 'required|integer',
+            'contact_no' => 'required|string|max:11',
+        ]);
+
+        $fields = $validated;
+
+        //default password
         $fields['password'] = 'password123';
 
         $user = User::create($fields);
@@ -120,12 +131,22 @@ class AdminController extends Controller
     }
 
     public function update_user(Request $request) { 
-        $fields = $request->all(); 
+
+        $validated =  $request->validate([
+            'name' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'barangay' => 'required|string|max:255',
+            'street_address' => 'required|string|max:255',
+            'postal_code' => 'required|integer',
+            'contact_no' => 'required|string|max:11',
+            'status' => 'required',
+        ]);
+
+        $fields = $validated; 
         unset($fields[0]);
 
         $user = User::findorfail($request->id); 
 
-        
         if($user){ 
             $user->update($fields); 
             return redirect()->back()->with('success' , 'User Successfully updated ! ');

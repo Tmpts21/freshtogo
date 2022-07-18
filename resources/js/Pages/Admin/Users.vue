@@ -51,6 +51,9 @@ export default {
                                         User name 
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Image 
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Email 
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -64,17 +67,29 @@ export default {
 
                                 <tbody>
                                     <tr v-for="user in users" :key="user.id" class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                    <th scope="row"       class="px-2 py-1 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                    <th scope="row"       class=" border boder-2 px-2 py-1 font-medium text-gray-900 dark:text-white whitespace-nowrap">
                                         {{user.name}}
                                     </th>
-                                    <td class="px-2 py-1" >
+
+
+                                     <td v-if="user.image" class="px-2 py-1 border border-2 "   >
+                                        <img :src="'/storage/' + user.image " class="ml-32 w-20 h-20 rounded-full">
+                                    </td>
+
+                                    <td v-else class="px-12">
+                                        <div class="rounded items-center text-sm font-bold px-4 py-3" role="alert">
+                                        <p>Not available 🙁  </p>
+                                        </div>
+                                    </td>
+                                 
+                                    <td class=" border boder-2 px-2 py-1" >
                                         {{user.email}}
                                     </td>
-                                    <td class="px-2 py-1"     >
+                                    <td class=" border boder-2 px-2 py-1"     >
                                         {{user.role}}
                                     </td>
-                                    <td class="px-5 py-4" >
-                                        <Link  :href="route('admin.edit_user' , {id : user.id})"  class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Edit'" />
+                                    <td class=" border boder-2 px-5 py-4" >
+                                        <Link  :href="route('admin.edit_user' , {id : user.id})"  class=" border boder-2 font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Edit'" />
                                     </td>
                                 </tr>
                                 </tbody>

@@ -26,6 +26,7 @@ class CustomerController extends Controller
                 'total_price' => $prod->total ,
                 'deliveryFee' => $request->data['deliveryCharge'],
                 'quantity' => $prod->quantity,
+                'image' => $prod->image,
                 'mop' => $request->data['mop'] 
             ]);
         }
