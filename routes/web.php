@@ -9,6 +9,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DriverController;
+
 use App\Models\Category;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -97,6 +99,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth' ,'verified' ]], funct
 Route::group(['prefix' => 'customer', 'middleware' => ['auth' ,'verified' ]], function(){
     Route::post('/placeorder', [CustomerController::class, 'place_order'])->name('customer.placeorder');
     Route::get('/orders', [CustomerController::class, 'orders'])->name('customer.orders');
+});
+
+
+Route::group(['prefix' => 'driver', 'middleware' => ['auth' ,'verified' ]], function(){
+    Route::get('/edit/orders/{id}', [DriverController::class, 'edit'])->name('driver.edit_order');
+    Route::get('/view/orders/{id}', [DriverController::class, 'view'])->name('driver.view_order');
+    Route::post('/update/order', [DriverController::class, 'update'])->name('driver.update_order_status');
+
 });
 
 require __DIR__.'/auth.php';

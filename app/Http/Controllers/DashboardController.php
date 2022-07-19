@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product ;
+use App\Models\Order ;
+
 
 class DashboardController extends Controller
 {
@@ -36,8 +38,15 @@ class DashboardController extends Controller
         return Inertia::render("Admin/AdminDashboard"); 
     }
 
-    public function driver_index() { 
-        return Inertia::render('Driver/DriverDashboard'); 
+    public function driver_index() {
+
+        $orders = Order::all()->where('driver_id' , Auth::user()->id );
+
+        $customer_details = [] ; 
+
+        return Inertia::render('Driver/DriverDashboard' ,[
+                        'orders' => $orders , 
+                        'customerDetails' => $customer_details ]); 
     }
 
     public function profile() { 

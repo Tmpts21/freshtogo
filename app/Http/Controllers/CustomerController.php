@@ -14,7 +14,10 @@ use Inertia\Inertia ;
 class CustomerController extends Controller
 {
     public function place_order(Request $request) { 
+
+        
         foreach($request->data['cart'] as $product) { 
+            
             $prod = json_decode($product);
             // create orders for individual product
             Order::create([
@@ -27,7 +30,8 @@ class CustomerController extends Controller
                 'deliveryFee' => $request->data['deliveryCharge'],
                 'quantity' => $prod->quantity,
                 'image' => $prod->image,
-                'mop' => $request->data['mop'] 
+                'mop' => $request->data['mop'] ,
+                'address' => $request->data['address'] 
             ]);
         }
 

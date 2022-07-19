@@ -21,6 +21,7 @@ export default {
             isCheckout : false ,
             modeOfPayment : 'Cash on Delivery',
             displayError : false ,
+            address :  this.$page.props.auth.user.postal_code+ ' ' + this.$page.props.auth.user.street_address + ' ' +  this.$page.props.auth.user.barangay + ' ' + this.$page.props.auth.user.city + ' City'
    
         }
     },
@@ -126,7 +127,7 @@ export default {
                 totalPrice+= products.total
             });
 
-            return totalPrice ; 
+            return totalPrice + parseInt(this.fareCharge) ; 
 
             
         },
@@ -154,7 +155,8 @@ export default {
             const orderdata = { 
                 cart : orders ,
                 deliveryCharge : this.fareCharge  ,
-                mop : this.modeOfPayment 
+                mop : this.modeOfPayment ,
+                address : this.address
             }
                 this.displayError = false  ; 
                 return Inertia.post('customer/placeorder', {data:orderdata})
@@ -277,6 +279,9 @@ export default {
                                      <th scope="col" class="px-6 py-3">
                                         quantity 
                                     </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Delivery Fee 
+                                    </th>
                                      <th scope="col" class="px-6 py-3">
                                         action 
                                     </th>
@@ -293,7 +298,7 @@ export default {
                                         {{product.name}}
                                     </td>
                                     <td class="px-2 py-1 mx-auto" >
-                                        <img :src="'/storage/' + product.image" height="150" width="150" alt="">
+                                        <img :src="'/storage/' + product.image" height="150" width="150" class="" alt="">
                                     </td>
                                      <td class="px-2 py-1" >
                                          ₱ {{product.total}}
@@ -303,6 +308,9 @@ export default {
                                         {{product.quantity}}
                                         <button @click="decreaseQuantity(product.id)"> <i class="fa-solid fa-minus text-red-500 text-lg ml-2 "></i></button>
 
+                                    </td>
+                                      <td class="px-2 py-1 font-bold text-lg" >
+                                         ₱ {{fareCharge}}
                                     </td>
                                     <td class="px-2 py-1" >
                                             <button class="ml-3 font-bold text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800" @click="deleteProduct(product.id)">Delete</button>
@@ -319,14 +327,15 @@ export default {
 
                                     <td class="px-2 py-1" >
                                     </td>
-
+                                     <td class="px-2 py-1" >
+                                    </td>
+                                     <td class="px-2 py-1" >
+                                    </td>
                                     <td class="px-2 py-1 font-bold text-lg" >
-                                        Total Price : ₱ {{getTotalPrice()}}
+                                        Total : ₱ {{getTotalPrice()}}
                                     </td>
 
-                                    <td class="px-2 py-1 font-bold text-lg" >
-                                        Delivery Fee : ₱ {{fareCharge}}
-                                    </td>
+                                  
                                 </tr>
                                 </tbody>
                             </table>
@@ -352,30 +361,35 @@ export default {
 
                             <div class="inline-block mt-2 w-1/2 pr-1">
                            <label class="font-bold" for="city">City</label>
-                            <select v-model="fareSelect" :on-change="getDeliveryFare()" class="block appearance-none w-full text-gray-700 bg-gray-100 rounded border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                            <select readonly  v-model="fareSelect" :on-change="getDeliveryFare()" class="block appearance-none w-full text-gray-700 bg-gray-100 rounded border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                                     <option v-for="fare in fares" :key="fare.id" :value="fare.city" >{{fare.city}}</option>
                             </select>
                             </div>
 
                             <div class="inline-block mt-2 w-1/2 pr-1">
                                 <label class="font-bold" for="fare">Delivery Fee</label>
-                                <input v-model="fareCharge" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="fare"  type="text" required="" placeholder="delivery fare" aria-label="Email">
+                                <input readonly v-model="fareCharge" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="fare"  type="text" required="" placeholder="delivery fare" aria-label="Email">
                             </div>
 
                               <div class="mt-2">
                             <label class="font-bold" for="Barangay">Barangay</label>
-                               <input :value="$page.props.auth.user.barangay" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="Barangay"  type="text" required="" placeholder="barangay" aria-label="Email">
+                               <input readonly :value="$page.props.auth.user.barangay" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="Barangay"  type="text" required="" placeholder="barangay" aria-label="Email">
                            </div>
 
                                <div class="mt-2">
                             <label class="font-bold" for="street">Street Address</label>
-                               <input :value="$page.props.auth.user.street_address" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="street"  type="text" required="" placeholder="barangay" aria-label="Email">
+                               <input readonly  :value="$page.props.auth.user.street_address" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="street"  type="text" required="" placeholder="barangay" aria-label="Email">
                            </div>
 
                                <div class="mt-2">
                             <label class="font-bold" for="postal">Postal Code </label>
-                               <input :value="$page.props.auth.user.postal_code" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="postal"  type="text" required="" placeholder="barangay" aria-label="Email">
+                               <input readonly :value="$page.props.auth.user.postal_code" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="postal"  type="text" required="" placeholder="barangay" aria-label="Email">
                            </div>
+
+                            <div class="mt-4 bg-blue-200 border border-blue-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
+                                <strong class="font-bold">🚚 Full address  : </strong>
+                                <span class="block sm:inline"> "{{address}}"</span>
+                            </div>
                             <br>
 
                             <div class="mt-2">
@@ -390,10 +404,9 @@ export default {
                            <Transition name="slide-fade">
 
                              <div v-if="displayError" class="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                            <strong class="font-bold">Sorry 😔</strong>
-                            <span class="block sm:inline"> minimum of 5kg per product </span>
-                         
-                        </div>
+                                <strong class="font-bold">Sorry 😔</strong>
+                                <span class="block sm:inline"> minimum of 5kg per product </span>
+                            </div>
                         </Transition>
                     <br>
 

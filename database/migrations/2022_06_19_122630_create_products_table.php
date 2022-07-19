@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('brand');
             $table->string('stock');
             $table->string('price'); 
-            $table->string('image')->nullable(); 
+            $table->string('image')->default('image/products/dZMQdmrdJVa7WRtI2IAsJhEIBiirQyGfS7yVQKwB.jpg'); 
             $table->timestamps();
         });
     }

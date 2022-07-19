@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('quantity');
             $table->string('mop');
             $table->string('image');
+            $table->string('address');
+            $table->string('remarks')->nullable(); 
             $table->timestamps();
         });
     }

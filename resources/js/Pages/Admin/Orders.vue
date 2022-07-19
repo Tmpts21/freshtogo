@@ -15,6 +15,9 @@ export default {
             listOfOrders : this.orders  
         }
     }, 
+    mounted() { 
+        this.onChangeSelect();
+    },
     methods :  { 
         diffForHumans(date) { 
             return moment(date).fromNow(); 
@@ -68,6 +71,10 @@ export default {
                                 </select>
                                 </div>
 
+
+                        <div  class="overflow-x-auto relative">
+
+
                             <table class="mt-5 text-center w-full text-sm text-left text-gray-500 dark:text-gray-800 border mx-auto ">
                                 <thead class="font-bold text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
@@ -76,6 +83,9 @@ export default {
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                          Product Name 
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                         Image 
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                          Assigned driver 
@@ -100,8 +110,12 @@ export default {
                                     </td>
                                     <td class="px-2 py-1 mx-auto border border-2" >
                                         {{order.product_name}}
-                                        <!-- <img :src="'/storage/' + product.image" height="150" width="150" alt=""> -->
                                     </td>
+
+                                     <td  class="mx-auto px-2 py-1 border border-2 "   >
+                                        <img :src="'/storage/' + order.image " class="ml-10 w-20 h-20 rounded-full">
+                                    </td>
+
                                      <td class="px-2 py-1 border border-2" >
                                         <span v-if="order.driver_name">
                                             {{order.driver_name}}
@@ -117,13 +131,14 @@ export default {
                                     </td>
 
                                     <td class="px-4 py-4 border border-2 " >
-                                           <Link :href="route('order.edit' , {id : order.id })"  class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Edit'" />
+                                           <Link :href="route('order.edit' , {id : order.id })"  class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Update 📝'" />
                                     </td>
 
                                 </tr>
                         
                                 </tbody>
                             </table>
+                            </div>
 
 
 

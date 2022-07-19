@@ -48,12 +48,9 @@ const showingNavigationDropdown = ref(false);
 
                                     <!-- Driver Links -->
                                     <BreezeNavLink class="font-bold" v-if="$page.props.auth.user.role === 'driver'" :href="route('driver')" :active="route().current('driver')">
-                                        dashboard
+                                        Driver Dashboard 
                                     </BreezeNavLink>
-                                    <BreezeNavLink class="font-bold" v-if="$page.props.auth.user.role === 'driver'" :href="route('dashboard')" :active="route().current('dashboard')">
-                                        delivery orders
-                                    </BreezeNavLink>
-
+    
 
                                     <BreezeNavLink class="font-bold" v-if="$page.props.auth.user.role === 'customer'" :href="route('dashboard')" :active="route().current('dashboard')">
                                       🥩  Products
