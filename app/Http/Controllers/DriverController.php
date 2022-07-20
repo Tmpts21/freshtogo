@@ -30,13 +30,21 @@ class DriverController extends Controller
         if(!$request->orderStatus) { 
             return redirect()->back()->with('error' , 'Status is required');
         }
+        
         $order = Order::findorfail($request->orderId);
 
+        $orders = Order::all()
+                ->where('user_id' , $request->customerId)
+                ->where('status' , $request->status); 
+            
         if($request->orderStatus == 'cancelled') { 
             if($request->remarks) { 
-                $order->status = $request->orderStatus; 
-                $order->remarks = $request->remarks;  
-                $order->save(); 
+
+                foreach($orders as $o) {
+                    $o->status = $request->orderStatus; 
+                    $o->remarks = $request->remarks;  
+                    $o->save();  
+                }
 
                 return redirect()->back()->with('success' , 'Order status successfully updated ! ');
             }
@@ -45,8 +53,10 @@ class DriverController extends Controller
             }
         }
 
-        $order->status = $request->orderStatus; 
-        $order->save(); 
+        foreach($orders as $o) {
+            $o->status = $request->orderStatus; 
+            $o->save();  
+        }
 
         return redirect()->back()->with('success' , 'Order status successfully updated ! ');
 

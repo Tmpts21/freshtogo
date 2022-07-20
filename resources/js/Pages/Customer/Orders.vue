@@ -98,6 +98,9 @@ export default {
                                     <th scope="col" class="px-6 py-3">
                                         date 
                                     </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Action 
+                                    </th>
                                     
                                 </tr>
                                 </thead>
@@ -142,6 +145,10 @@ export default {
 
                                     <td class="px-2 py-1 border border-2 " >
                                         {{diffForHumans(order.created_at)}} 
+                                    </td>
+
+                                    <td class="px-2 py-1 border border-2 " >
+                                           <Link :href="route('customer.view_order' , {id : order.id })"  class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Update 📝'" />
                                     </td>
 
                                 </tr>

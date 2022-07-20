@@ -17,8 +17,8 @@ class AdminController extends Controller
 
     public function orders() { 
         
-        $orders = DB::table('orders')->orderBy('id' ,'desc')->get();
-        
+        $orders = DB::table('orders')->select('*' , DB::raw('count(*) as total'))->groupBy('user_id')->get();
+
         return Inertia::render('Admin/Orders' , ['orders' => $orders]);
     }
 

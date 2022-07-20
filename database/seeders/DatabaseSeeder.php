@@ -129,5 +129,6 @@ class DatabaseSeeder extends Seeder
         // generate some products
         \App\Models\Product::factory(3)->create();
 
+
     }
 }

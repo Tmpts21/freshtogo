@@ -77,6 +77,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth' ,'verified' ]], funct
 
     Route::get('/orders', [AdminController::class, 'orders'])->name('admin.orders');
     Route::get('/orders/edit/{id}', [OrderController::class, 'edit'])->name('order.edit');
+    Route::get('/orders/view/{id}', [OrderController::class, 'view'])->name('order.view');
     Route::post('/update/order', [OrderController::class, 'update'])->name('update.order');
 
     Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
@@ -99,6 +100,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth' ,'verified' ]], funct
 Route::group(['prefix' => 'customer', 'middleware' => ['auth' ,'verified' ]], function(){
     Route::post('/placeorder', [CustomerController::class, 'place_order'])->name('customer.placeorder');
     Route::get('/orders', [CustomerController::class, 'orders'])->name('customer.orders');
+    Route::get('/view/{id}', [CustomerController::class, 'view'])->name('customer.view_order');
 });
 
 

@@ -90,45 +90,68 @@ export default {
                                         Order Id
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                         Customer Name 
+                                        Customer Name 
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                         Address 
+                                        Address
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                         Product Name 
+                                         No.of Products 
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                         Image 
+                                         Assigned driver 
+                                    </th>
+                                     <th scope="col" class="px-6 py-3">
+                                        status 
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        date 
                                     </th>
                                      <th scope="col" class="px-6 py-3">
                                         Action 
                                     </th>
+                                    
                                     
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                     <tr v-for="order in listOfOrders" :key="order.id" class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                    <td class="px-2 py-1 border border-2 " >
+                                         <td class="px-2 py-1 border border-2 " >
                                         FTG-{{order.id}}
                                     </td>
-                                    <td class="px-2 py-1 mx-auto border border-2" >
+                                     <td class="px-2 py-1 border border-2 " >
                                         {{order.customer_name}}
                                     </td>
-                                    <td class="px-2 py-1 mx-auto border border-2" >
+                                     <td class="px-2 py-1 border border-2 " >
                                         {{order.address}}
                                     </td>
-                                    <td class="px-2 py-1 mx-auto border border-2" >
-                                        {{order.product_name}}
+
+                                    <td class="px-2 py-1 border border-2 " >
+                                        {{order.total}}
                                     </td>
-                                     <td  class="mx-auto px-2 py-1 border border-2 "   >
-                                        <img :src="'/storage/' + order.image " class="w-20 h-20 rounded-full">
+                               
+                                     <td class="px-2 py-1 border border-2" >
+                                        <span v-if="order.driver_name">
+                                            {{order.driver_name}}
+                                        </span>
+                                        <span v-else> No assigned Driver </span>
+                                    </td>
+                                    <td class="px-2 py-1 border border-2 " >
+                                        {{order.status}} 
                                     </td>
 
-                                    <td v-if="order.status == 'pending' || order.status == 'assigned' " class="px-2 py-4 border border-2 " >
-                                           <Link :href="route('driver.view_order' , {id : order.id })"  class="mr-2 font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'View'" />
+                                    <td class="px-2 py-1 border border-2" >
+                                        {{diffForHumans(order.created_at)}} 
+                                    </td>
+
+                                    <td v-if="order.status == 'pending' || order.status == 'assigned'" class="px-2 py-4 border border-2 " >
+                                           <Link :href="route('order.view' , {id : order.id })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
                                            <Link :href="route('driver.edit_order' , {id : order.id })"  class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Update'" />
+                                    </td>
+
+                                    <td v-else-if="order.status == 'delivered'" class="px-2 py-4 border border-2 " >
+                                           <Link :href="route('order.view' , {id : order.id })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
                                     </td>
 
                                      <td v-else class="px-2 py-4 border border-2 " >

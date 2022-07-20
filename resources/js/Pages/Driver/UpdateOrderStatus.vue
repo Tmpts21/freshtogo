@@ -13,14 +13,15 @@ export default {
   
   data() {
     return { 
-        displayRemarks : false ,
-        status : 'pending'
+        displayRemarks : false 
     }
   },
 
   setup (props) {
     const form = reactive({
-        orderId : props.order.id ,   
+        orderId : props.order.id , 
+        customerId : props.order.user_id, 
+        status : props.order.status, 
         orderStatus: '',
         remarks : ''
     })
@@ -41,17 +42,7 @@ export default {
         }
     },
 
-    onChangeSelectFilter() { 
-            if (this.status === 'all') { 
-                this.orders = this.orders 
-            }
-            else { 
-                 this.orders = this.orders 
-                 this.listOfOrders = this.listOfOrders.filter((order) => { 
-                    return order.status == this.status
-                 })
-            }
-        },
+    
   }
 }
 </script>

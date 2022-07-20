@@ -6,13 +6,16 @@ import { deliveryFares } from './Fares';
 import { Inertia } from '@inertiajs/inertia'
 
 export default { 
-    props : ['products' , 'categories'] ,
+    props : ['products' , 'categories' , 'errors'] ,
     components : { 
         BreezeAuthenticatedLayout , Head , Cart } , 
     data () { 
         return { 
             cart : [],
+            gcashImage : null ,
+            gcashRefNo : '', 
             freshToGo : this.products,
+            displayGcashPayment : false , 
             displayCart : false ,
             cartProducts : [] ,
             fares : deliveryFares ,
@@ -156,7 +159,9 @@ export default {
                 cart : orders ,
                 deliveryCharge : this.fareCharge  ,
                 mop : this.modeOfPayment ,
-                address : this.address
+                address : this.address ,
+                gcash_proof_of_payment : this.gcashImage ,
+                gcash_reference_number : this.gcashRefNo,
             }
                 this.displayError = false  ; 
                 return Inertia.post('customer/placeorder', {data:orderdata})
@@ -177,7 +182,16 @@ export default {
 
             return true ; 
 
+            },
+
+        onChangeSelect() { 
+            if (this.modeOfPayment == "Gcash") { 
+                return this.displayGcashPayment = true ;
             }
+
+            return this.displayGcashPayment = false ;
+
+        }
     }
 
 }
@@ -212,8 +226,19 @@ export default {
                            <span><i class="fa-solid fa-cart-shopping text-orange-500 text-lg "></i> </span>  Back to products
                          </button>
 
+                        <Transition name="slide-fade">
+                                 <div v-if="$page.props.flash.error" class="alert">
+                                <div class="rounded bg-red-100 text-red-700 p-4 font-bold" role="alert">
+                                    <p>{{ $page.props.flash.error }} 😔</p>
+                                </div>
+                                <br>
+                            </div>
+                        </Transition>
+
 
             <Transition name="slide-fade">
+
+                
 
                     <div v-if="!displayCart  && !isCheckout" class="p-6 flex flex-wrap items-center justify-center">
                         
@@ -394,14 +419,38 @@ export default {
 
                             <div class="mt-2">
                             <label class="font-bold" for="mop">Mode of payment </label>
-                            <select v-model="modeOfPayment"  class="inline-block mt-2 w-1/2 pr-1  appearance-none w-full text-gray-700  rounded border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                            <select v-model="modeOfPayment" @change="onChangeSelect()"  class="inline-block mt-2 w-1/2 pr-1  appearance-none w-full text-gray-700  rounded border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                                     <option value="Cash on Delivery" selected >Cash on Delivery</option>
                                     <option value="Gcash" >Gcash E payment</option>
                             </select>
 
                            </div>
 
+                            <Transition name="slide-fade">
+                                <div v-if="displayGcashPayment" class="mt-8 bg-blue-100 border blue-red-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
+                                     <div class="mt-4">
+                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                            Proof of payment <small>(please insert the image of the payment)</small>
+                                        </label>
+
+                                        <input required type="file" @input="gcashImage = $event.target.files[0]" />
+                                    </div>
+                                    
+                                    
+                                    <div class="mt-4">
+                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                            Reference Number <small>(please enter the reference number of the payment)</small>
+                                        </label>
+
+                                        <input  v-model="gcashRefNo" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="street"  type="text" required placeholder="Enter reference number of the payment" aria-label="Email">
+                                    </div>
+                                </div>
+                            </Transition>
+
+
                            <Transition name="slide-fade">
+
+                           
 
                              <div v-if="displayError" class="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                                 <strong class="font-bold">Sorry 😔</strong>

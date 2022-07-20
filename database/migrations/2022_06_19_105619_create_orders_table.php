@@ -29,6 +29,8 @@ return new class extends Migration
             $table->string('image');
             $table->string('address');
             $table->string('remarks')->nullable(); 
+            $table->string('gcash_proof_of_payment')->nullable(); 
+            $table->string('gcash_reference_number')->nullable(); 
             $table->timestamps();
         });
     }

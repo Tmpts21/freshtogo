@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product ;
 use App\Models\Order ;
+use Illuminate\Support\Facades\DB;
 
 
 class DashboardController extends Controller
@@ -40,13 +41,10 @@ class DashboardController extends Controller
 
     public function driver_index() {
 
-        $orders = Order::all()->where('driver_id' , Auth::user()->id );
-
-        $customer_details = [] ; 
+        $orders = DB::table('orders')->select('*' , DB::raw('count(*) as total'))->groupBy('user_id')->get();
 
         return Inertia::render('Driver/DriverDashboard' ,[
-                        'orders' => $orders , 
-                        'customerDetails' => $customer_details ]); 
+                        'orders' => $orders ,]); 
     }
 
     public function profile() { 

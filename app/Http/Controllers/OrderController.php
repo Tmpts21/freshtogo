@@ -39,15 +39,40 @@ class OrderController extends Controller
         ]);
 
         $driver = User::where('name', $validated['driverName'])->get();
-       
-        $order = Order::findorfail($request->id); 
-        $order->status = $request->status; 
-        $order->driver_name = $request->driverName; 
-        $order->driver_id = $driver[0]->id;  
-        $order->save(); 
+        
+
+        $orders = Order::all()
+                ->where('user_id' , $request->customer_id)
+                ->where('status' , $request->status); 
+                
+        foreach($orders as $order) { 
+            
+            $order->status = $request->status; 
+            $order->driver_name = $request->driverName; 
+            $order->driver_id = $driver[0]->id;  
+            $order->save(); 
+        }
 
         return redirect()->route('admin.orders')->with('success' , 'Order Successfully updated ');
 
+    }
+
+    public function view($id) { 
+        $order = Order::findorfail($id); 
+        $orders = Order::all()->where('user_id', $order->user_id); 
+        $totalPrice = 0 ; 
+        $deliveryFee = 0;
+        
+        foreach($orders as $o) { 
+            $totalPrice += $o->total_price ;
+            $deliveryFee = $o->deliveryFee ; 
+        }
+
+        return Inertia::render('Admin/ViewOrders' , [
+                'orders' => $orders ,
+                'deliveryFee' => $deliveryFee , 
+                'totalPrice' => $totalPrice + $deliveryFee
+            ]) ;
     }
 
     
