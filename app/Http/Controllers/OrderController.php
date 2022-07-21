@@ -39,11 +39,9 @@ class OrderController extends Controller
         ]);
 
         $driver = User::where('name', $validated['driverName'])->get();
-        
 
         $orders = Order::all()
-                ->where('user_id' , $request->customer_id)
-                ->where('status' , $request->status); 
+                ->where('unique_id' , $request->uniqueId);
                 
         foreach($orders as $order) { 
             
@@ -57,9 +55,10 @@ class OrderController extends Controller
 
     }
 
-    public function view($id) { 
+    public function view($id , $unique_id) { 
         $order = Order::findorfail($id); 
-        $orders = Order::all()->where('user_id', $order->user_id); 
+        $orders = Order::all()
+                ->where('unique_id' , $unique_id); 
         $totalPrice = 0 ; 
         $deliveryFee = 0;
         

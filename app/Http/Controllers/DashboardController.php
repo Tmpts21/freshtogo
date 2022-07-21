@@ -41,7 +41,12 @@ class DashboardController extends Controller
 
     public function driver_index() {
 
-        $orders = DB::table('orders')->select('*' , DB::raw('count(*) as total'))->groupBy('user_id')->get();
+        // dd(Order::all()->where('driver_id' , Auth::user()->id)
+        //                 ->where('status' , 'assigned'));
+
+        $orders = DB::table('orders')->select('*' , DB::raw('count(*) as total'))
+        ->where('driver_id' , Auth::user()->id)->groupBy('user_id')
+        ->groupBy('unique_id')->get();
 
         return Inertia::render('Driver/DriverDashboard' ,[
                         'orders' => $orders ,]); 

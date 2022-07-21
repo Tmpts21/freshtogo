@@ -1,15 +1,16 @@
 <script>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import { Head , Link } from '@inertiajs/inertia-vue3';
 import moment from 'moment' 
 
 export default { 
     props : ['orders'] , 
-    components : { Head , BreezeAuthenticatedLayout},
+    components : { Head , BreezeAuthenticatedLayout , Link },
     data() { 
         return { 
             status : 'pending' , 
-            listOfOrders : this.orders 
+            listOfOrders : this.orders,
+            displayOrder : true ,
         }
     }, 
     mounted() { 
@@ -29,6 +30,9 @@ export default {
                  this.listOfOrders = this.listOfOrders.filter((order) => { 
                     return order.status == this.status
                  })
+
+                 if(this.listOfOrders.length == 0 )  this.displayOrders = false;
+                 else this.displayOrders = true;
             }
         },
     }
@@ -65,11 +69,12 @@ export default {
                             <select v-model="status" @change="onChangeSelect()" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                             <option value="all" selected >All</option>
                             <option value="pending"  >Pending</option>
-                            <option value="assigned"  >Assigned</option>
                             <option value="delivered"  >Delivered</option>
                             <option value="cancelled"  >Cancelled</option>
                         </select>
                             </div>
+
+                    <div v-if="displayOrders" class="overflow-x-auto relative mb-5 ">
 
                             <table class="mt-5 text-center w-full text-sm text-left text-gray-500 dark:text-gray-800 border mx-auto ">
                                 <thead class="font-bold text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -86,9 +91,6 @@ export default {
                                      <th scope="col" class="px-6 py-3">
                                          Total Price 
                                     </th>
-                                     <th scope="col" class="px-6 py-3">
-                                        Delivery Fee  
-                                    </th>
                                     <th scope="col" class="px-6 py-3">
                                         Quantity 
                                     </th>
@@ -98,9 +100,9 @@ export default {
                                     <th scope="col" class="px-6 py-3">
                                         date 
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <!-- <th scope="col" class="px-6 py-3">
                                         Action 
-                                    </th>
+                                    </th> -->
                                     
                                 </tr>
                                 </thead>
@@ -108,7 +110,7 @@ export default {
                                 <tbody class="mx-auto">
                                     <tr v-for="order in listOfOrders" :key="order.id" class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
                                     <td class="px-2 py-1 border border-2" >
-                                        FTG-{{order.id}}
+                                        {{order.unique_id}}
                                     </td>
                                     <td class="px-2 py-1 mx-auto border border-2 " >
                                         {{order.product_name}}
@@ -122,9 +124,6 @@ export default {
 
                                      <td class="px-2 py-1 border border-2 " >
                                        ₱  {{order.total_price}}
-                                    </td>
-                                    <td class="px-2 py-1 border border-2 " >
-                                       ₱  {{order.deliveryFee}}
                                     </td>
                                      <td class="px-2   py-1 border border-2 " >
                                         {{order.quantity}}
@@ -147,14 +146,21 @@ export default {
                                         {{diffForHumans(order.created_at)}} 
                                     </td>
 
-                                    <td class="px-2 py-1 border border-2 " >
-                                           <Link :href="route('customer.view_order' , {id : order.id })"  class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Update 📝'" />
-                                    </td>
+                                    <!-- <td class="px-2 py-1 border border-2 " >
+                                           <Link :href="route('customer.view_order' , {id : order.id })"  class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'View'" />
+                                    </td> -->
 
                                 </tr>
                         
                                 </tbody>
                             </table>
+                            </div>
+
+                            <div v-else >
+                                <div class="mb-5 mt-5 rounded flex items-center bg-orange-500 text-white text-sm font-bold px-5 py-3" role="alert">
+                                    <p>No Orders available here <span class="ml-2 text-lg"> 😏 </span> </p>
+                                </div>
+                            </div>
                         </div>
 
 

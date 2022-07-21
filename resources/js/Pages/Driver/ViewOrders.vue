@@ -145,10 +145,10 @@ export default {
                         
                                 </tbody>
                             </table>
-
-                                <Link :href="route('order.edit' , {id : gcashInfo.id })"  class="mt-5 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Update 📝'" />
+                                <div v-if="gcashInfo.status != 'delivered' && gcashInfo.status != 'cancelled'">
+                                    <Link :href="route('driver.edit_order' , {id : gcashInfo.id })"  class="mt-5 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Update 📝'" />
+                                </div>
                             <br><br>
-
 
                             <div v-if="gcashInfo.mop === 'Gcash'" class="mt-5" >
                                 <div class="flex flex-wrap justify-center">
@@ -156,7 +156,7 @@ export default {
                                         <div class="font-bold mt-5 mb-5">Payment Information </div> 
                                         <Label class="mt-5 mb-5">Proof of payment </Label>
                                         <img :src="'/storage/' + gcashInfo.gcash_proof_of_payment " alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
-                                        <Label class="mt-5 mb-5 ">Reference number </Label>
+                                        <Label class="mt-5 mb-5">Reference number </Label>
                                         <input readonly :value="gcashInfo.gcash_reference_number" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter product price">
                                   </div>
 
@@ -165,12 +165,6 @@ export default {
 
 
                             </div>
-
-
-
-
-
-
 
                     </div>
                 </div>

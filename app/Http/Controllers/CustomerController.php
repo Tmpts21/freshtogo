@@ -31,6 +31,8 @@ class CustomerController extends Controller
 
         }
 
+        $uniqueOrderId = substr(md5(mt_rand()), 0, 7);
+
         foreach($request->data['cart'] as $product) { 
 
             $prod = json_decode($product);
@@ -53,6 +55,8 @@ class CustomerController extends Controller
                     'address' => $request->data['address'],
                     'gcash_proof_of_payment' => $image_path,
                     'gcash_reference_number' => $request->data['gcash_reference_number'], 
+                    'unique_id' => $uniqueOrderId,
+                    'payment_status' => 'paid'
 
                 ]); 
                 
@@ -68,7 +72,11 @@ class CustomerController extends Controller
                     'quantity' => $prod->quantity,
                     'image' => $prod->image,
                     'mop' => $request->data['mop'] ,
-                    'address' => $request->data['address'] 
+                    'address' => $request->data['address'],
+                    'unique_id' => $uniqueOrderId,
+                    'unique_id' => 'pending'
+
+
                 ]);
 
             }
@@ -87,11 +95,6 @@ class CustomerController extends Controller
         return Inertia::render('Customer/Orders' , ['orders' => $orders]); 
 
         
-    }
-
-    public function view($id) { 
-        $order = Order::findorfail($id); 
-        dd($order); 
     }
 
 }

@@ -43,8 +43,6 @@ export default {
                     return order.status == this.status 
                  })
 
-                 console.log(this.listOfOrders.length);
-
                  if(this.listOfOrders.length == 0 )  this.displayOrders = false;
                  else this.displayOrders = true;
             }
@@ -102,10 +100,13 @@ export default {
                                          Assigned driver 
                                     </th>
                                      <th scope="col" class="px-6 py-3">
-                                        status 
+                                        Shipment Status 
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        date 
+                                        Payment Status 
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Date 
                                     </th>
                                      <th scope="col" class="px-6 py-3">
                                         Action 
@@ -118,7 +119,7 @@ export default {
                                 <tbody>
                                     <tr v-for="order in listOfOrders" :key="order.id" class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
                                          <td class="px-2 py-1 border border-2 " >
-                                        FTG-{{order.id}}
+                                        {{order.unique_id}}
                                     </td>
                                      <td class="px-2 py-1 border border-2 " >
                                         {{order.customer_name}}
@@ -140,22 +141,25 @@ export default {
                                     <td class="px-2 py-1 border border-2 " >
                                         {{order.status}} 
                                     </td>
+                                    <td class="px-2 py-1 border border-2 " >
+                                        {{order.payment_status}} 
+                                    </td>
 
                                     <td class="px-2 py-1 border border-2" >
                                         {{diffForHumans(order.created_at)}} 
                                     </td>
 
                                     <td v-if="order.status == 'pending' || order.status == 'assigned'" class="px-2 py-4 border border-2 " >
-                                           <Link :href="route('order.view' , {id : order.id })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
+                                           <Link :href="route('driver.view_orders' , {id : order.id , status : order.status })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
                                            <Link :href="route('driver.edit_order' , {id : order.id })"  class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Update'" />
                                     </td>
 
                                     <td v-else-if="order.status == 'delivered'" class="px-2 py-4 border border-2 " >
-                                           <Link :href="route('order.view' , {id : order.id })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
+                                           <Link :href="route('driver.view_orders' , {id : order.id , status : order.status })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
                                     </td>
 
                                      <td v-else class="px-2 py-4 border border-2 " >
-                                        N/A
+                                        <Link :href="route('driver.view_orders' , {id : order.id , status : order.status })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
                                     </td>
                                     
 

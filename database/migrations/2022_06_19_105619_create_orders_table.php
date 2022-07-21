@@ -31,6 +31,8 @@ return new class extends Migration
             $table->string('remarks')->nullable(); 
             $table->string('gcash_proof_of_payment')->nullable(); 
             $table->string('gcash_reference_number')->nullable(); 
+            $table->string('unique_id');
+            $table->string('payment_status')->default('pending');
             $table->timestamps();
         });
     }

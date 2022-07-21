@@ -77,7 +77,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth' ,'verified' ]], funct
 
     Route::get('/orders', [AdminController::class, 'orders'])->name('admin.orders');
     Route::get('/orders/edit/{id}', [OrderController::class, 'edit'])->name('order.edit');
-    Route::get('/orders/view/{id}', [OrderController::class, 'view'])->name('order.view');
+    Route::get('/orders/view/{id}/{unique_id}', [OrderController::class, 'view'])->name('order.view');
     Route::post('/update/order', [OrderController::class, 'update'])->name('update.order');
 
     Route::get('/category', [CategoryController::class, 'index'])->name('admin.category');
@@ -108,7 +108,9 @@ Route::group(['prefix' => 'driver', 'middleware' => ['auth' ,'verified' ]], func
     Route::get('/edit/orders/{id}', [DriverController::class, 'edit'])->name('driver.edit_order');
     Route::get('/view/orders/{id}', [DriverController::class, 'view'])->name('driver.view_order');
     Route::post('/update/order', [DriverController::class, 'update'])->name('driver.update_order_status');
+    Route::get('/viewOrders/{id}/{status}', [DriverController::class, 'viewOrders'])->name('driver.view_orders');
 
 });
+
 
 require __DIR__.'/auth.php';

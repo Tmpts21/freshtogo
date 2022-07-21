@@ -12,7 +12,8 @@ export default {
     data () { 
         return { 
             status : 'pending',
-            listOfOrders : this.orders  
+            listOfOrders : this.orders ,
+            displayOrders : true , 
         }
     }, 
     mounted() { 
@@ -32,6 +33,9 @@ export default {
                  this.listOfOrders = this.listOfOrders.filter((order) => { 
                     return order.status == this.status
                  })
+
+                  if(this.listOfOrders.length == 0 )  this.displayOrders = false;
+                 else this.displayOrders = true;
             }
         },
     }
@@ -72,9 +76,7 @@ export default {
                                 </div>
 
 
-                        <div  class="overflow-x-auto relative">
-
-
+                    <div v-if="displayOrders" class="overflow-x-auto relative">
                             <table class="mt-5 text-center w-full text-sm text-left text-gray-500 dark:text-gray-800 border mx-auto ">
                                 <thead class="font-bold text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
@@ -109,7 +111,7 @@ export default {
                                 <tbody class="mx-auto">
                                     <tr v-for="order in listOfOrders" :key="order.id" class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
                                     <td class="px-2 py-1 border border-2 " >
-                                        FTG-{{order.id}}
+                                        {{order.unique_id}}
                                     </td>
                                     <td class="px-2 py-1 border border-2 " >
                                         {{order.customer_name}}
@@ -138,11 +140,11 @@ export default {
 
 
                                     <td v-if="order.status == 'pending' || order.status == 'assigned'" class="px-2 py-4 border border-2 " >
-                                           <Link :href="route('order.view' , {id : order.id })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
+                                           <Link :href="route('order.view' , {id : order.id  , unique_id : order.unique_id })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
                                            <Link :href="route('order.edit' , {id : order.id })"  class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Update'" />
                                     </td>
                                     <td v-else-if="order.status == 'delivered'" class="px-2 py-4 border border-2 " >
-                                           <Link :href="route('order.view' , {id : order.id })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
+                                           <Link :href="route('order.view' , {id : order.id , unique_id : order.unique_id })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
                                     </td>
 
                                 </tr>
@@ -151,13 +153,14 @@ export default {
                             </table>
                             </div>
 
+                            <div v-else >
+                                <div class="mb-5 rounded flex items-center bg-orange-500 text-white text-sm font-bold px-5 py-3" role="alert">
+                                    <p>No available deliveries<span class="ml-2 text-lg"> 🤷‍♂️</span> </p>
+                                </div>
+                            </div>
+                            </div>
 
 
-
-
-
-
-                    </div>
                 </div>
             </div>
         </div>

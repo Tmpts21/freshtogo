@@ -14,8 +14,9 @@ export default {
   setup (props) {
     console.log(props.order.driverName , props.order ); 
     const form = reactive({
-      customer_id : props.order.user_id , 
+      uniqueId : props.order.unique_id , 
       driverName: props.order.driver_name, 
+      driverId: props.order.driver_id, 
       status : props.order.status ,
       id : props.order.id ,
       driverId : null , 
