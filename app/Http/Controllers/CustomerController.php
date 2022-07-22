@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Delivery;
+use App\Models\Feedback;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -31,15 +32,19 @@ class CustomerController extends Controller
 
         }
 
-        $uniqueOrderId = substr(md5(mt_rand()), 0, 7);
+        $uniqueOrderId = substr(md5(mt_rand()), 0, 8);
 
         foreach($request->data['cart'] as $product) { 
 
             $prod = json_decode($product);
             // create orders for individual product
+            $product = Product::find($prod->id); 
 
             if($request->data['mop'] == 'Gcash') {
 
+                $product->stock = $product->stock -= $prod->quantity;
+                $product->save();
+                
                 Order::create([
                     'product_id' => $prod->id,
                     'user_id' => Auth::user()->id ,
@@ -61,6 +66,10 @@ class CustomerController extends Controller
                 ]); 
                 
             }else { 
+
+                $product->stock = $product->stock -= $prod->quantity;
+                $product->save();
+                
                 Order::create([
                     'product_id' => $prod->id,
                     'user_id' => Auth::user()->id ,
@@ -74,16 +83,13 @@ class CustomerController extends Controller
                     'mop' => $request->data['mop'] ,
                     'address' => $request->data['address'],
                     'unique_id' => $uniqueOrderId,
-                    'unique_id' => 'pending'
-
-
                 ]);
 
             }
             
         }
 
-         return redirect()->route('customer.orders')->with('success' , 'Thanks for trusting fresh to go your order is now on the way :) ');
+         return redirect()->route('customer.orders')->with('success' , 'Thanks for trusting freshToGo your order is now on the way 🚀 ');
   
 
     }
@@ -91,10 +97,43 @@ class CustomerController extends Controller
     public function orders() { 
 
         $orders = DB::table('orders')->where('user_id', Auth::user()->id)->orderBy('created_at' ,'desc')->get();
-        
+       
         return Inertia::render('Customer/Orders' , ['orders' => $orders]); 
 
         
+    }
+
+    public function view_product($id) { 
+        $product = Product::findorfail($id); 
+
+        $categories = Category::all(); 
+
+        $feedbacks = Feedback::all()->where('product_id' , $id );
+
+        return Inertia::render('Customer/ViewProduct' , ['product' => $product , 'categories' => $categories ,'feedbacks' => $feedbacks ]);
+    }
+
+    public function feedback($id , $orderId) { 
+        $product = Product::findorfail($id); 
+
+        return Inertia::render('Customer/Feedback' , ['product' => $product ,'orderId' => $orderId]);
+    }
+
+    public function save_feedback(Request $request) { 
+        $product = Product::findorfail($request->product_id); 
+        $feedback = Feedback::create([
+            'product_id' => $product->id , 
+            'product_name' => $product->name , 
+            'stars' => $request->stars , 
+            'feedback' => $request->feedback ,
+            'user_name' => Auth::user()->name ,
+        ]); 
+
+        $order = Order::find($request->orderId);
+        $order->is_feedback = 1 ; 
+        $order->save(); 
+
+        return redirect()->route('customer.orders')->with('success' , 'Thanks for trusting freshToGo your feedback is successfully saved 🙏 ');
     }
 
 }

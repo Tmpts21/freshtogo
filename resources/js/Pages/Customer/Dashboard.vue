@@ -1,6 +1,6 @@
 <script>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import { Head , Link } from '@inertiajs/inertia-vue3';
 import Cart from '@/Pages/Customer/Cart.vue';
 import { deliveryFares } from './Fares';
 import { Inertia } from '@inertiajs/inertia'
@@ -8,7 +8,7 @@ import { Inertia } from '@inertiajs/inertia'
 export default { 
     props : ['products' , 'categories' , 'errors'] ,
     components : { 
-        BreezeAuthenticatedLayout , Head , Cart } , 
+        BreezeAuthenticatedLayout , Head , Cart ,Link  } , 
     data () { 
         return { 
             cart : [],
@@ -24,6 +24,7 @@ export default {
             isCheckout : false ,
             modeOfPayment : 'Cash on Delivery',
             displayError : false ,
+            displayExceedError : false , 
             address :  this.$page.props.auth.user.postal_code+ ' ' + this.$page.props.auth.user.street_address + ' ' +  this.$page.props.auth.user.barangay + ' ' + this.$page.props.auth.user.city + ' City'
    
         }
@@ -152,7 +153,10 @@ export default {
 
             if(this.validateQuantity()) { 
                 for (let i = 0 ; i < this.cartProducts.length ; i ++ ) { 
-                orders.push(JSON.stringify(this.cartProducts[i]))
+                    if (this.cartProducts[i].quantity > this.cartProducts[i].stock) {
+                        return this.displayExceedError = true ; 
+                    }
+                    orders.push(JSON.stringify(this.cartProducts[i]))
                 }
 
             const orderdata = { 
@@ -252,15 +256,17 @@ export default {
 
                                 <div class="mt-4 flex justify-between">
                                     <h3 class="text-sm text-gray-700">
-                                        {{product.name}}
+                                        <Link :href="route('customer.view_product' , {id : product.id })"   class="text-sm text-orange-400"  v-html="product.name" />
                                     </h3>
                                 <p class="text-sm font-bold text-gray-900">₱ {{product.price}}  <small>(kg)</small> 
                                 </p>
                         </div>
                         <div>
                             <span class="mt-1 text-sm text-gray-500">{{categories[product.category_id - 1 ].name}}</span>
-                            <span class="float-right mt-1 text-sm text-gray-500">Stock {{product.stock}}<small>(kg)</small></span>
+                            <span class="float-right mt-1 text-sm text-gray-500">Stock: {{product.stock}}<small>(kg)</small></span>
+                            <span class="float-right mt-1 text-sm text-gray-500 mr-3">{{product.sold}}kg<small>(sold)</small></span>
                         </div>
+
                             <button v-if="!isAddedToCart(product.id)" @click="addToCart(product.id)" class="mt-3 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 border border-orange-700 rounded">
                                 <span> add to cart 🛒</span>   
                             </button>
@@ -455,6 +461,11 @@ export default {
                              <div v-if="displayError" class="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                                 <strong class="font-bold">Sorry 😔</strong>
                                 <span class="block sm:inline"> minimum of 5kg per product </span>
+                            </div>
+
+                             <div v-else-if="displayExceedError" class="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                <strong class="font-bold">Sorry 😔</strong>
+                                <span class="block sm:inline"> Quantity(kg) is Exceeding our stocks(kg) </span>
                             </div>
                         </Transition>
                     <br>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product ;
+use App\Models\Feedback ;
 use App\Models\Order ;
 use Illuminate\Support\Facades\DB;
 
@@ -81,5 +82,15 @@ class DashboardController extends Controller
         return redirect()->back()->with('error' , 'Something went wrong please check your inputs ! ');
 
     }   
+
+    public function guest_view_product($id) { 
+        $product = Product::findorfail($id); 
+
+        $categories = Category::all(); 
+
+        $feedbacks = Feedback::all()->where('product_id' , $id );
+
+        return Inertia::render('GuestView' , ['product' => $product , 'categories' => $categories ,'feedbacks' => $feedbacks ]);
+    }
     
 }

@@ -10,11 +10,11 @@ export default {
         return { 
             status : 'pending' , 
             listOfOrders : this.orders,
-            displayOrder : true ,
+            displayOrders : true ,
         }
     }, 
     mounted() { 
-        this.onChangeSelect();
+        this.onChangeSelect()
     },
     methods : { 
         diffForHumans(date ) { 
@@ -80,9 +80,6 @@ export default {
                                 <thead class="font-bold text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
-                                        Order Id
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
                                          Product Name 
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -100,18 +97,15 @@ export default {
                                     <th scope="col" class="px-6 py-3">
                                         date 
                                     </th>
-                                    <!-- <th scope="col" class="px-6 py-3">
+                                    <th scope="col" class="px-6 py-3">
                                         Action 
-                                    </th> -->
+                                    </th>
                                     
                                 </tr>
                                 </thead>
 
                                 <tbody class="mx-auto">
                                     <tr v-for="order in listOfOrders" :key="order.id" class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
-                                    <td class="px-2 py-1 border border-2" >
-                                        {{order.unique_id}}
-                                    </td>
                                     <td class="px-2 py-1 mx-auto border border-2 " >
                                         {{order.product_name}}
                                         <!-- <img :src="'/storage/' + product.image" height="150" width="150" alt=""> -->
@@ -146,9 +140,12 @@ export default {
                                         {{diffForHumans(order.created_at)}} 
                                     </td>
 
-                                    <!-- <td class="px-2 py-1 border border-2 " >
-                                           <Link :href="route('customer.view_order' , {id : order.id })"  class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'View'" />
-                                    </td> -->
+                                    <td  v-if="order.status == 'delivered' && !order.is_feedback" class="px-2 py-1 border border-2 " >
+                                           <Link :href="route('customer.feedback' , {id : order.product_id , orderId : order.id}) " class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'➕ feedback '" />
+                                    </td>
+                                    <td v-else class="px-2 py-1 border border-2">
+                                        N/A 
+                                    </td>
 
                                 </tr>
                         

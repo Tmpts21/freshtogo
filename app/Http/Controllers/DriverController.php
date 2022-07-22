@@ -42,8 +42,12 @@ class DriverController extends Controller
             
         if($request->orderStatus == 'cancelled') { 
             if($request->remarks) { 
-
+                
                 foreach($orders as $o) {
+                    $product = Product::findorfail($order->product_id); 
+                    $product->stock = $product->stock += $order->quantity ; 
+                    $product->save(); 
+                    
                     $o->status = $request->orderStatus; 
                     $o->payment_status = 'cancelled'; 
                     $o->remarks = $request->remarks;  
@@ -59,6 +63,10 @@ class DriverController extends Controller
         }
 
         foreach($orders as $o) {
+            //update how many sold in product 
+            $product = Product::findorfail($o->product_id);
+            $product->sold = $product->sold += $order->quantity;
+            $product->save(); 
             $o->status = $request->orderStatus; 
             $o->payment_status = 'paid';
             $o->save();  
@@ -77,7 +85,7 @@ class DriverController extends Controller
         $totalPrice = 0 ; 
         $deliveryFee = 0;
         
-        foreach($orders as $o) { 
+        foreach($orders as $o) {             
             $totalPrice += $o->total_price ;
             $deliveryFee = $o->deliveryFee ; 
         }

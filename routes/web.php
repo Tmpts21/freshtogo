@@ -60,6 +60,7 @@ Route::get('/contact', function () {
     
 })->name('contact');
 
+Route::get('/guest/view/product/{id}', [DashboardController::class, 'guest_view_product'])->name('guest.view_product');
 
 Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
 
@@ -101,6 +102,9 @@ Route::group(['prefix' => 'customer', 'middleware' => ['auth' ,'verified' ]], fu
     Route::post('/placeorder', [CustomerController::class, 'place_order'])->name('customer.placeorder');
     Route::get('/orders', [CustomerController::class, 'orders'])->name('customer.orders');
     Route::get('/view/{id}', [CustomerController::class, 'view'])->name('customer.view_order');
+    Route::get('/add/feedback/{id}/{orderId}', [CustomerController::class, 'feedback'])->name('customer.feedback');
+    Route::get('/view/product/{id}', [CustomerController::class, 'view_product'])->name('customer.view_product');
+    Route::post('/save/feedback', [CustomerController::class, 'save_feedback'])->name('customer.save_feedback');
 });
 
 

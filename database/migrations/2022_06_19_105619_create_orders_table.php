@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('gcash_reference_number')->nullable(); 
             $table->string('unique_id');
             $table->string('payment_status')->default('pending');
+            $table->boolean('is_feedback')->nullable();
             $table->timestamps();
         });
     }

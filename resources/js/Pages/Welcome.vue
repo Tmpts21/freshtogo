@@ -47,15 +47,15 @@ defineComponent ({
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
                                     <BreezeNavLink class="font-bold text-white " :href="route('welcome')" :active="route().current('welcome')">
-                                       🥩  Products 
+                                       🍖  Products 
                                     </BreezeNavLink>
 
                                       <BreezeNavLink class="font-bold text-white " :href="route('feedback')" :active="route().current('feedback')">
-                                     📃 Feedback 
+                                     ⭐ Reviews/Feedbacks 
                                     </BreezeNavLink>
 
                                       <BreezeNavLink class="font-bold text-white " :href="route('contact')" :active="route().current('contact')">
-                                      📞  Contact us 
+                                      🤙  Contact us 
                                     </BreezeNavLink>
                             </div>
                             
@@ -69,7 +69,7 @@ defineComponent ({
                             <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 border border-orange-700 rounded">
 
                             <Link :href="route('register')" >
-                                Register
+                                Register 
                             </Link>
 
                            </button>
@@ -140,7 +140,7 @@ defineComponent ({
 
                                 <div class="mt-4 flex justify-between">
                                     <h3 class="text-sm text-gray-700">
-                                        {{product.name}}
+                                        <Link :href="route('guest.view_product' , {id : product.id })"   class="text-sm text-orange-400"  v-html="product.name" />
                                     </h3>
                                 <p class="text-sm font-bold text-gray-900">₱ {{product.price}}  <small>(kg)</small> 
                                 </p>
@@ -148,7 +148,8 @@ defineComponent ({
                         <div>
                             <span class="mt-1 text-sm text-gray-500">chicken</span>
                             <span class="float-right mt-1 text-sm text-gray-500">Stock {{product.stock}}<small>(kg)</small></span>
-                        </div>
+                            <span class="float-right mt-1 text-sm text-gray-500 mr-3">{{product.sold}}kg<small>(sold)</small></span>
+                       </div>
                                 
                                 <button class="mt-3 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 border border-orange-700 rounded">
 
