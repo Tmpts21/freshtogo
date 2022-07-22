@@ -88,9 +88,20 @@ class DashboardController extends Controller
 
         $categories = Category::all(); 
 
-        $feedbacks = Feedback::all()->where('product_id' , $id );
+        $feedbacks = Feedback::where('product_id' , $id )->get();
 
         return Inertia::render('GuestView' , ['product' => $product , 'categories' => $categories ,'feedbacks' => $feedbacks ]);
+    }
+
+    public function feedback() { 
+        $feedbacks = Feedback::inRandomOrder()->limit(5)->get();
+
+        return Inertia::render('Feedback' , ['feedbacks' => $feedbacks ]);
+
+    }
+
+    public function contact() { 
+        return Inertia::render('Contact');
     }
     
 }

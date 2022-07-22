@@ -47,7 +47,7 @@ class DriverController extends Controller
                     $product = Product::findorfail($order->product_id); 
                     $product->stock = $product->stock += $order->quantity ; 
                     $product->save(); 
-                    
+
                     $o->status = $request->orderStatus; 
                     $o->payment_status = 'cancelled'; 
                     $o->remarks = $request->remarks;  

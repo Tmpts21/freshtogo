@@ -50,11 +50,11 @@ defineComponent ({
                                        🍖  Products 
                                     </BreezeNavLink>
 
-                                      <BreezeNavLink class="font-bold text-white " :href="route('feedback')" :active="route().current('feedback')">
+                                      <BreezeNavLink class="font-bold text-white " :href="route('guest.feedback')" :active="route().current('guest.feedback')">
                                      ⭐ Reviews/Feedbacks 
                                     </BreezeNavLink>
 
-                                      <BreezeNavLink class="font-bold text-white " :href="route('contact')" :active="route().current('contact')">
+                                      <BreezeNavLink class="font-bold text-white " :href="route('guest.contact')" :active="route().current('contact')">
                                       🤙  Contact us 
                                     </BreezeNavLink>
                             </div>
@@ -174,8 +174,7 @@ defineComponent ({
 <br><br>
 
     
-
-<footer class="p-4 bg-orange-500 text-white sm:p-6 dark:bg-orange-900">
+        <footer class="p-4 bg-orange-500 text-white sm:p-6 dark:bg-orange-900">
     <div class="md:flex md:justify-between ">
         <div class="mb-6 md:mb-0">
             <a href="https://flowbite.com/" class="flex items-center">
@@ -183,40 +182,32 @@ defineComponent ({
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">FreshToGo</span>
             </a>
         </div>
-        <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 text-white">
+        <div class="grid grid-cols-3 gap-36 sm:gap-6 sm:grid-cols-3 text-white">
             <div>
-                <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Resources</h2>
+                <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Contact us</h2>
                 <ul class="text-white dark:text-gray-400">
                     <li class="mb-4">
-                        <a href="#" class="hover:underline">Products</a>
+                        <a href="#" class="hover:underline">Email 📧:  freshtogo21@gmail.com</a>
                     </li>
                     <li class="mb-4">
-                        <a href="https://tailwindcss.com/" class="hover:underline">Feedback</a>
+                        <a href="#" class="hover:underline">Telephone 📞 : (02)123 456 </a>
                     </li>
-                    <li>
-                        <a href="https://tailwindcss.com/" class="hover:underline">Contact us </a>
+                    <li class="mb-4">
+                        <a href="#" class="hover:underline">Mobile No 📲 : 0912345678  </a>
                     </li>
                 </ul>
             </div>
-            <div class="text-white">
+            <div class="text-white ml-32 ">
                 <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Follow us</h2>
                 <ul class="text-white dark:text-gray-400">
                     <li class="mb-4">
-                        <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Github</a>
+                        <a href="https://github.com/themesberg/flowbite" class="hover:underline "><i class="fa-brands fa-facebook mr-2"></i> Facebook</a>
                     </li>
-                    <li>
-                        <a href="https://discord.gg/4eeurUVvTy" class="hover:underline">Discord</a>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Legal</h2>
-                <ul class="text-white dark:text-gray-400">
                     <li class="mb-4">
-                        <a href="#" class="hover:underline">Privacy Policy</a>
+                        <a href="https://discord.gg/4eeurUVvTy" class="hover:underline"><i class="fa-brands fa-twitter mr-2"></i> Twitter</a>
                     </li>
                     <li>
-                        <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                        <a href="https://discord.gg/4eeurUVvTy" class="hover:underline"><i class="fa-brands fa-instagram mr-2"></i> Instagram</a>
                     </li>
                 </ul>
             </div>
@@ -250,7 +241,6 @@ defineComponent ({
         </div>
     </div>
 </footer>
-
 </template>
 
 <style >

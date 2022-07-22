@@ -69,7 +69,7 @@ class CustomerController extends Controller
 
                 $product->stock = $product->stock -= $prod->quantity;
                 $product->save();
-                
+
                 Order::create([
                     'product_id' => $prod->id,
                     'user_id' => Auth::user()->id ,
@@ -108,7 +108,7 @@ class CustomerController extends Controller
 
         $categories = Category::all(); 
 
-        $feedbacks = Feedback::all()->where('product_id' , $id );
+        $feedbacks = Feedback::where('product_id' , $id )->get();
 
         return Inertia::render('Customer/ViewProduct' , ['product' => $product , 'categories' => $categories ,'feedbacks' => $feedbacks ]);
     }

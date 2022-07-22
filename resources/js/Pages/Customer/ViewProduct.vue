@@ -107,7 +107,7 @@ export default {
                                     <div class="mb-4">
                                     <div class="text-black font-bold text-xl">{{feedback.user_name}} </div>
 
-                                    <p class="text-grey-darker text-base">{{feedback.feedback}}</p>
+                                    <p class="text-grey-darker text-base">"{{feedback.feedback}}"</p>
                                     </div>
                                     <div class="flex">
                                         <div v-for="index in feedback.stars" :key="index" class="text-sm">

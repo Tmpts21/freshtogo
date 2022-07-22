@@ -50,15 +50,11 @@ Route::get('/driver', [DashboardController::class, 'driver_index'])->middleware(
 
 
 
-Route::get('/feedback', function () {
+Route::get('/feedback', [DashboardController::class, 'feedback'])->name('guest.feedback');
 
-    
-})->name('feedback');
 
-Route::get('/contact', function () {
+Route::get('/contact', [DashboardController::class, 'contact'])->name('guest.contact');
 
-    
-})->name('contact');
 
 Route::get('/guest/view/product/{id}', [DashboardController::class, 'guest_view_product'])->name('guest.view_product');
 

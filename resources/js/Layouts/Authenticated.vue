@@ -20,7 +20,7 @@ const showingNavigationDropdown = ref(false);
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
+                                <Link href="#">
                                     <BreezeApplicationLogo class="block h-9 w-auto" />
                                 </Link>
                             </div>
@@ -57,7 +57,7 @@ const showingNavigationDropdown = ref(false);
                                     </BreezeNavLink>
 
                                     <BreezeNavLink class="font-bold" v-if="$page.props.auth.user.role === 'customer'" :href="route('customer.orders')" :active="route().current('customer.orders')">
-                                       🛍 My Orders 
+                                       🛒 My Orders 
                                     </BreezeNavLink>
                                
                              
@@ -112,9 +112,10 @@ const showingNavigationDropdown = ref(false);
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        <BreezeResponsiveNavLink  v-if="$page.props.auth.user.role === 'customer'" :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </BreezeResponsiveNavLink>
+
                     </div>
 
                     <!-- Responsive Settings Options -->
@@ -126,8 +127,28 @@ const showingNavigationDropdown = ref(false);
 
 
                         <div class="mt-3 space-y-1">
-                            <BreezeResponsiveNavLink :href="route('logout')" method="post" as="button">
+                            <BreezeResponsiveNavLink :href="route('profile')" method="get" as="button">
                                 Profile
+                            </BreezeResponsiveNavLink>
+                        </div>
+
+
+
+                        <div   v-if="$page.props.auth.user.role === 'driver'" class="mt-3 space-y-1">
+                            <BreezeResponsiveNavLink :href="route('driver')" method="get" as="button">
+                                Driver Dashboard
+                            </BreezeResponsiveNavLink>
+                        </div>
+
+                         <div  v-if="$page.props.auth.user.role === 'customer'" class="mt-3 space-y-1">
+                            <BreezeResponsiveNavLink :href="route('dashboard')" method="get" as="button">
+                              🥩 Products 
+                            </BreezeResponsiveNavLink>
+                        </div>
+
+                        <div  v-if="$page.props.auth.user.role === 'customer'" class="mt-3 space-y-1">
+                            <BreezeResponsiveNavLink :href="route('customer.orders')" method="get" as="button">
+                             🛒  My orders 
                             </BreezeResponsiveNavLink>
                         </div>
 
