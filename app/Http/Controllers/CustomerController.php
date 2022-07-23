@@ -46,8 +46,6 @@ class CustomerController extends Controller
         }
         
 
-        
-
         foreach($request->data['cart'] as $product) { 
 
             $prod = json_decode($product);
@@ -74,8 +72,8 @@ class CustomerController extends Controller
                     'mop' => $request->data['mop'] ,
                     'address' => $request->data['address'],
                     'gcash_proof_of_payment' => $image_path,
-                    'gcash_amount_paid' => $image_path,
-                    'gcash_full_name' => $image_path,
+                    'gcash_amount_paid' => $request->data['gcash_amount_paid'],
+                    'gcash_full_name' => $request->data['gcash_full_name'],
                     'gcash_reference_number' => $request->data['gcash_reference_number'], 
                     'unique_id' => $uniqueOrderId,
                     'payment_status' => $payment_status

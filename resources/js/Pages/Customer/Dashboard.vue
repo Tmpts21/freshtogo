@@ -26,8 +26,11 @@ export default {
             displayError : false ,
             displayExceedError : false , 
             displayAmountError : false , 
+            amountExceedError : false , 
             gcashAmountPaid : null , 
-            gcashFullName : '', 
+            gcashFullName : '',
+            searchInput : '', 
+            category : 'all',
             address :  this.$page.props.auth.user.postal_code+ ' ' + this.$page.props.auth.user.street_address + ' ' +  this.$page.props.auth.user.barangay + ' ' + this.$page.props.auth.user.city + ' City'
    
         }
@@ -160,6 +163,7 @@ export default {
                     if (this.cartProducts[i].quantity > this.cartProducts[i].stock) {
                          this.displayError = false ; 
                          this.displayAmountError = false ; 
+                         this.amountExceedError = false ; 
                          this.displayExceedError = true ; 
                          return
                         
@@ -173,6 +177,14 @@ export default {
                     this.displayError = false ; 
                     this.displayExceedError = false ; 
                     this.displayAmountError = true ; 
+                    this.amountExceedError = false ; 
+                    return
+                }else if(this.gcashAmountPaid > AllProductsPrice ) { 
+                    this.displayError = false ; 
+                    this.displayAmountError = false ;
+                    this.displayExceedError = false ; 
+                    this.amountExceedError = true ; 
+
                     return
                 }
            } 
@@ -197,6 +209,10 @@ export default {
             this.displayError = true ;
             this.displayExceedError = false ;
             this.displayAmountError = false ;
+            this.amountExceedError = false ;
+
+     
+
 
             return ;
 
@@ -225,7 +241,35 @@ export default {
 
             return this.displayGcashPayment = false ;
 
-        }
+        },
+
+
+         onChangeInput() { 
+            if(this.searchInput === '' ) { 
+                this.freshToGo = this.products 
+            }
+            else { 
+                this.freshToGo = this.products 
+                this.freshToGo = this.freshToGo.filter((product)=>{
+                    return this.searchInput.toLowerCase().split(' ').every(
+                        v => product.name.toLowerCase().includes(v) ||  
+                        product.brand.toLowerCase().includes(v) 
+                )
+                })
+            }
+        },
+
+         onChangeCategorySelect() { 
+            if (this.category === 'all') { 
+                this.freshToGo = this.products 
+            }
+            else { 
+                 this.freshToGo = this.products 
+                 this.freshToGo = this.freshToGo.filter((product) => { 
+                    return product.category_id == this.category
+                 })
+            }
+        },
     }
 
 }
@@ -246,6 +290,7 @@ export default {
       
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                       
 
                     <div class="p-6 bg-white border-b border-gray-200">
 
@@ -269,9 +314,24 @@ export default {
                             </div>
                         </Transition>
 
+        
+            <div v-if="!displayCart  && !isCheckout" class="flex justify-between  mr-5">
+                <div class="mb-3 xl:w-96">
+                    <select v-model="category" @change="onChangeCategorySelect()" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                        <option value="all" selected >Choose Categories</option>
+                        <option v-for="categoryOption in categories" :key="categoryOption.key" :value="categoryOption.id">{{categoryOption.name}}</option>
+                    </select>
+                </div>
 
+                <div class="mb-3 xl:w-96">
+                    <div class="input-group relative flex flex-wrap items-stretch w-full mb-4">
+                        <input @change="onChangeInput" v-model="searchInput" type="search" class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Search by name or brand " aria-label="Search" aria-describedby="button-addon2">
+                    </div>
+                </div>
+            </div>
             <Transition name="slide-fade">
 
+                        
                 
 
                     <div v-if="!displayCart  && !isCheckout" class="p-6 flex flex-wrap items-center justify-center">
@@ -286,7 +346,7 @@ export default {
 
                                 <div class="mt-4 flex justify-between">
                                     <h3 class="text-sm text-gray-700">
-                                        <Link :href="route('customer.view_product' , {id : product.id })"   class="text-sm text-orange-400"  v-html="product.name" />
+                                        <Link :href="route('customer.view_product' , {id : product.id })"   class="text-sm text-orange-400"  v-html="product.name" />({{product.brand}})
                                     </h3>
                                 <p class="text-sm font-bold text-gray-900">₱ {{product.price}}  <small>(kg)</small> 
                                 </p>
@@ -428,9 +488,7 @@ export default {
 
                             <div class="inline-block mt-2 w-1/2 pr-1">
                            <label class="font-bold" for="city">City</label>
-                            <select readonly  v-model="fareSelect" :on-change="getDeliveryFare()" class="block appearance-none w-full text-gray-700 bg-gray-100 rounded border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
-                                    <option v-for="fare in fares" :key="fare.id" :value="fare.city" >{{fare.city}}</option>
-                            </select>
+                                <input readonly v-model="$page.props.auth.user.barangay" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="fare"  type="text" required="" placeholder="delivery fare" aria-label="Email">
                             </div>
 
                             <div class="inline-block mt-2 w-1/2 pr-1">
@@ -470,6 +528,11 @@ export default {
 
                             <Transition name="slide-fade">
                                 <div v-if="displayGcashPayment" class="mt-8 bg-blue-100 border blue-red-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
+                                     <div class="mt-4 bg-orange-100 border border-orange-400 text-orange-700 px-4 py-3 rounded relative" role="alert">
+                                        <strong class="font-bold">Gentlre Reminder for our customers🎈</strong>
+                                        <br>
+                                        <span class="block sm:inline">Please Input the correct values based on the input label. Full Name and Amount Paid Input should match the Information inside your proof of payment </span>
+                                    </div>
                                      <div class="mt-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
                                             Proof of payment <small>(please insert the image of the payment)</small>
@@ -497,7 +560,7 @@ export default {
                                     
                                     <div class="mt-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
-                                            Reference Number <small>(please enter the reference number of the payment)</small>
+                                            Reference Number 
                                         </label>
 
                                         <input  v-model="gcashRefNo" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="street"  type="text" required placeholder="Enter reference number of the payment" aria-label="Email">
@@ -523,6 +586,11 @@ export default {
                             <div v-else-if="displayAmountError" class="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                                 <strong class="font-bold">Sorry 😔</strong>
                                 <span class="block sm:inline"> Partial payments should be atleast half of the total amount to be paid You need atleast <span class="font-bold">(₱{{getTotalPrice() / 2 }})</span> to continue this transaction Thank you. </span>
+                            </div>
+
+                            <div v-else-if="amountExceedError" class="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                <strong class="font-bold">Sorry 😔</strong>
+                                <span class="block sm:inline"> The Gcash Amount Paid input should not exceed total price payment.  </span>
                             </div>
                         </Transition>
                     <br>

@@ -37,7 +37,12 @@ class DashboardController extends Controller
     }
 
     public function admin_index() { 
-        return Inertia::render("Admin/AdminDashboard"); 
+        // get total pending,cancelled and delivered orders 
+        $statusTotal = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->groupBy('status')->get();
+
+
+        
+        return Inertia::render("Admin/AdminDashboard" ,['statusTotal' => $statusTotal]); 
     }
 
     public function driver_index() {

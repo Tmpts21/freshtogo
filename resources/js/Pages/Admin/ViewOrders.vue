@@ -181,20 +181,12 @@ export default {
                                                 <img :src="'/storage/' + gcashInfo.gcash_proof_of_payment" height="500" width="200"  class="ml-32" alt="" >
                                         </div>
 
-                                        <div class="mb-4">
-                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
-                                                Proof of Payment
-                                            </label>
-
-                                            <input  readonly :value="payment_status" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
-
-                                        </div>
 
                                         <div class="mb-4">
                                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
                                                 Customer Name
                                             </label>
-
+                                            
                                             <input  readonly :value="gcashInfo.gcash_full_name" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
                                         </div>
 

@@ -16,8 +16,9 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
+
         return [
-            'name' => $this->faker->name(),
+            'name' => $this->faker->randomElement(['porkchops' , 'chicken neck' , 'chicken breast' ,'chicken thighs' , 'pork belly' ,'wagyu beef' ,'beef tapa']),
             'category_id' => $this->faker->randomElement([1 , 2 , 3 ]),
             'brand' => $this->faker->randomElement(['Magnolia' ,'tender juicy','Monterey']),
             'stock' => $this->faker->numberBetween(5 , 50),

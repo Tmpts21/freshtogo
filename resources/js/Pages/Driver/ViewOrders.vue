@@ -165,15 +165,6 @@ export default {
 
                                         <div class="mb-4">
                                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
-                                                Proof of Payment
-                                            </label>
-
-                                            <input  readonly :value="payment_status" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
-
-                                        </div>
-
-                                        <div class="mb-4">
-                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
                                                 Customer Name
                                             </label>
 
@@ -193,7 +184,7 @@ export default {
                                                 Remaining Amount to be Paid
                                             </label>
 
-                                            <input  readonly :value="totalPrice - gcashInfo.gcash_amount_paid" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
+                                            <input  readonly :value="'₱ ' + String(totalPrice - gcashInfo.gcash_amount_paid)" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
                                         </div>
 
                                         <div class="mb-4">
@@ -201,7 +192,7 @@ export default {
                                                 Amount Paid
                                             </label>
 
-                                            <input  readonly :value="gcashInfo.gcash_amount_paid" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
+                                            <input  readonly :value="'₱ ' + String(gcashInfo.gcash_amount_paid)" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
                                         </div>
 
                                         <div class="mb-4">
