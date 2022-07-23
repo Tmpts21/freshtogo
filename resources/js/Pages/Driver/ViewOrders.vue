@@ -188,6 +188,14 @@ export default {
                                             <input  readonly :value="gcashInfo.payment_status" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
                                         </div>
 
+                                         <div v-if="gcashInfo.payment_status == 'partial'" class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                                Remaining Amount to be Paid
+                                            </label>
+
+                                            <input  readonly :value="totalPrice - gcashInfo.gcash_amount_paid" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
+                                        </div>
+
                                         <div class="mb-4">
                                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
                                                 Amount Paid
