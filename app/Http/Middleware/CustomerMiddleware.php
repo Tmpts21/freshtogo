@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class DriverMiddleware
+class CustomerMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,12 @@ class DriverMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check()) { 
-            if(Auth::user()->role == "driver" ) { 
+        if(Auth::check()) { 
+            if (Auth::user()->role == 'customer') { 
                 return $next($request);
             }
         }
-        return redirect()->back(); 
+
+        return redirect()->back();
     }
 }

@@ -13,6 +13,8 @@ export default {
         return { 
             listOfOrders : this.orders ,
             gcashInfo : Object.values(this.orders)[0],
+            payment_status : Object.values(this.orders)[0].payment_status,
+
         }
     }, 
     mounted() { 
@@ -49,6 +51,9 @@ export default {
                                         Product Name 
                                     </th>
                                     <th scope="col" class="px-6 py-3">
+                                        Status 
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
                                         Image 
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -78,6 +83,9 @@ export default {
                                     </td>
                                     <td class="px-2 py-1 border border-2 " >
                                         {{order.product_name}}
+                                    </td>
+                                    <td class="px-2 py-1 border border-2 " >
+                                        {{order.status}}
                                     </td>
                                     <td class="px-2 py-1 border border-2 " >
                                         <img :src="'/storage/' + order.image " class="ml-5 w-20 h-20 rounded-full">
@@ -146,20 +154,77 @@ export default {
                                 </tbody>
                             </table>
 
-                                <Link :href="route('order.edit' , {id : gcashInfo.id })"  class="mt-5 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Update 📝'" />
-                            <br><br>
+
+                                <Link v-if="gcashInfo.status != 'delivered' &&  gcashInfo.status != 'cancelled'" :href="route('order.edit' , {id : gcashInfo.id })"  class="mt-5 mb-4 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Update 📝'" />
 
 
-                            <div v-if="gcashInfo.mop === 'Gcash'" class="mt-5" >
-                                <div class="flex flex-wrap justify-center">
-                                    <div class="w-6/12 sm:w-4/12 px-4 py-4">
-                                        <div class="font-bold mt-5 mb-5">Payment Information </div> 
-                                        <Label class="mt-5 mb-5">Proof of payment </Label>
-                                        <img :src="'/storage/' + gcashInfo.gcash_proof_of_payment " alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
-                                        <Label class="mt-5 mb-5 ">Reference number </Label>
-                                        <input readonly :value="gcashInfo.gcash_reference_number" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter product price">
-                                  </div>
+                             <div v-if="gcashInfo.status == 'cancelled'" class="mt-4 bg-orange-100 border border-orange-400 text-orange-700 px-4 py-3 rounded relative" role="alert">
+                                <strong class="font-bold">Reason why cancelled 🤔 </strong>
+                                <br>
+                                <span class="block sm:inline">"{{gcashInfo.remarks}}""</span>
+                            </div>
+                            <br> <br>
 
+
+
+
+                            <div v-if="gcashInfo.mop === 'Gcash'" class="p-6 flex flex-col justify-center items-center" >
+                                <div class="w-full max-w-lg">
+                                    <form class="bg-white rounded px-8 pt-6 pb-8 mb-4">
+
+
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                                Proof of Payment
+                                            </label>
+
+                                                <img :src="'/storage/' + gcashInfo.gcash_proof_of_payment" height="500" width="200"  class="ml-32" alt="" >
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                                Proof of Payment
+                                            </label>
+
+                                            <input  readonly :value="payment_status" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
+
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                                Customer Name
+                                            </label>
+
+                                            <input  readonly :value="gcashInfo.gcash_full_name" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                                Payment Status
+                                            </label>
+
+                                            <input  readonly :value="gcashInfo.payment_status" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                                Amount Paid
+                                            </label>
+
+                                            <input  readonly :value="gcashInfo.gcash_amount_paid" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                                Reference Number
+                                            </label>
+
+                                            <input  readonly :value="gcashInfo.gcash_reference_number" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
+                                        </div>
+
+                                
+                                      
+                                    </form>
                                 </div>
                             </div>
 

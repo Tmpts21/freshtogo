@@ -42,11 +42,11 @@ Route::get('/', function () {
 
 Route::get('/redirects', [DashboardController::class, 'redirects'])->middleware(['auth', 'verified'])->name('redirects');
 
-Route::get('/dashboard', [DashboardController::class, 'customer_index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'customer_index'])->middleware(['auth', 'verified' ,'customer'])->name('dashboard');
 
-Route::get('/admin', [DashboardController::class, 'admin_index'])->middleware(['auth', 'verified'])->name('admin');
+Route::get('/admin', [DashboardController::class, 'admin_index'])->middleware(['auth', 'verified' ,'admin'])->name('admin');
 
-Route::get('/driver', [DashboardController::class, 'driver_index'])->middleware(['auth', 'verified'])->name('driver');
+Route::get('/driver', [DashboardController::class, 'driver_index'])->middleware(['auth', 'verified' ,'driver'])->name('driver');
 
 
 
@@ -63,7 +63,7 @@ Route::get('/profile', [DashboardController::class, 'profile'])->name('profile')
 Route::post('/profile/update', [DashboardController::class, 'update_profile'])->name('profile.update');
 
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth' ,'verified' ]], function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth' ,'verified' , 'admin' ]], function(){
 
     Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/users/create', [AdminController::class, 'create_user'])->name('admin.create_user');
@@ -94,7 +94,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth' ,'verified' ]], funct
 });
 
 
-Route::group(['prefix' => 'customer', 'middleware' => ['auth' ,'verified' ]], function(){
+Route::group(['prefix' => 'customer', 'middleware' => ['auth' ,'verified','customer' ]], function(){
     Route::post('/placeorder', [CustomerController::class, 'place_order'])->name('customer.placeorder');
     Route::get('/orders', [CustomerController::class, 'orders'])->name('customer.orders');
     Route::get('/view/{id}', [CustomerController::class, 'view'])->name('customer.view_order');
@@ -104,7 +104,7 @@ Route::group(['prefix' => 'customer', 'middleware' => ['auth' ,'verified' ]], fu
 });
 
 
-Route::group(['prefix' => 'driver', 'middleware' => ['auth' ,'verified' ]], function(){
+Route::group(['prefix' => 'driver', 'middleware' => ['auth' ,'verified','driver' ]], function(){
     Route::get('/edit/orders/{id}', [DriverController::class, 'edit'])->name('driver.edit_order');
     Route::get('/view/orders/{id}', [DriverController::class, 'view'])->name('driver.view_order');
     Route::post('/update/order', [DriverController::class, 'update'])->name('driver.update_order_status');

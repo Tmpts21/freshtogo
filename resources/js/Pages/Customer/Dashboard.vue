@@ -25,6 +25,9 @@ export default {
             modeOfPayment : 'Cash on Delivery',
             displayError : false ,
             displayExceedError : false , 
+            displayAmountError : false , 
+            gcashAmountPaid : null , 
+            gcashFullName : '', 
             address :  this.$page.props.auth.user.postal_code+ ' ' + this.$page.props.auth.user.street_address + ' ' +  this.$page.props.auth.user.barangay + ' ' + this.$page.props.auth.user.city + ' City'
    
         }
@@ -148,16 +151,33 @@ export default {
 
         placeOrder() { 
             let orders = [];
+            let AllProductsPrice = 0 ; 
 
             // check quantity 
-
             if(this.validateQuantity()) { 
                 for (let i = 0 ; i < this.cartProducts.length ; i ++ ) { 
+                    AllProductsPrice += this.cartProducts[i].total
                     if (this.cartProducts[i].quantity > this.cartProducts[i].stock) {
-                        return this.displayExceedError = true ; 
+                         this.displayError = false ; 
+                         this.displayAmountError = false ; 
+                         this.displayExceedError = true ; 
+                         return
+                        
                     }
+
                     orders.push(JSON.stringify(this.cartProducts[i]))
                 }
+
+           if(this.modeOfPayment == 'Gcash') { 
+                if(this.gcashAmountPaid < 0 || this.gcashAmountPaid == 0 || this.gcashAmountPaid < AllProductsPrice / 2 ) { 
+                    this.displayError = false ; 
+                    this.displayExceedError = false ; 
+                    this.displayAmountError = true ; 
+                    return
+                }
+           } 
+
+            
 
             const orderdata = { 
                 cart : orders ,
@@ -166,12 +186,22 @@ export default {
                 address : this.address ,
                 gcash_proof_of_payment : this.gcashImage ,
                 gcash_reference_number : this.gcashRefNo,
+                gcash_amount_paid : this.gcashAmountPaid,
+                gcash_full_name : this.gcashFullName,
+                totalPriceOfAllProductsWithDeliveryFee : AllProductsPrice + parseInt(this.fareCharge) , 
             }
                 this.displayError = false  ; 
                 return Inertia.post('customer/placeorder', {data:orderdata})
             }
 
-            this.displayError = true ; 
+            this.displayError = true ;
+            this.displayExceedError = false ;
+            this.displayAmountError = false ;
+
+            return ;
+
+
+
 
             
 
@@ -304,6 +334,9 @@ export default {
                                      <th scope="col" class="px-6 py-3">
                                          Image 
                                     </th>
+                                     <th scope="col" class="px-6 py-3">
+                                        Remaining Stocks 
+                                    </th>
                                     <th scope="col" class="px-6 py-3">
                                         Price 
                                     </th>
@@ -330,6 +363,9 @@ export default {
                                     </td>
                                     <td class="px-2 py-1 mx-auto" >
                                         <img :src="'/storage/' + product.image" height="150" width="150" class="" alt="">
+                                    </td>
+                                     <td class="px-2 py-1" >
+                                         ₱ {{product.stocks}}
                                     </td>
                                      <td class="px-2 py-1" >
                                          ₱ {{product.total}}
@@ -441,6 +477,22 @@ export default {
 
                                         <input required type="file" @input="gcashImage = $event.target.files[0]" />
                                     </div>
+
+                                    <div class="mt-4">
+                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                            Full Name 
+                                        </label>
+
+                                        <input  v-model="gcashFullName" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="street"  type="text" required placeholder="Enter Full Name " aria-label="Email">
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                            Amount Paid
+                                        </label>
+
+                                        <input  v-model="gcashAmountPaid" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="street"  type="text" required placeholder="Enter Amount Paid" aria-label="Email">
+                                    </div>
                                     
                                     
                                     <div class="mt-4">
@@ -466,6 +518,11 @@ export default {
                              <div v-else-if="displayExceedError" class="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                                 <strong class="font-bold">Sorry 😔</strong>
                                 <span class="block sm:inline"> Quantity(kg) is Exceeding our stocks(kg) </span>
+                            </div>
+
+                            <div v-else-if="displayAmountError" class="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                <strong class="font-bold">Sorry 😔</strong>
+                                <span class="block sm:inline"> Partial payments should be atleast half of the total amount to be paid You need atleast <span class="font-bold">(₱{{getTotalPrice() / 2 }})</span> to continue this transaction Thank you. </span>
                             </div>
                         </Transition>
                     <br>

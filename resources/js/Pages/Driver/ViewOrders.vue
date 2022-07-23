@@ -150,18 +150,66 @@ export default {
                                 </div>
                             <br><br>
 
-                            <div v-if="gcashInfo.mop === 'Gcash'" class="mt-5" >
-                                <div class="flex flex-wrap justify-center">
-                                    <div class="w-6/12 sm:w-4/12 px-4 py-4">
-                                        <div class="font-bold mt-5 mb-5">Payment Information </div> 
-                                        <Label class="mt-5 mb-5">Proof of payment </Label>
-                                        <img :src="'/storage/' + gcashInfo.gcash_proof_of_payment " alt="..." class="shadow rounded max-w-full h-auto align-middle border-none" />
-                                        <Label class="mt-5 mb-5">Reference number </Label>
-                                        <input readonly :value="gcashInfo.gcash_reference_number" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter product price">
-                                  </div>
+                            <div v-if="gcashInfo.mop === 'Gcash'" class="p-6 flex flex-col justify-center items-center" >
+                                <div class="w-full max-w-lg">
+                                    <form class="bg-white rounded px-8 pt-6 pb-8 mb-4">
 
+
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                                Proof of Payment
+                                            </label>
+
+                                                <img :src="'/storage/' + gcashInfo.gcash_proof_of_payment" height="500" width="200"  class="ml-32" alt="" >
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                                Proof of Payment
+                                            </label>
+
+                                            <input  readonly :value="payment_status" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
+
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                                Customer Name
+                                            </label>
+
+                                            <input  readonly :value="gcashInfo.gcash_full_name" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                                Payment Status
+                                            </label>
+
+                                            <input  readonly :value="gcashInfo.payment_status" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                                Amount Paid
+                                            </label>
+
+                                            <input  readonly :value="gcashInfo.gcash_amount_paid" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                                Reference Number
+                                            </label>
+
+                                            <input  readonly :value="gcashInfo.gcash_reference_number" class="bg-gray-200 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
+                                        </div>
+
+                                
+                                      
+                                    </form>
                                 </div>
                             </div>
+
 
 
                             </div>

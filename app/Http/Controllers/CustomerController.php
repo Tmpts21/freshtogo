@@ -34,6 +34,20 @@ class CustomerController extends Controller
 
         $uniqueOrderId = substr(md5(mt_rand()), 0, 8);
 
+        if($request->data['mop'] == 'Gcash') { 
+            $amount_paid = $request->data['gcash_amount_paid'] ;
+            $totalAmountToBePaid = $request->data['totalPriceOfAllProductsWithDeliveryFee'];
+            $payment_status = '';
+            if($amount_paid < $totalAmountToBePaid) { 
+                $payment_status = 'partial'; 
+            }elseif($amount_paid == $totalAmountToBePaid ) { 
+                $payment_status = 'paid';
+            }
+        }
+        
+
+        
+
         foreach($request->data['cart'] as $product) { 
 
             $prod = json_decode($product);
@@ -41,6 +55,7 @@ class CustomerController extends Controller
             $product = Product::find($prod->id); 
 
             if($request->data['mop'] == 'Gcash') {
+               
 
                 $product->stock = $product->stock -= $prod->quantity;
                 $product->save();
@@ -59,10 +74,11 @@ class CustomerController extends Controller
                     'mop' => $request->data['mop'] ,
                     'address' => $request->data['address'],
                     'gcash_proof_of_payment' => $image_path,
+                    'gcash_amount_paid' => $image_path,
+                    'gcash_full_name' => $image_path,
                     'gcash_reference_number' => $request->data['gcash_reference_number'], 
                     'unique_id' => $uniqueOrderId,
-                    'payment_status' => 'paid'
-
+                    'payment_status' => $payment_status
                 ]); 
                 
             }else { 

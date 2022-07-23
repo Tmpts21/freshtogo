@@ -30,7 +30,9 @@ return new class extends Migration
             $table->string('address');
             $table->string('remarks')->nullable(); 
             $table->string('gcash_proof_of_payment')->nullable(); 
-            $table->string('gcash_reference_number')->nullable(); 
+            $table->integer('gcash_reference_number')->nullable(); 
+            $table->string('gcash_full_name')->nullable();
+            $table->integer('gcash_amount_paid')->nullable();
             $table->string('unique_id');
             $table->string('payment_status')->default('pending');
             $table->boolean('is_feedback')->nullable();
