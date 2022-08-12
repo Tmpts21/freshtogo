@@ -19,7 +19,7 @@ export default {
                 labels: ['Pending', 'Cancelled', 'Delivered'],
                 datasets: [
                 {
-                    backgroundColor: ['#0ea5e9', '#ef4444', '#f97316'],
+                    backgroundColor: ['#0ea5e9', '#ef4444', '#65a30d'],
                     data: [this.statusTotal[2].total, this.statusTotal[0].total , this.statusTotal[1].total]
                 }
                 ]
@@ -43,7 +43,7 @@ export default {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <div class="h-5 border-b-2 font-bold border-orange-500 mt-5 mb-5 text-2xl text-center">
+                        <div class="h-5 border-b-2 font-bold border-lime-500 mt-5 mb-5 text-2xl text-center">
                             <span class="bg-white px-5">Sales for the Month</span>
                         </div>
                         <DoughnutChart class="mb-5" :chartData="this.doughnutChartData"></DoughnutChart>
@@ -85,13 +85,13 @@ export default {
                     <hr>
                     <br>
 
-                        <div class="h-5 border-b-2 font-bold border-orange-500 mt-5 mb-5 text-2xl text-center">
+                        <div class="h-5 border-b-2 font-bold border-lime-500 mt-5 mb-5 text-2xl text-center">
                             <span class="bg-white px-5">Monthly Sales</span>
                         </div>
 
                             <LineChart class="mt-2 px-64 py-2 "></LineChart>
 
-                        <div class="h-5 border-b-2 font-bold border-orange-500 mt-5 mb-5  text-2xl text-center">
+                        <div class="h-5 border-b-2 font-bold border-lime-500 mt-5 mb-5  text-2xl text-center">
                             <span class="bg-white px-5">Kg(sold) per Product</span>
                         </div>
 

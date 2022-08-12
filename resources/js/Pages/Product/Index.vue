@@ -136,7 +136,7 @@ export default {
                                     </td>
 
                                     <td v-else>
-                                        <div class="mb-5 rounded flex items-center bg-orange-500 text-white text-sm font-bold px-4 py-3" role="alert">
+                                        <div class="mb-5 rounded flex items-center bg-lime-500 text-white text-sm font-bold px-4 py-3" role="alert">
                                         <p>Not available 🙁  </p>
                                         </div>
                                     </td>

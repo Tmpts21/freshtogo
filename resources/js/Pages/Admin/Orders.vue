@@ -154,7 +154,7 @@ export default {
                             </div>
 
                             <div v-else >
-                                <div class="mt-5 mb-5 rounded flex items-center bg-orange-500 text-white text-sm font-bold px-5 py-3" role="alert">
+                                <div class="mt-5 mb-5 rounded flex items-center bg-lime-500 text-white text-sm font-bold px-5 py-3" role="alert">
                                     <p>No available deliveries<span class="ml-2 text-lg"> 🤷‍♂️</span> </p>
                                 </div>
                             </div>

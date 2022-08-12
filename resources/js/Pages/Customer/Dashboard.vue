@@ -280,7 +280,7 @@ export default {
 
     <BreezeAuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-orange-500 leading-tight">
+            <h2 class="font-semibold text-xl text-lime-500 leading-tight">
                 Our Products ✨
             </h2>
         </template>
@@ -298,11 +298,11 @@ export default {
                       
 
                         <button  v-if="!displayCart" @click="shoppingCart()" class="fixed rounded-full z-90 bottom-10 text-green-500 right-8 float-right bg-gray-100 hover:bg-gray-200 text-white font-bold py-2 px-4 border-2 border-gray-700 ">
-                           <span><i class="fa-solid fa-cart-shopping text-orange-500 text-lg "></i> </span>  View Shopping Cart
+                           <span><i class="fa-solid fa-cart-shopping text-lime-500 text-lg "></i> </span>  View Shopping Cart
                          </button>
 
                           <button  v-if="displayCart" @click="shoppingCart()" class="fixed rounded-full z-90 bottom-10 text-green-500 right-8 float-right bg-gray-100 hover:bg-gray-200 text-white font-bold py-2 px-4 border-2 border-gray-700 ">
-                           <span><i class="fa-solid fa-cart-shopping text-orange-500 text-lg "></i> </span>  Back to products
+                           <span><i class="fa-solid fa-cart-shopping text-lime-500 text-lg "></i> </span>  Back to products
                          </button>
 
                         <Transition name="slide-fade">
@@ -338,7 +338,7 @@ export default {
                         
                     <div class="font-bold font-medium mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
                       
-                            <div v-for="product in freshToGo" :key="product.id" class=" border-2 border-orange-600 rounded-md p-4 " >
+                            <div v-for="product in freshToGo" :key="product.id" class=" border-2 border-lime-600 rounded-md p-4 " >
                                
                                <div class="w-full min-h-80 rounded-md  lg:h-80 lg:aspect-none">
                                 <img :src="'/storage/' + product.image "  class="w-full h-full object-center object-cover lg:w-full lg:h-full">
@@ -346,7 +346,7 @@ export default {
 
                                 <div class="mt-4 flex justify-between">
                                     <h3 class="text-sm text-gray-700">
-                                        <Link :href="route('customer.view_product' , {id : product.id })"   class="text-sm text-orange-400"  v-html="product.name" />({{product.brand}})
+                                        <Link :href="route('customer.view_product' , {id : product.id })"   class="text-sm text-lime-400"  v-html="product.name" />({{product.brand}})
                                     </h3>
                                 <p class="text-sm font-bold text-gray-900">₱ {{product.price}}  <small>(kg)</small> 
                                 </p>
@@ -357,7 +357,7 @@ export default {
                             <span class="float-right mt-1 text-sm text-gray-500 mr-3">{{product.sold}}kg<small>(sold)</small></span>
                         </div>
 
-                            <button v-if="!isAddedToCart(product.id)" @click="addToCart(product.id)" class="mt-3 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 border border-orange-700 rounded">
+                            <button v-if="!isAddedToCart(product.id)" @click="addToCart(product.id)" class="mt-3 bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 border border-lime-700 rounded">
                                 <span> add to cart 🛒</span>   
                             </button>
                             <button v-else @click="removeToCart(product.id)" class="mt-3 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 border border-gray-700 rounded">
@@ -375,7 +375,7 @@ export default {
                     <div v-if="displayCart">
                          <div v-if="cartProducts.length">
 
-                        <div class="bg-orange-100 border-l-4 rounded-lg border-orange-500 text-orange-700 p-4" role="alert">
+                        <div class="bg-lime-100 border-l-4 rounded-lg border-lime-500 text-lime-700 p-4" role="alert">
                             <p class="font-bold">Note: </p>
                             <p>Minimum of 5kg per product</p>
                         </div>
@@ -528,7 +528,7 @@ export default {
 
                             <Transition name="slide-fade">
                                 <div v-if="displayGcashPayment" class="mt-8 bg-blue-100 border blue-red-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
-                                     <div class="mt-4 bg-orange-100 border border-orange-400 text-orange-700 px-4 py-3 rounded relative" role="alert">
+                                     <div class="mt-4 bg-lime-100 border border-lime-400 text-lime-700 px-4 py-3 rounded relative" role="alert">
                                         <strong class="font-bold">Gentlre Reminder for our customers🎈</strong>
                                         <br>
                                         <span class="block sm:inline">Please Input the correct values based on the input label. Full Name and Amount Paid Input should match the Information inside your proof of payment </span>
@@ -595,7 +595,7 @@ export default {
                         </Transition>
                     <br>
 
-                            <button @click="placeOrder()" class="ml-3 float-right font-bold text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800" >Place Order</button>
+                            <button @click="placeOrder()" class="ml-3 float-right font-bold text-white bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:ring-lime-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-lime-600 dark:hover:bg-lime-700 focus:outline-none dark:focus:ring-lime-800" >Place Order</button>
 
                         </div>
 
@@ -607,7 +607,7 @@ export default {
 
                         </div>
                         <div v-else>
-                             <div class="bg-orange-100 text-center border-l-4 rounded-lg border-orange-500 text-orange-700 p-4" role="alert">
+                             <div class="bg-lime-100 text-center border-l-4 rounded-lg border-lime-500 text-lime-700 p-4" role="alert">
                                 <p class="font-bold">Nothing here :( </p>
                             </div>
 

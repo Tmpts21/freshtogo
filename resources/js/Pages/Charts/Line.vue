@@ -76,7 +76,7 @@ export default {
         datasets: [
           {
             label: 'Delivered',
-            backgroundColor: '#f97316',
+            backgroundColor: '#65a30d',
             data: [40, 39, 10, 40, 39, 34, 40,45, 35, 22,32 ,25]
           },
            {

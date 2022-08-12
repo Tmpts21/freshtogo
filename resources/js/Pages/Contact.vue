@@ -29,7 +29,7 @@ defineComponent ({
 <template>
     <Head title="Welcome" />
 
- <nav class="bg-orange-400 shadow shadow-lg ">
+ <nav class="bg-lime-400 shadow shadow-lg ">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between items-center h-16">
@@ -63,7 +63,7 @@ defineComponent ({
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
 
                             
-                            <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 border border-orange-700 rounded">
+                            <button class="bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 border border-lime-700 rounded">
 
                             <Link :href="route('register')" >
                                 Register 
@@ -91,7 +91,7 @@ defineComponent ({
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <BreezeResponsiveNavLink class="text-orange-500 font-bold" :href="route('register')" :active="route().current('register')">
+                        <BreezeResponsiveNavLink class="text-lime-500 font-bold" :href="route('register')" :active="route().current('register')">
                             Register
                         </BreezeResponsiveNavLink>
 
@@ -124,11 +124,11 @@ defineComponent ({
             <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
                 <div class="flex justify-center">
                     <div class="block rounded-lg shadow-lg bg-white max-w-sm text-center">
-                        <div class="py-3 px-6 border-b border-orange-400 font-bold text-orange-400 text-2xl">
+                        <div class="py-3 px-6 border-b border-lime-400 font-bold text-lime-400 text-2xl">
                         Contact us 
                         </div>
                         <div class="p-6">
-                        <p class="text-gray-900 font-semibold text-base mb-4 border-b border-orange-400 pb-8">
+                        <p class="text-gray-900 font-semibold text-base mb-4 border-b border-lime-400 pb-8">
                              In freshToGo we value communication with our customers. Below are the ways 
                              customer can contact us. Feel free to contact us through the options below 
                         </p>
@@ -138,7 +138,7 @@ defineComponent ({
                         <p class="p-2 font-semibold">📞 Telephone  : + (02) 123 456 </p>
                         <p class="p-2 font-semibold mb-8">📱  Mobile Number : +63 123456789</p>
 
-                        <div class="py-3 px-6 border-t font-bold border-orange-400 text-orange-400">
+                        <div class="py-3 px-6 border-t font-bold border-lime-400 text-lime-400">
                              Follow us on
                         </div>
                     <div class="flex justify-center ">
@@ -166,7 +166,7 @@ defineComponent ({
 <br><br>
 
     
-        <footer class="p-4 bg-orange-500 text-white sm:p-6 dark:bg-orange-900">
+        <footer class="p-4 bg-lime-500 text-white sm:p-6 dark:bg-lime-900">
     <div class="md:flex md:justify-between ">
         <div class="mb-6 md:mb-0">
             <a href="https://flowbite.com/" class="flex items-center">

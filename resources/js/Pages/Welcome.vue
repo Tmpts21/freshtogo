@@ -32,7 +32,7 @@ defineComponent ({
 <template>
     <Head title="Welcome" />
 
- <nav class="bg-orange-400 shadow shadow-lg ">
+ <nav class="bg-lime-500 shadow shadow-lg ">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between items-center h-16">
@@ -66,7 +66,7 @@ defineComponent ({
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
 
                             
-                            <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 border border-orange-700 rounded">
+                            <button class="bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 border border-lime-700 rounded">
 
                             <Link :href="route('register')" >
                                 Register 
@@ -94,7 +94,7 @@ defineComponent ({
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <BreezeResponsiveNavLink class="text-orange-500 font-bold" :href="route('register')" :active="route().current('register')">
+                        <BreezeResponsiveNavLink class="text-lime-500 font-bold" :href="route('register')" :active="route().current('register')">
                             Register
                         </BreezeResponsiveNavLink>
 
@@ -126,13 +126,13 @@ defineComponent ({
 
 
         <div class="mt-12 mx-5 max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <h3 class="font-bold text-2xl text-orange-500">FreshToGo Products </h3>
+            <h3 class="font-bold text-2xl text-lime-500">FreshToGo Products </h3>
 
             <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
 
                 <div class=" font-bold font-medium mt-6 grid grid-cols-1 gap-y-12 gap-x-8 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-10">
                       
-                            <div v-for="product in products" :key="product.id" class=" border-2 border-orange-600 rounded-md p-4 " >
+                            <div v-for="product in products" :key="product.id" class=" border-2 border-lime-600 rounded-md p-4 " >
                                
                                <div class="w-full min-h-80 rounded-md  lg:h-80 lg:aspect-none">
                                 <img :src="'/storage/' + product.image "  class="w-full h-full object-center object-cover lg:w-full lg:h-full">
@@ -140,7 +140,7 @@ defineComponent ({
 
                                 <div class="mt-4 flex justify-between">
                                     <h3 class="text-sm text-gray-700">
-                                        <Link :href="route('guest.view_product' , {id : product.id })"   class="text-sm text-orange-400"  v-html="product.name" />
+                                        <Link :href="route('guest.view_product' , {id : product.id })"   class="text-sm text-lime-400"  v-html="product.name" />
                                     </h3>
                                 <p class="text-sm font-bold text-gray-900">₱ {{product.price}}  <small>(kg)</small> 
                                 </p>
@@ -151,7 +151,7 @@ defineComponent ({
                             <span class="float-right mt-1 text-sm text-gray-500 mr-3">{{product.sold}}kg<small>(sold)</small></span>
                        </div>
                                 
-                                <button class="mt-3 bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 border border-orange-700 rounded">
+                                <button class="mt-3 bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 border border-lime-700 rounded">
 
                             <Link :href="route('login')" >
                                 Add to cart 🛒
@@ -174,7 +174,7 @@ defineComponent ({
 <br><br>
 
     
-        <footer class="p-4 bg-orange-500 text-white sm:p-6 dark:bg-orange-900">
+        <footer class="p-4 bg-lime-500 text-white sm:p-6 dark:bg-lime-900">
     <div class="md:flex md:justify-between ">
         <div class="mb-6 md:mb-0">
             <a href="https://flowbite.com/" class="flex items-center">

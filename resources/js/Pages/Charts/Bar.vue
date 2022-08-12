@@ -62,7 +62,7 @@ export default {
         datasets: [
           {
             label: 'Kg(sold)',
-            backgroundColor: '#f97316',
+            backgroundColor: '#65a30d',
             data: [400, 203, 122, 397, 102, 404 , 505]
           }
         ]

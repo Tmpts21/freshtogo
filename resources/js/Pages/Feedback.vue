@@ -29,7 +29,7 @@ defineComponent ({
 <template>
     <Head title="Welcome" />
 
- <nav class="bg-orange-400 shadow shadow-lg ">
+ <nav class="bg-lime-400 shadow shadow-lg ">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between items-center h-16">
@@ -63,7 +63,7 @@ defineComponent ({
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
 
                             
-                            <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 border border-orange-700 rounded">
+                            <button class="bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 border border-lime-700 rounded">
 
                             <Link :href="route('register')" >
                                 Register 
@@ -91,7 +91,7 @@ defineComponent ({
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <BreezeResponsiveNavLink class="text-orange-500 font-bold" :href="route('register')" :active="route().current('register')">
+                        <BreezeResponsiveNavLink class="text-lime-500 font-bold" :href="route('register')" :active="route().current('register')">
                             Register
                         </BreezeResponsiveNavLink>
 
@@ -117,7 +117,7 @@ defineComponent ({
             </nav>
 
 
-            <h2 class="ml-12 mt-16 text-orange-400 font-bold text-2xl text-gray-800 leading-tight">
+            <h2 class="ml-12 mt-16 text-lime-400 font-bold text-2xl text-gray-800 leading-tight">
                 Reviews and Feedbacks from our customers 💯
             </h2>
             <br><br>
@@ -156,7 +156,7 @@ defineComponent ({
 <br><br>
 
     
-        <footer class="p-4 bg-orange-500 text-white sm:p-6 dark:bg-orange-900">
+        <footer class="p-4 bg-lime-500 text-white sm:p-6 dark:bg-lime-900">
     <div class="md:flex md:justify-between ">
         <div class="mb-6 md:mb-0">
             <a href="https://flowbite.com/" class="flex items-center">

@@ -62,7 +62,7 @@ const submit = () => {
                     Don't have an account 🤔 
                 </Link>
 
-                <BreezeButton class="ml-4 bg-orange-500" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <BreezeButton class="ml-4 bg-lime-500" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
                 </BreezeButton>
             </div>
