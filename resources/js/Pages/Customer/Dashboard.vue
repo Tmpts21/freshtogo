@@ -529,9 +529,18 @@ export default {
                             <Transition name="slide-fade">
                                 <div v-if="displayGcashPayment" class="mt-8 bg-blue-100 border blue-red-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
                                      <div class="mt-4 bg-lime-100 border border-lime-400 text-lime-700 px-4 py-3 rounded relative" role="alert">
-                                        <strong class="font-bold">Gentlre Reminder for our customers🎈</strong>
+                                        <strong class="font-bold">Payment Procedure 💳</strong>
+
+                                            <ol class="list-decimal ml-5 ">
+                                                <li>Open Gcash App and Log in your account </li>
+                                                <li>Click Send</li>
+                                                <li>Click Express Send</li>
+                                                <li>Enter Mobile Number of FreshToGo <span class="font-bold">(09163410823 - FreshToGo)</span> and the amount to be paid</li>
+                                                <li>Click Next and Proceed</li>
+                                            </ol>
+                                        
                                         <br>
-                                        <span class="block sm:inline">Please Input the correct values based on the input label. Full Name and Amount Paid Input should match the Information inside your proof of payment </span>
+                                        <span class="block sm:inline">Please Screenshot the payment as this will act as your proof of payment. Also please Input the correct values based on the label provided. Full Name and Amount Paid Input should match the Information inside your proof of payment <b>(Failure in following the guidelines provided will result to a delayed delivery)</b> </span>
                                     </div>
                                      <div class="mt-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
@@ -560,7 +569,7 @@ export default {
                                     
                                     <div class="mt-4">
                                         <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
-                                            Reference Number 
+                                            Reference Number <small>(Reference number can be found on your screenshot of proof of payment )</small> 
                                         </label>
 
                                         <input  v-model="gcashRefNo" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="street"  type="text" required placeholder="Enter reference number of the payment" aria-label="Email">
