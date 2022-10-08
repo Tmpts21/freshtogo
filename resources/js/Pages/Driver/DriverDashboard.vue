@@ -105,7 +105,7 @@ export default {
                                     <th scope="col" class="px-6 py-3">
                                         Payment Status 
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="co l" class="px-6 py-3">
                                         Date 
                                     </th>
                                      <th scope="col" class="px-6 py-3">
@@ -152,14 +152,18 @@ export default {
                                     <td v-if="order.status == 'pending' || order.status == 'assigned'" class="px-2 py-4 border border-2 " >
                                            <Link :href="route('driver.view_orders' , {id : order.id , status : order.status })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
                                            <Link :href="route('driver.edit_order' , {id : order.id })"  class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Update'" />
-                                    </td>
+                                           <a   class="mt-5 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=current+location&destination=4114 Blk 23 Lt 2 Ph 6 Dasma3'"> 🗺 maps </a>
 
+                                        </td>
                                     <td v-else-if="order.status == 'delivered'" class="px-2 py-4 border border-2 " >
                                            <Link :href="route('driver.view_orders' , {id : order.id , status : order.status })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
-                                    </td>
+                                           <a   class=" mt-5 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=current+location&destination=4114 Blk 23 Lt 2 Ph 6 Dasma3'"> 🗺 maps </a>
+
+                                        </td>
 
                                      <td v-else class="px-2 py-4 border border-2 " >
                                         <Link :href="route('driver.view_orders' , {id : order.id , status : order.status })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
+                                        <a   class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800" target="_blank" :href="'https://www.google.com/maps/dir/?api=1&origin=current+location&destination=' + Object.values(this.orders)[0].address"> 🗺 maps </a>
                                     </td>
                                     
 

@@ -101,6 +101,7 @@ Route::group(['prefix' => 'customer', 'middleware' => ['auth' ,'verified','custo
     Route::get('/add/feedback/{id}/{orderId}', [CustomerController::class, 'feedback'])->name('customer.feedback');
     Route::get('/view/product/{id}', [CustomerController::class, 'view_product'])->name('customer.view_product');
     Route::post('/save/feedback', [CustomerController::class, 'save_feedback'])->name('customer.save_feedback');
+    Route::get('/view/orders/{id}/{status}', [CustomerController::class, 'viewOrders'])->name('customer.view_orders');
 });
 
 
@@ -109,6 +110,7 @@ Route::group(['prefix' => 'driver', 'middleware' => ['auth' ,'verified','driver'
     Route::get('/view/orders/{id}', [DriverController::class, 'view'])->name('driver.view_order');
     Route::post('/update/order', [DriverController::class, 'update'])->name('driver.update_order_status');
     Route::get('/viewOrders/{id}/{status}', [DriverController::class, 'viewOrders'])->name('driver.view_orders');
+    
 
 });
 

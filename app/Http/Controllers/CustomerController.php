@@ -150,4 +150,26 @@ class CustomerController extends Controller
         return redirect()->route('customer.orders')->with('success' , 'Thanks for trusting freshToGo your feedback is successfully saved 🙏 ');
     }
 
+    
+    public function viewOrders($id , $status) { 
+        $order = Order::findorfail($id); 
+        $orders = Order::all()
+                        ->where('unique_id', $order->unique_id)
+                        ->where('driver_id' , $order->driver_id);
+
+        $totalPrice = 0 ; 
+        $deliveryFee = 0;
+        
+        foreach($orders as $o) {             
+            $totalPrice += $o->total_price ;
+            $deliveryFee = $o->deliveryFee ; 
+        }
+
+        return Inertia::render('Customer/ViewOrders' , [
+                'orders' => $orders ,
+                'deliveryFee' => $deliveryFee , 
+                'totalPrice' => $totalPrice + $deliveryFee
+            ]) ;
+    }
+
 }
