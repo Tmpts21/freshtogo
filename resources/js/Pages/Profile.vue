@@ -1,6 +1,6 @@
 <script >
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import { Head } from '@inertiajs/inertia-vue3';
+import { Head ,Link  } from '@inertiajs/inertia-vue3';
 import { reactive } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import { usePage } from '@inertiajs/inertia-vue3'
@@ -12,7 +12,8 @@ import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 export default {
   components : {  
     BreezeAuthenticatedLayout ,
-    Head
+    Head ,
+    Link
   },
   props :['errors'] ,
 
@@ -50,6 +51,7 @@ export default {
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
                     <div class="p-6 flex flex-col justify-center items-center">
                            <div v-if="$page.props.flash.success" class="alert">
                                 <div class="bg-green-100 text-green-700 p-4" role="alert">
@@ -73,6 +75,8 @@ export default {
 
 
                         <div class="w-full max-w-xs">
+
+
                         <form @submit.prevent="submit()"  class="bg-white rounded px-8 pt-6 pb-8 mb-4">
 
                         <div v-if="form.image" class="flex flex-wrap justify-center mb-5 ">
@@ -146,6 +150,9 @@ export default {
                             <button :disabled="form.processing" type="submit" class="float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 font-bold">Save 📁</button>
 
                         </form>
+
+                        <Link :href="route('change.password')" class="font-bold text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-orange-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-orange-800 float-right" v-html="'Change password'" />
+
                
                         </div>
                     </div>

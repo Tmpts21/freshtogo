@@ -97,5 +97,12 @@ class DriverController extends Controller
             ]) ;
     }
 
+    public function updateDriverPosition(Request $request) { 
+        $user = User::findorfail(Auth::user()->id); 
+        $user->lat = $request->lat ; 
+        $user->lon = $request->lon ; 
+        $user->save();
+    }
+
     
 }

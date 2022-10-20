@@ -62,6 +62,11 @@ Route::get('/profile', [DashboardController::class, 'profile'])->name('profile')
 
 Route::post('/profile/update', [DashboardController::class, 'update_profile'])->name('profile.update');
 
+Route::get('/profile/update/creds', [DashboardController::class, 'change_password'])->name('change.password');
+
+Route::post('/profile/update/creds', [DashboardController::class, 'update_password'])->name('update.password');
+
+
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth' ,'verified' , 'admin' ]], function(){
 
@@ -111,6 +116,8 @@ Route::group(['prefix' => 'driver', 'middleware' => ['auth' ,'verified','driver'
     Route::post('/update/order', [DriverController::class, 'update'])->name('driver.update_order_status');
     Route::get('/viewOrders/{id}/{status}', [DriverController::class, 'viewOrders'])->name('driver.view_orders');
     
+    Route::post('/updateDriverPosition', [DriverController::class, 'updateDriverPosition'])->name('driver.updateDriverPosition');
+
 
 });
 

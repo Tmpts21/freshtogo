@@ -9,6 +9,8 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\Order;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 
 
 
@@ -100,7 +102,7 @@ class AdminController extends Controller
     }
 
     public function save_user(Request $request) { 
-
+    
         $validated =  $request->validate([
             'name' => 'required|string|max:255',
             'city' => 'required|string|max:255',
@@ -113,10 +115,18 @@ class AdminController extends Controller
         $fields = $validated;
 
         //default password
-        $fields['password'] = 'password123';
+        $fields['password'] = Hash::make('password123');
+        $fields['email'] = $request->email;
+
+        // check if email is existing 
+        if(User::where('email',$request->email)->count()) { 
+            return redirect()->back()->with('error' , 'Email already existing ! ');
+        }
 
         $user = User::create($fields);
         
+     
+
         if($user) { 
             return redirect()->back()->with('success' , 'User Successfully created ! ');
         }

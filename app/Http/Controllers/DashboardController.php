@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Product ;
 use App\Models\Feedback ;
 use App\Models\Order ;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 
 
 class DashboardController extends Controller
@@ -107,6 +110,33 @@ class DashboardController extends Controller
 
     public function contact() { 
         return Inertia::render('Contact');
+    }
+
+    public function change_password() { 
+        return inertia::render('ChangePassword');
+    }
+
+    public function update_password(Request $request) { 
+        $user =  User::findorfail(Auth::user()->id);
+
+        $request->validate([
+            'new' => 'required|string|max:255|min:8',
+        ]);
+
+        //check if old password is current password 
+        if (!Hash::check($request->old ,$user->password)) { 
+            return redirect()->back()->with('error' , 'Old password does not match ! ');
+        }
+
+        if($request->new != $request->confirm) { 
+            return redirect()->back()->with('error' , 'Confirm Password does not match !');
+        }
+        
+        // update 
+        $user->password = Hash::make($request->new); 
+        $user->save(); 
+
+        return redirect()->route('profile')->with('success' , 'Password Successfully Changed ! ✨');
     }
     
 }

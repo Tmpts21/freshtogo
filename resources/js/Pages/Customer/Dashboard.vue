@@ -31,8 +31,7 @@ export default {
             gcashFullName : '',
             searchInput : '', 
             category : 'all',
-            address :  this.$page.props.auth.user.postal_code+ ' ' + this.$page.props.auth.user.street_address + ' ' +  this.$page.props.auth.user.barangay + ' ' + this.$page.props.auth.user.city + ' City'
-   
+            address : this.$page.props.auth.user.street_address + ' ' +  this.$page.props.auth.user.barangay + ' ' + this.$page.props.auth.user.city + ' City ' +  this.$page.props.auth.user.postal_code 
         }
     },
     mounted() { 

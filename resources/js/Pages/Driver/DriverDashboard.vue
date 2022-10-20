@@ -1,6 +1,8 @@
 <script >
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head , Link } from '@inertiajs/inertia-vue3';
+import { Inertia } from '@inertiajs/inertia';
+
 import moment from 'moment'
 export default { 
     props : ['orders'] ,
@@ -15,13 +17,30 @@ export default {
             displayOrders : true , 
             listOfOrders : this.orders, 
             dispMessage : false , 
-            message : ''
+            message : '' ,
+            position : null , 
         }
     },
     mounted () {
         this.onChangeSelect();
+        if(navigator.geolocation) { 
+            navigator.geolocation.getCurrentPosition(position => { 
+                this.position = position.coords; 
+                setInterval(() => { 
+                    // update drivers lat lon for admin monitoring  
+                    this.updateDriverLocation(); 
+                } , 5000 )
+            })
+        }
     },
     methods : { 
+
+        updateDriverLocation() { 
+            return Inertia.post('/driver/updateDriverPosition' ,{ 
+                lat : this.position.latitude ,
+                lon : this.position.longitude 
+             } ) ;
+        },
         
         diffForHumans(date) { 
             return moment(date).fromNow(); 
@@ -163,7 +182,7 @@ export default {
 
                                      <td v-else class="px-2 py-4 border border-2 " >
                                         <Link :href="route('driver.view_orders' , {id : order.id , status : order.status })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
-                                        <a   class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800" target="_blank" :href="'https://www.google.com/maps/dir/?api=1&origin=current+location&destination=' + Object.values(this.orders)[0].address"> 🗺 maps </a>
+                                        <Link   class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800" target="_blank" :href="'https://www.google.com/maps/dir/?api=1&origin=current+location&destination=' + Object.values(this.orders)[0].address" v-html="'🗺 maps '"/> 
                                     </td>
                                     
 
@@ -179,6 +198,7 @@ export default {
                                 <p>No available deliveries<span class="ml-2 text-lg"> 🤷‍♂️</span> </p>
                             </div>
                         </div>
+
 
                     </div>
                 </div>
