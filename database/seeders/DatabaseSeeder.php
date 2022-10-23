@@ -61,6 +61,9 @@ class DatabaseSeeder extends Seeder
         // generate some products
         \App\Models\Product::factory(3)->create();
 
+        \App\Models\Category::factory(3)->create();
+
+
 
         $customer_ids = [4 , 5 , 6 ]; 
         $product_ids = [1 ,  2 , 3 ] ; 
