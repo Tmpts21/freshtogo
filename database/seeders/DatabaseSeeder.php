@@ -57,20 +57,6 @@ class DatabaseSeeder extends Seeder
             'status' => 'active' 
         ]);
 
-        // generate Category 
-
-        \App\Models\Category::factory()->create([
-            'name' => 'chicken',
-        ]);
-
-        \App\Models\Category::factory()->create([
-            'name' => 'pork',
-        ]);
-
-        \App\Models\Category::factory()->create([
-            'name' => 'beef',
-        ]);
-
         
         // generate some products
         \App\Models\Product::factory(3)->create();
