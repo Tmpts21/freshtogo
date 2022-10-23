@@ -13,7 +13,8 @@ export default {
   
   data() {
     return { 
-        displayRemarks : false 
+        displayRemarks : false ,
+        displayProof : false 
     }
   },
 
@@ -23,7 +24,8 @@ export default {
         customerId : props.order.user_id, 
         status : props.order.status, 
         orderStatus: '',
-        remarks : ''
+        remarks : '',
+        image : null 
     })
 
     function submit() { 
@@ -36,11 +38,18 @@ export default {
     onChangeSelect() { 
         if(this.form.orderStatus == 'cancelled') { 
             this.displayRemarks = true ; 
+            this.displayProof = false ;
+        }else if (this.form.orderStatus == 'delivered') { 
+            this.displayProof = true 
+            this.displayRemarks = false ; 
         }
         else { 
             this.displayRemarks = false ; 
+            this.displayProof = false ;
         }
     },
+
+
 
     
   }
@@ -88,7 +97,16 @@ export default {
                                     <option value="cancelled">Cancelled</option>
                                 </select>
                             </div>
-
+                            
+                            <div v-if="displayProof">
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                        Update profile picture
+                                    </label>
+                                </div>  
+                                <input type="file" class="mb-10" @input="form.image = $event.target.files[0]" />
+                            </div>
+                            
                             <div v-if="displayRemarks">
                                 <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">

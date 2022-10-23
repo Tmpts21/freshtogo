@@ -30,6 +30,12 @@ export default {
     Bar
   },
   props: {
+    names : {
+      type : Array 
+    },
+    kgSold : { 
+      type : Array 
+    },
     chartId: {
       type: String,
       default: 'bar-chart'
@@ -50,20 +56,12 @@ export default {
   data() {
     return {
       chartData: {
-        labels: [
-          'Pork Chops ',
-          'Chicken Neck',
-          'Wagyu Beef',
-          'Pork Ribs',
-          'Tilapia',
-          'Chicken Thigh',
-          'Chicken Wings'
-        ],
+        labels:  this.names ,
         datasets: [
           {
             label: 'Kg(sold)',
             backgroundColor: '#65a30d',
-            data: [400, 203, 122, 397, 102, 404 , 505]
+            data: this.kgSold
           }
         ]
       },

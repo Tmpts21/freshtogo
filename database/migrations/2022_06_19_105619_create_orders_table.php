@@ -36,6 +36,7 @@ return new class extends Migration
             $table->string('unique_id');
             $table->string('payment_status')->default('pending');
             $table->boolean('is_feedback')->nullable();
+            $table->string('proof_of_delivery')->nullable();
             $table->timestamps();
         });
     }

@@ -13,6 +13,8 @@ export default {
         return { 
             listOfOrders : this.orders ,
             gcashInfo : Object.values(this.orders)[0],
+            _order : Object.values(this.orders)[0],
+
         }
     }, 
     mounted() { 
@@ -28,7 +30,7 @@ export default {
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Order Details  
+                Order Details 
             </h2>
         </template>
 
@@ -211,6 +213,14 @@ export default {
                                 </div>
                             </div>
 
+                            <div v-if="_order.proof_of_delivery"  class="flex flex-col justify-center items-center">
+                                <div class="mb-4">
+                                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                                Proof of delivery
+                                            </label>
+                                </div>
+                                <img :src="'/storage/' + _order.proof_of_delivery" height="500" width="200"  class="ml-32" alt="" >
+                            </div>
 
 
 

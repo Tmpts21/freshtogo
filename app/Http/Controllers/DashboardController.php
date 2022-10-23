@@ -12,6 +12,7 @@ use App\Models\Order ;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 
 
@@ -43,9 +44,49 @@ class DashboardController extends Controller
         // get total pending,cancelled and delivered orders 
         $statusTotal = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->groupBy('status')->get();
 
+        // get monthly sales
+        $deliveredPerMonth = [] ; 
+        $cacelledPerMonth = [] ; 
+        for($i = 1 ; $i <= 12 ; $i++ ){ 
+            array_push($deliveredPerMonth , 
+            Order::query()
+            ->whereMonth('created_at', $i)
+            ->where('status' , 'delivered')
+            ->count()
+            );
 
+            array_push($cacelledPerMonth , 
+            Order::query()
+            ->whereMonth('created_at', $i)
+            ->where('status' , 'cancelled')
+            ->count()
+            );
+
+        }
+
+        // count kg's sold per product
+
+        $kgSoldPerProduct = DB::table('orders')->where('status' , 'delivered')->select('*' , DB::raw('SUM(quantity) as total_quantity'))->groupBy('product_name')->get();
+        $totalKgSoldPerProduct = [] ; 
+        $productNames = []; 
+        $allProduct = []; 
+        foreach($kgSoldPerProduct as $kg) { 
+            array_push($totalKgSoldPerProduct , $kg->quantity); 
+            array_push($productNames , $kg->product_name);
+        }
+        foreach(Product::all() as $product) { 
+            array_push($allProduct , $product->name) ; 
+        }
+        $productNames = array_unique(array_merge($allProduct , $productNames));
         
-        return Inertia::render("Admin/AdminDashboard" ,['statusTotal' => $statusTotal]); 
+
+        return Inertia::render("Admin/AdminDashboard" ,
+                    ['statusTotal' => $statusTotal,
+                     'productNames' => $productNames , 
+                     'kgPerProduct' => $totalKgSoldPerProduct , 
+                     'deliveredPerMonth' => $deliveredPerMonth ,
+                     'cacelledPerMonth' => $cacelledPerMonth,
+                ]); 
     }
 
     public function driver_index() {

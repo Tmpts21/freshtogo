@@ -134,7 +134,13 @@ class DatabaseSeeder extends Seeder
         $customer_ids = [4 , 5 , 6 ]; 
         $product_ids = [1 ,  2 , 3 ] ; 
 
-        $product_names = ['porkchops' , 'chicken neck' , 'chicken breast' ,'chicken thighs' , 'pork belly' ,'wagyu beef' ,'beef tapa'];
+
+        $product_names = [];
+        $products = \App\Models\Product::all(); 
+        foreach($products as $product) { 
+            array_push($product_names , $product->name); 
+        }
+
         $statuses = ['cancelled' , 'pending' , 'delivered'] ; 
 
         for($i = 0 ; $i <= 5 ; $i++ ) { 

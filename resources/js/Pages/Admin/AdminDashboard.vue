@@ -5,7 +5,7 @@ import  DoughnutChart  from '../Charts/Dougnut.vue';
 import BarChart from '../Charts/Bar.vue';
 import LineChart from '../Charts/Line.vue' ;
 export default { 
-    props : ['statusTotal'],
+    props : ['statusTotal' ,'kgPerProduct' ,'productNames' ,'deliveredPerMonth' ,'cacelledPerMonth'],
     components : { 
         BreezeAuthenticatedLayout ,
         Head ,
@@ -14,7 +14,7 @@ export default {
         LineChart
     },
     data() {
-        return { 
+        return {  
              doughnutChartData: {
                 labels: ['Pending', 'Cancelled', 'Delivered'],
                 datasets: [
@@ -51,7 +51,7 @@ export default {
                         <div class="flex gap-12 justify-center">
                             <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                                 <div class="flex flex-col items-center pb-5">
-                                    <div v-if="statusTotal[2].total" class="mt-5 text-lg font-bold">{{statusTotal[2].total}}</div> 
+                                    <div v-if="statusTotal[2].total" class="mt-5 text-lg font-bold">{{statusTotal[0].total}}</div> 
                                     <div v-else  class="mt-5 text-lg font-bold">0</div> 
                                     <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">Total Pending</h5>
                                     <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">🕜</h5>
@@ -61,7 +61,7 @@ export default {
 
                             <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                                 <div class="flex flex-col items-center pb-5">
-                                    <div v-if="statusTotal[0].total" class="mt-5 text-lg font-bold">{{statusTotal[0].total}}</div> 
+                                    <div v-if="statusTotal[0].total" class="mt-5 text-lg font-bold">{{statusTotal[1].total}}</div> 
                                     <div v-else class="mt-5 text-lg font-bold">0</div> 
                                     <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">Total Cancelled</h5>
                                     <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">❌</h5>
@@ -72,7 +72,7 @@ export default {
 
                             <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                                 <div class="flex flex-col items-center pb-5">
-                                    <div v-if="statusTotal[1].total" class="mt-5 text-lg font-bold">{{statusTotal[1].total}}</div> 
+                                    <div v-if="statusTotal[1].total" class="mt-5 text-lg font-bold">{{statusTotal[2].total}}</div> 
                                     <div v-else class="mt-5 text-lg font-bold">0</div> 
                                     <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">Total Delivered</h5>
                                     <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">🚚</h5>
@@ -89,13 +89,13 @@ export default {
                             <span class="bg-white px-5">Monthly Sales</span>
                         </div>
 
-                            <LineChart class="mt-2 px-64 py-2 "></LineChart>
+                            <LineChart :cacelledPerMonth="this.cacelledPerMonth" :deliveredPerMonth="this.deliveredPerMonth" class="mt-2 px-64 py-2 "></LineChart>
 
                         <div class="h-5 border-b-2 font-bold border-lime-500 mt-5 mb-5  text-2xl text-center">
                             <span class="bg-white px-5">Kg(sold) per Product</span>
                         </div>
 
-                            <BarChart class="mt-2 px-64 py-2 "></BarChart>
+                            <BarChart :names="this.productNames" :kgSold="this.kgPerProduct" class="mt-2 px-64 py-2 "></BarChart>
 
 
 

@@ -39,6 +39,9 @@ class DriverController extends Controller
                 ->where('unique_id' , $order->unique_id)
                 ->where('driver_id' , Auth::user()->id); 
 
+
+   
+
             
         if($request->orderStatus == 'cancelled') { 
             if($request->remarks) { 
@@ -62,6 +65,12 @@ class DriverController extends Controller
             }
         }
 
+     
+
+        if ($request->hasFile('image')) {
+            $image_path = $request->file('image')->store('image/proof', 'public');
+        }
+
         foreach($orders as $o) {
             //update how many sold in product 
             $product = Product::findorfail($o->product_id);
@@ -69,6 +78,7 @@ class DriverController extends Controller
             $product->save(); 
             $o->status = $request->orderStatus; 
             $o->payment_status = 'paid';
+            $o->proof_of_delivery = $image_path;
             $o->save();  
         }
 

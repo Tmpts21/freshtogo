@@ -55,6 +55,12 @@ export default {
       type: Number,
       default: 300
     },
+    deliveredPerMonth : { 
+      type: Array
+    },
+    cacelledPerMonth : { 
+      type : Array 
+    }
   },
   data() {
     return {
@@ -77,12 +83,12 @@ export default {
           {
             label: 'Delivered',
             backgroundColor: '#65a30d',
-            data: [40, 39, 10, 40, 39, 34, 40,45, 35, 22,32 ,25]
+            data: this.deliveredPerMonth
           },
            {
             label: 'Cancelled',
             backgroundColor: '#ef4444',
-            data: [7, 9, 6, 5, 4, 15, 11, 6, 8, 9, 12 , , 5 , 10 ]
+            data: this.cacelledPerMonth
           },
         ]
       },
