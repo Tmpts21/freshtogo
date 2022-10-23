@@ -27,8 +27,8 @@ return new class extends Migration
             $table->string('postal_code')->nullable();
             $table->string('contact_no')->nullable();
             $table->string('image')->nullable();
-            $table->decimal('lat', 10, 7);
-            $table->decimal('lon', 10, 7);
+            $table->decimal('lat', 10, 7)->nullable();
+            $table->decimal('lon', 10, 7)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
