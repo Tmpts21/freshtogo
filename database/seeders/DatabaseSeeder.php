@@ -76,7 +76,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Product::factory(3)->create();
 
 
-        $months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
         $customer_ids = [4 , 5 , 6 ]; 
         $product_ids = [1 ,  2 , 3 ] ; 
 
