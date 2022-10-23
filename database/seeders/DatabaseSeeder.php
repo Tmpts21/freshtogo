@@ -24,80 +24,26 @@ class DatabaseSeeder extends Seeder
             'street_address' => 'Blk 23 Lt 2 Ph 6 Dasma3' ,
             'city' => 'Dasmarinas',
             'postal_code' => '4114' ,
-            'barangay' => 'Brngy valenzuela',
+            'barangay' => 'Brngy Salawag',
             'contact_no' => '09163410823',
             'status' => 'active' 
 
 
         ]);
 
-        \App\Models\User::factory()->create([
-            'name' => 'ian vincent driver',
-            'email' => 'driver123@mail.com',
-            'role' => 'driver',
-            'street_address' => 'Blk 23 Lt 2 Ph 6 Dasma3' ,
-            'city' => 'Dasmarinas',
-            'postal_code' => '4114' ,
-            'barangay' => 'Brngy valenzuela',
-            'contact_no' => '09163410823' ,
-            'status' => 'active' 
-
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'jhun juhn driver',
-            'email' => 'driver321@mail.com',
-            'role' => 'driver',
-            'street_address' => 'Blk 23 Lt 2 Ph 6 Dasma3' ,
-            'city' => 'Dasmarinas',
-            'postal_code' => '4114' ,
-            'barangay' => 'Brngy valenzuela',
-            'contact_no' => '09163410823' ,
-            'status' => 'active' 
-
-        ]);
 
         \App\Models\User::factory()->create([
             'name' => 'regular customer',
             'email' => 'customer@mail.com',
             'role' => 'customer',
-            'street_address' => 'Blk 23 Lt 2 Ph 6 Dasma3' ,
+            'street_address' => 'Trasierra' ,
             'city' => 'Makati',
-            'postal_code' => '4114' ,
-            'barangay' => 'Brngy makati',
+            'postal_code' => '1700' ,
+            'barangay' => 'trasierra',
             'contact_no' => '09163410823' ,
             'status' => 'active' 
-
-
         ]);
 
-        \App\Models\User::factory()->create([
-            'name' => 'jhun jhun customer',
-            'email' => 'customer321@mail.com',
-            'role' => 'customer',
-            'street_address' => 'Blk 23 Lt 2 Ph 6 Dasma3' ,
-            'city' => 'Las Pinas',
-            'postal_code' => '4114' ,
-            'barangay' => 'Brngy makati',
-            'contact_no' => '09163410823',
-            'status' => 'active' 
-
-
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'ian vincent customer ',
-            'email' => 'customer123@mail.com',
-            'role' => 'customer',
-            'street_address' => 'Blk 23 Lt 2 Ph 6 Dasma3' ,
-            'city' => 'Las Pinas',
-            'postal_code' => '4114' ,
-            'barangay' => 'Brngy makati',
-            'contact_no' => '09163410823',
-            'status' => 'active' 
-
-
-        ]);
 
         \App\Models\User::factory()->create([
             'name' => 'admin',
@@ -141,8 +87,6 @@ class DatabaseSeeder extends Seeder
             array_push($product_names , $product->name); 
         }
 
-        $statuses = ['cancelled' , 'pending' , 'delivered'] ; 
-
         for($i = 0 ; $i <= 5 ; $i++ ) { 
             $random_quantity = [1,2 , 3 , 5 ] ;
             $unique_id = substr(md5(mt_rand()), 0, 8);
@@ -150,7 +94,7 @@ class DatabaseSeeder extends Seeder
                 \App\Models\Order::factory()->create([
                     'product_id' => $product_ids[array_rand($product_ids , 1)],
                     'user_id' => $customer_ids[array_rand($customer_ids , 1)],
-                    'status' => $statuses[array_rand($statuses , 1)],
+                    'status' => 'pending',
                     'customer_name' => 'Ian Vincent Tampos' ,
                     'product_name' => $product_names[array_rand($product_names , 1)] , 
                     'total_price' => rand( 500  , 1000) ,
