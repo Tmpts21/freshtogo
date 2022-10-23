@@ -42,9 +42,9 @@ class DashboardController extends Controller
 
     public function admin_index() { 
         // get total pending,cancelled and delivered orders 
-        $delivered = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->where('status' ,'delivered')->get();
-        $cancelled = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->where('status' ,'cancel')->get();
-        $pending = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->where('status' ,'pending')->get();
+        $delivered = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->where('status' ,'delivered')->groupBy('status')->get();
+        $cancelled = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->where('status' ,'cancel')->groupBy('status')->get();
+        $pending = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->where('status' ,'pending')->groupBy('status')->get();
 
         $statusTotal = [$pending, $cancelled , $delivered] ;
         // get monthly sales
@@ -69,7 +69,7 @@ class DashboardController extends Controller
 
         // count kg's sold per product
 
-        $kgSoldPerProduct = DB::table('orders')->where('status' , 'delivered')->select('*' , DB::raw('SUM(quantity) as total_quantity'))->groupBy('product_name')->get();
+        $kgSoldPerProduct = DB::table('orders')->select('*' , DB::raw('SUM(quantity) as total_quantity'))->where('status' ,'delivered')->groupBy('product_name')->get();
         $totalKgSoldPerProduct = [] ; 
         $productNames = []; 
         $allProduct = []; 
