@@ -2,6 +2,7 @@
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
 import { Head , Link } from '@inertiajs/inertia-vue3';
 import { Inertia } from '@inertiajs/inertia';
+import axios from 'axios'
 
 import moment from 'moment'
 export default { 
@@ -26,20 +27,22 @@ export default {
         if(navigator.geolocation) { 
             navigator.geolocation.getCurrentPosition(position => { 
                 this.position = position.coords; 
+                this.updateDriverLocation(); 
                 setInterval(() => { 
                     // update drivers lat lon for admin monitoring  
-                    this.updateDriverLocation(); 
-                } , 5000 )
+                } , 10000 )
             })
         }
     },
     methods : { 
 
         updateDriverLocation() { 
-            return Inertia.post('/driver/updateDriverPosition' ,{ 
-                lat : this.position.latitude ,
-                lon : this.position.longitude 
-             } ) ;
+
+            return axios.post('/driver/updateDriverPosition' , {
+                'lat' : this.position.latitude ,
+                'lon' : this.position.longitude ,
+            }).then(response => (console.log(response)))
+            
         },
         
         diffForHumans(date) { 

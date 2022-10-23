@@ -40,7 +40,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 
-Route::get('/redirects', [DashboardController::class, 'redirects'])->middleware(['auth', 'verified'])->name('redirects');
+Route::get('/redirects', [DashboardController::class, 'redirects'])->middleware(['auth', 'verified' ,'isActive'])->name('redirects');
 
 Route::get('/dashboard', [DashboardController::class, 'customer_index'])->middleware(['auth', 'verified' ,'customer'])->name('dashboard');
 
@@ -58,17 +58,17 @@ Route::get('/contact', [DashboardController::class, 'contact'])->name('guest.con
 
 Route::get('/guest/view/product/{id}', [DashboardController::class, 'guest_view_product'])->name('guest.view_product');
 
-Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
+Route::get('/profile', [DashboardController::class, 'profile'])->name('profile')->middleware(['auth' , 'isActive']);
 
-Route::post('/profile/update', [DashboardController::class, 'update_profile'])->name('profile.update');
+Route::post('/profile/update', [DashboardController::class, 'update_profile'])->name('profile.update')->middleware(['auth' , 'isActive']);
 
-Route::get('/profile/update/creds', [DashboardController::class, 'change_password'])->name('change.password');
+Route::get('/profile/update/creds', [DashboardController::class, 'change_password'])->name('change.password')->middleware(['auth' , 'isActive']);
 
-Route::post('/profile/update/creds', [DashboardController::class, 'update_password'])->name('update.password');
+Route::post('/profile/update/creds', [DashboardController::class, 'update_password'])->name('update.password')->middleware(['auth' , 'isActive']);
 
 
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth' ,'verified' , 'admin' ]], function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth' ,'verified' , 'admin' ,'isActive' ]], function(){
 
     Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/users/create', [AdminController::class, 'create_user'])->name('admin.create_user');
@@ -95,11 +95,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth' ,'verified' , 'admin'
     Route::get('/edit/product/{id}', [ProductController::class, 'edit'])->name('edit.product');
     Route::post('/update/product', [ProductController::class, 'update'])->name('put.product');
     Route::get('/show/product/{id}', [ProductController::class, 'show'])->name('show.product');
-
+    Route::get('/view/driver/{id}', [AdminController::class, 'viewDriverLocation'])->name('admin.view_driver_location');
 });
 
 
-Route::group(['prefix' => 'customer', 'middleware' => ['auth' ,'verified','customer' ]], function(){
+Route::group(['prefix' => 'customer', 'middleware' => ['auth' ,'verified','customer','isActive' ]], function(){
     Route::post('/placeorder', [CustomerController::class, 'place_order'])->name('customer.placeorder');
     Route::get('/orders', [CustomerController::class, 'orders'])->name('customer.orders');
     Route::get('/view/{id}', [CustomerController::class, 'view'])->name('customer.view_order');
@@ -110,7 +110,7 @@ Route::group(['prefix' => 'customer', 'middleware' => ['auth' ,'verified','custo
 });
 
 
-Route::group(['prefix' => 'driver', 'middleware' => ['auth' ,'verified','driver' ]], function(){
+Route::group(['prefix' => 'driver', 'middleware' => ['auth' ,'verified','driver' ,'isActive' ]], function(){
     Route::get('/edit/orders/{id}', [DriverController::class, 'edit'])->name('driver.edit_order');
     Route::get('/view/orders/{id}', [DriverController::class, 'view'])->name('driver.view_order');
     Route::post('/update/order', [DriverController::class, 'update'])->name('driver.update_order_status');

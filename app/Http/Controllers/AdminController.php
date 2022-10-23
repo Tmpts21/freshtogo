@@ -166,4 +166,12 @@ class AdminController extends Controller
 
     }
 
+    public function viewDriverLocation($id) { 
+        $user = User::findorfail($id); 
+        return Inertia::render('Admin/DriverLocation' ,
+             ['lat' => $user->lat , 
+             'lon' => $user->lon 
+            ]);
+    }
+
 }

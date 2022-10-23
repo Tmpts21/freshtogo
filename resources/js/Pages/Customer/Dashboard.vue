@@ -430,9 +430,10 @@ export default {
                                          ₱ {{product.total}}
                                     </td>
                                      <td class="px-2 py-1" >
-                                        <button @click="increaseQuantity(product.id)"> <i class="fa-solid fa-plus text-green-500 text-lg mr-2 "></i></button>
-                                        {{product.quantity}}
                                         <button @click="decreaseQuantity(product.id)"> <i class="fa-solid fa-minus text-red-500 text-lg ml-2 "></i></button>
+                                            {{product.quantity}}
+                                        <button @click="increaseQuantity(product.id)"> <i class="fa-solid fa-plus text-green-500 text-lg mr-2 "></i></button>
+
 
                                     </td>
                                       <td class="px-2 py-1 font-bold text-lg" >

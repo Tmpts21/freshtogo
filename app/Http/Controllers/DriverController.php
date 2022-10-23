@@ -102,6 +102,7 @@ class DriverController extends Controller
         $user->lat = $request->lat ; 
         $user->lon = $request->lon ; 
         $user->save();
+        return $user; 
     }
 
     
