@@ -42,8 +42,11 @@ class DashboardController extends Controller
 
     public function admin_index() { 
         // get total pending,cancelled and delivered orders 
-        $statusTotal = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->groupBy('status')->get();
+        $delivered = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->where('status' ,'delivered')->get();
+        $cancelled = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->where('status' ,'cancel')->get();
+        $pending = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->where('status' ,'pending')->get();
 
+        $statusTotal = [$pending, $cancelled , $delivered] ;
         // get monthly sales
         $deliveredPerMonth = [] ; 
         $cacelledPerMonth = [] ; 
