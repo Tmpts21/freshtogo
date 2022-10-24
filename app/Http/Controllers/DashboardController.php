@@ -42,8 +42,7 @@ class DashboardController extends Controller
 
     public function admin_index() { 
         // get total pending,cancelled and delivered orders 
-        $status = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->get();
-        $statusTotal = [$status] ;
+        $status = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->groupBy('status')->get();
         // get monthly sales
         $deliveredPerMonth = [] ; 
         $cacelledPerMonth = [] ; 
@@ -81,7 +80,7 @@ class DashboardController extends Controller
         
 
         return Inertia::render("Admin/AdminDashboard" ,
-                    ['statusTotal' => $statusTotal,
+                    ['statusTotal' => $status,
                      'productNames' => $productNames , 
                      'kgPerProduct' => $totalKgSoldPerProduct , 
                      'deliveredPerMonth' => $deliveredPerMonth ,
