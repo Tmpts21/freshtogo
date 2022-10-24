@@ -24176,7 +24176,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['statusTotal', 'kgPerProduct', 'productNames', 'deliveredPerMonth', 'cacelledPerMonth'],
+  props: ['statusTotal', 'kgPerProduct', 'productNames', 'salesPerMonth'],
   components: {
     BreezeAuthenticatedLayout: _Layouts_Authenticated_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head,
@@ -25174,10 +25174,7 @@ chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_
       type: Number,
       "default": 300
     },
-    deliveredPerMonth: {
-      type: Array
-    },
-    cacelledPerMonth: {
+    salesPerMonth: {
       type: Array
     }
   },
@@ -25186,13 +25183,9 @@ chart_js__WEBPACK_IMPORTED_MODULE_0__.Chart.register(chart_js__WEBPACK_IMPORTED_
       chartData: {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'OctoBer', 'November', 'December'],
         datasets: [{
-          label: 'Delivered',
+          label: 'Earnings Per Month (₱)',
           backgroundColor: '#65a30d',
-          data: this.deliveredPerMonth
-        }, {
-          label: 'Cancelled',
-          backgroundColor: '#ef4444',
-          data: this.cacelledPerMonth
+          data: this.salesPerMonth
         }]
       },
       chartOptions: {
@@ -27468,12 +27461,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_25, "0")), _hoisted_26, _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_28, "₱ " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(new Number($props.statusTotal[1].totalPrice).toLocaleString()), 1
       /* TEXT */
       )])])]), _hoisted_29, _hoisted_30, _hoisted_31, _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_LineChart, {
-        cacelledPerMonth: _this.cacelledPerMonth,
-        deliveredPerMonth: _this.deliveredPerMonth,
+        salesPerMonth: _this.salesPerMonth,
         "class": "mt-2 px-64 py-2"
       }, null, 8
       /* PROPS */
-      , ["cacelledPerMonth", "deliveredPerMonth"]), _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BarChart, {
+      , ["salesPerMonth"]), _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BarChart, {
         names: _this.productNames,
         kgSold: _this.kgPerProduct,
         "class": "mt-2 px-64 py-2"

@@ -5,7 +5,7 @@ import  DoughnutChart  from '../Charts/Dougnut.vue';
 import BarChart from '../Charts/Bar.vue';
 import LineChart from '../Charts/Line.vue' ;
 export default { 
-    props : ['statusTotal' ,'kgPerProduct' ,'productNames' ,'deliveredPerMonth' ,'cacelledPerMonth'],
+    props : ['statusTotal' ,'kgPerProduct' ,'productNames' ,'salesPerMonth'],
     components : { 
         BreezeAuthenticatedLayout ,
         Head ,
@@ -89,7 +89,7 @@ export default {
                             <span class="bg-white px-5">Monthly Sales</span>
                         </div>
 
-                            <LineChart :cacelledPerMonth="this.cacelledPerMonth" :deliveredPerMonth="this.deliveredPerMonth" class="mt-2 px-64 py-2 "></LineChart>
+                            <LineChart  :salesPerMonth="this.salesPerMonth" class="mt-2 px-64 py-2 "></LineChart>
 
                         <div class="h-5 border-b-2 font-bold border-lime-500 mt-5 mb-5  text-2xl text-center">
                             <span class="bg-white px-5">Kg(sold) per Product</span>

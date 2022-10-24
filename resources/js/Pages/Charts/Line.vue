@@ -55,12 +55,9 @@ export default {
       type: Number,
       default: 300
     },
-    deliveredPerMonth : { 
+    salesPerMonth : { 
       type: Array
     },
-    cacelledPerMonth : { 
-      type : Array 
-    }
   },
   data() {
     return {
@@ -81,14 +78,9 @@ export default {
         ],
         datasets: [
           {
-            label: 'Delivered',
+            label: 'Earnings Per Month (₱)',
             backgroundColor: '#65a30d',
-            data: this.deliveredPerMonth
-          },
-           {
-            label: 'Cancelled',
-            backgroundColor: '#ef4444',
-            data: this.cacelledPerMonth
+            data: this.salesPerMonth
           },
         ]
       },

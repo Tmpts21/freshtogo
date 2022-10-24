@@ -44,22 +44,18 @@ class DashboardController extends Controller
         // get total pending,cancelled and delivered orders 
         $status = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->groupBy('status')->get();
         // get monthly sales
-        $deliveredPerMonth = [] ; 
-        $cacelledPerMonth = [] ; 
+        $salesPerMonth = [] ; 
         for($i = 1 ; $i <= 12 ; $i++ ){ 
-            array_push($deliveredPerMonth , 
-            Order::query()
+            $orders = Order::query()
             ->whereMonth('created_at', $i)
-            ->where('status' , 'delivered')
-            ->count()
-            );
+            ->where('status' , 'delivered')->get();
+            $sum = 0; 
+            foreach($orders as $order) { 
+                $sum+=$order->total_price;
+            }
 
-            array_push($cacelledPerMonth , 
-            Order::query()
-            ->whereMonth('created_at', $i)
-            ->where('status' , 'cancelled')
-            ->count()
-            );
+            array_push($salesPerMonth , $sum);
+           
 
         }
 
@@ -70,7 +66,7 @@ class DashboardController extends Controller
         $productNames = []; 
         $allProduct = []; 
         foreach($kgSoldPerProduct as $kg) { 
-            array_push($totalKgSoldPerProduct , $kg->quantity); 
+            array_push($totalKgSoldPerProduct , $kg->total_quantity); 
             array_push($productNames , $kg->product_name);
         }
         foreach(Product::all() as $product) { 
@@ -83,8 +79,7 @@ class DashboardController extends Controller
                     ['statusTotal' => $status,
                      'productNames' => $productNames , 
                      'kgPerProduct' => $totalKgSoldPerProduct , 
-                     'deliveredPerMonth' => $deliveredPerMonth ,
-                     'cacelledPerMonth' => $cacelledPerMonth,
+                     'salesPerMonth' => $salesPerMonth ,
                 ]); 
     }
 
