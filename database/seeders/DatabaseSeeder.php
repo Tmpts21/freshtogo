@@ -77,11 +77,12 @@ class DatabaseSeeder extends Seeder
         for($i = 0 ; $i <= 2 ; $i++ ) { 
             $random_quantity = [1,2 ,3,5] ;
             $unique_id = substr(md5(mt_rand()), 0, 8);
+            $statuses = ['pending','delivered','cancelled'];
             for($x = 0 ; $x < $random_quantity[array_rand($random_quantity , 1 )] ; $x++) { 
                 \App\Models\Order::factory()->create([
                     'product_id' => $product_ids[array_rand($product_ids , 1)],
                     'user_id' => $customer_ids[array_rand($customer_ids , 1)],
-                    'status' => array_rand(['pending','delivered','cancelled'], 1) , 
+                    'status' => array_rand($statuses, 1) , 
                     'customer_name' => 'Ian Vincent Tampos' ,
                     'product_name' => $product_names[array_rand($product_names , 1)] , 
                     'total_price' => rand( 500  , 1000) ,
