@@ -20,7 +20,7 @@ export default {
                 datasets: [
                 {
                     backgroundColor: ['#0ea5e9', '#ef4444', '#65a30d'],
-                    data: [this.statusTotal[2].total, this.statusTotal[0].total , this.statusTotal[1].total]
+                    data: [this.statusTotal[0].total, this.statusTotal[2].total , this.statusTotal[1].total]
                 }
                 ]
             },
@@ -51,28 +51,28 @@ export default {
                         <div class="flex gap-12 justify-center">
                             <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                                 <div class="flex flex-col items-center pb-5">
-                                    <div v-if="statusTotal[2].total" class="mt-5 text-lg font-bold">{{statusTotal[0].total}}</div> 
+                                    <div v-if="statusTotal[0].total" class="mt-5 text-lg font-bold">{{statusTotal[0].total}}</div> 
                                     <div v-else  class="mt-5 text-lg font-bold">0</div> 
                                     <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">Total Pending</h5>
                                     <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">🕜</h5>
-                                    <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">₱ {{new Number(statusTotal[2].totalPrice).toLocaleString()}}</h5>
+                                    <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">₱ {{new Number(statusTotal[0].totalPrice).toLocaleString()}}</h5>
                                 </div>
                             </div>
 
                             <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                                 <div class="flex flex-col items-center pb-5">
-                                    <div v-if="statusTotal[0].total" class="mt-5 text-lg font-bold">{{statusTotal[1].total}}</div> 
+                                    <div v-if="statusTotal[2].total" class="mt-5 text-lg font-bold">{{statusTotal[2].total}}</div> 
                                     <div v-else class="mt-5 text-lg font-bold">0</div> 
                                     <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">Total Cancelled</h5>
                                     <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">❌</h5>
-                                    <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">₱ {{new Number(statusTotal[0].totalPrice).toLocaleString()}}</h5>
+                                    <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">₱ {{new Number(statusTotal[2].totalPrice).toLocaleString()}}</h5>
 
                                 </div>
                             </div>
 
                             <div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                                 <div class="flex flex-col items-center pb-5">
-                                    <div v-if="statusTotal[1].total" class="mt-5 text-lg font-bold">{{statusTotal[2].total}}</div> 
+                                    <div v-if="statusTotal[1].total" class="mt-5 text-lg font-bold">{{statusTotal[1].total}}</div> 
                                     <div v-else class="mt-5 text-lg font-bold">0</div> 
                                     <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">Total Delivered</h5>
                                     <h5 class="mb-1 px-5 text-xl font-medium text-gray-900 dark:text-white">🚚</h5>

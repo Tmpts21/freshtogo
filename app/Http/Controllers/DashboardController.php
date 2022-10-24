@@ -42,7 +42,7 @@ class DashboardController extends Controller
 
     public function admin_index() { 
         // get total pending,cancelled and delivered orders 
-        $status = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->groupBy('status')->get();
+        $status = DB::table('orders')->select('*' , DB::raw('count(*) as total , SUM(total_price) as totalPrice'))->groupBy('status')->orderBy('status', 'desc')->get();
         // get monthly sales
         $salesPerMonth = [] ; 
         for($i = 1 ; $i <= 12 ; $i++ ){ 
@@ -52,8 +52,7 @@ class DashboardController extends Controller
             $sum = 0; 
             foreach($orders as $order) { 
                 $sum+=$order->total_price;
-            }
-
+        }       
             array_push($salesPerMonth , $sum);
            
 
