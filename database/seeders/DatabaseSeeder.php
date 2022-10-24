@@ -82,7 +82,7 @@ class DatabaseSeeder extends Seeder
                 \App\Models\Order::factory()->create([
                     'product_id' => $product_ids[array_rand($product_ids , 1)],
                     'user_id' => $customer_ids[array_rand($customer_ids , 1)],
-                    'status' => array_rand($statuses, 1) , 
+                    'status' => $statuses[array_rand($statuses, 1)] , 
                     'customer_name' => 'Ian Vincent Tampos' ,
                     'product_name' => $product_names[array_rand($product_names , 1)] , 
                     'total_price' => rand( 500  , 1000) ,
