@@ -338,7 +338,7 @@ export default {
         <Transition name="slide-fade">
         <div  v-if="!displayCart  && !isCheckout">
              <Carousel :items-to-show="1" :wrap-around="true" class="bg-gray-100">
-                                <slide v-for="product in freshToGo" :key="product.id" class="mb-5">
+                                <slide v-for="product in products" :key="product.id" class="mb-5">
                                     <!-- <img :src="'/storage/' + product.image" width="500" height="300" class="rounded-3xl" alt=""> -->
                                     <div class="mt-8 group relative">
                                         <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
