@@ -139,7 +139,7 @@ defineComponent ({
                                             </a>
                                             </h3>
                                         </div>
-                                        <p class="font-bold  text-lime-600">sold({{product.sold}}) 🙌</p>
+                                        <p class="font-bold  text-lime-600">{{product.sold}}kg(sold) 🙌</p>
                                         </div>
                                     </Link>
                              
