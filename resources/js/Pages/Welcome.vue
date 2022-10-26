@@ -114,7 +114,7 @@ defineComponent ({
                                 products
                             </BreezeResponsiveNavLink>
 
-                             <BreezeResponsiveNavLink :href="route('feedback')" as="button">
+                             <BreezeResponsiveNavLink :href="route('guest.feedback')" as="button">
                                 feedback
                             </BreezeResponsiveNavLink>
                         </div>
