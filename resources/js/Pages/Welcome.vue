@@ -137,7 +137,7 @@ defineComponent ({
                                                 <span aria-hidden="true" class="absolute inset-0"></span>
                                                 {{product.name}} 
                                             </a>
-                                            </h3>
+                                           </h3>
                                         </div>
                                         <p class="font-bold  text-lime-600">{{product.sold}}kg(sold) 🙌</p>
                                         </div>
@@ -145,7 +145,7 @@ defineComponent ({
                              
                                 </Slide>
                             <template #addons class="pt-5">
-                                <p class="font-bold text-lg pt-5">Here's are most sold products ✨ </p>
+                                <p class="font-bold text-lg pt-5">✨ </p>
                                 <Navigation />
                                 <Pagination/>
                             </template>

@@ -299,9 +299,7 @@ export default {
                        
 
                     <div class="p-6 bg-white border-b border-gray-200">
-
-
-                      
+                                    
 
                         <button  v-if="!displayCart" @click="shoppingCart()" class="fixed rounded-full z-90 bottom-10 text-green-500 right-8 float-right bg-gray-100 hover:bg-gray-200 text-white font-bold py-2 px-4 border-2 border-gray-700 ">
                            <span><i class="fa-solid fa-cart-shopping text-lime-500 text-lg "></i> </span>  View Shopping Cart
@@ -335,7 +333,11 @@ export default {
                     </div>
                 </div>
             </div>
+            <div  v-if="!this.freshToGo.length" class="rounded bg-orange-200 text-red-800 p-4 font-bold" role="alert">
+                        nothing here 😭
+             </div>
         <Transition name="slide-fade">
+
         <div  v-if="!displayCart  && !isCheckout">
              <Carousel :items-to-show="1" :wrap-around="true" class="bg-gray-100">
                                 <slide v-for="product in products" :key="product.id" class="mb-5">
@@ -365,7 +367,7 @@ export default {
                              
                                 </Slide>
                             <template #addons class="pt-5">
-                                <p class="font-bold text-lg pt-5">Here's are most sold products ✨ </p>
+                                <p class="font-bold text-lg pt-5">✨ </p>
                                 <Navigation />
                                 <Pagination/>
                             </template>
