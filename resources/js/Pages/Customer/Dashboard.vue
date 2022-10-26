@@ -4,10 +4,17 @@ import { Head , Link } from '@inertiajs/inertia-vue3';
 import Cart from '@/Pages/Customer/Cart.vue';
 import { deliveryFares } from './Fares';
 import { Inertia } from '@inertiajs/inertia'
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+import 'vue3-carousel/dist/carousel.css'
+
 
 export default { 
     props : ['products' , 'categories' , 'errors'] ,
     components : { 
+        Carousel,
+        Slide,
+        Pagination, 
+        Navigation,
         BreezeAuthenticatedLayout , Head , Cart ,Link  } , 
     data () { 
         return { 
@@ -328,15 +335,56 @@ export default {
                     </div>
                 </div>
             </div>
+        <Transition name="slide-fade">
+        <div  v-if="!displayCart  && !isCheckout">
+             <Carousel :items-to-show="1" :wrap-around="true" class="bg-gray-100">
+                                <slide v-for="product in freshToGo" :key="product.id" class="mb-5">
+                                    <!-- <img :src="'/storage/' + product.image" width="500" height="300" class="rounded-3xl" alt=""> -->
+                                    <div class="mt-8 group relative">
+                                        <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
+                                       
+                                            <Link  :href="route('customer.view_product' , {id : product.id })" >
+                                            <img :src="'/storage/' + product.image" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                                        </Link>
+                                        </div>
+                                        <div class="mt-4 flex justify-between">
+                                           
+                                        <div>
+                                            <h3 class="text-sm text-gray-700">
+                                            <Link  :href="route('customer.view_product' , {id : product.id })"  class="font-bold text-lg text-lime-600">
+                                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                                {{product.name}} 
+                                            </Link>
+                                            </h3>
+                                        </div>
+
+                                      
+                                        <p class="font-bold  text-lime-600">sold({{product.sold}}) 🙌</p>
+                                        </div>
+                                    </div>
+                             
+                                </Slide>
+                            <template #addons class="pt-5">
+                                <p class="font-bold text-lg pt-5">Here's are most sold products ✨ </p>
+                                <Navigation />
+                                <Pagination/>
+                            </template>
+                            
+            </Carousel>
+        </div>
+    </transition>
             <Transition name="slide-fade">
 
                         
                 
 
                     <div v-if="!displayCart  && !isCheckout" class="p-6 flex flex-wrap items-center justify-center">
-                        
+                
+
                     <div class="font-bold font-medium mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
                       
+                        
+
                             <div v-for="product in freshToGo" :key="product.id" class=" border-2 border-lime-600 rounded-md p-4 " >
                                
                                <div class="w-full min-h-80 rounded-md  lg:h-80 lg:aspect-none">

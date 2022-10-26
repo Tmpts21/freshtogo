@@ -7,6 +7,8 @@ import BreezeNavLink from '@/Components/NavLink.vue';
 import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { defineComponent } from '@vue/runtime-core';
 import { ref } from 'vue';
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+import 'vue3-carousel/dist/carousel.css'
 
 const showingNavigationDropdown = ref(false);
 
@@ -23,7 +25,8 @@ defineComponent ({
     BreezeDropdown,
     BreezeDropdownLink,
     BreezeNavLink,
-    BreezeResponsiveNavLink
+    BreezeResponsiveNavLink,
+    Carousel, Slide, Pagination, Navigation
 })
 
 
@@ -119,8 +122,34 @@ defineComponent ({
                 </div>
             </nav>
 
-
-
+            <br><br>
+            <Carousel :items-to-show="1" :wrap-around="true" class="bg-gray-200">
+                                <slide v-for="product in products" :key="product.id" class="mb-5">
+                                    <!-- <img :src="'/storage/' + product.image" width="500" height="300" class="rounded-3xl" alt=""> -->
+                                    <Link class="group relative " :href="route('login')"> 
+                                        <div class="mt-8 min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md  lg:aspect-none lg:h-80">
+                                        <img :src="'/storage/' + product.image" class="p-5 rounded-xl h-full w-full object-cover object-center rounded-lg lg:h-full lg:w-full">
+                                        </div>
+                                        <div class="mt-4 flex justify-between">
+                                        <div>
+                                            <h3 class="text-sm text-gray-700">
+                                            <a href="#" class="font-bold text-lg text-lime-600">
+                                                <span aria-hidden="true" class="absolute inset-0"></span>
+                                                {{product.name}} 
+                                            </a>
+                                            </h3>
+                                        </div>
+                                        <p class="font-bold  text-lime-600">sold({{product.sold}}) 🙌</p>
+                                        </div>
+                                    </Link>
+                             
+                                </Slide>
+                            <template #addons class="pt-5">
+                                <p class="font-bold text-lg pt-5">Here's are most sold products ✨ </p>
+                                <Navigation />
+                                <Pagination/>
+                            </template>
+            </Carousel>
 
     <div class="relative flex items-top justify-center min-h-screen  sm:items-center sm:pt-0">
 

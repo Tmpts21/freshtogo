@@ -28,6 +28,7 @@
     "dependencies": {
         "chart.js": "^3.8.0",
         "moment": "^2.29.3",
-        "vue-chartjs": "^4.1.1"
+        "vue-chartjs": "^4.1.1",
+        "vue3-carousel": "^0.2.4"
     }
 }
