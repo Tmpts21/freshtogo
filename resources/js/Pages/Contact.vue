@@ -104,11 +104,11 @@ defineComponent ({
                     <!-- Responsive Settings Options -->
                     <div class="pt-4 pb-1 border-t border-gray-200">
                         <div class="mt-3 space-y-1">
-                            <BreezeResponsiveNavLink :href="route('welcome')" method="post" as="button">
+                            <BreezeResponsiveNavLink :href="route('welcome')" as="button">
                                 products
                             </BreezeResponsiveNavLink>
 
-                             <BreezeResponsiveNavLink :href="route('welcome')" method="post" as="button">
+                             <BreezeResponsiveNavLink :href="route('feedback')" as="button">
                                 feedback
                             </BreezeResponsiveNavLink>
                         </div>
