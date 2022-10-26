@@ -69,7 +69,8 @@ class DriverController extends Controller
 
         if ($request->hasFile('image')) {
             $image_path = $request->file('image')->store('image/proof', 'public');
-        }
+        } else  return redirect()->back()->with('error' , 'Proof of Delivery is mandatory');
+
 
         foreach($orders as $o) {
             //update how many sold in product 

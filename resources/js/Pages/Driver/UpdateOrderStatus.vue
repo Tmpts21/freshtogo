@@ -101,10 +101,10 @@ export default {
                             <div v-if="displayProof">
                                 <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
-                                        Update profile picture
+                                        Proof of delivery 
                                     </label>
                                 </div>  
-                                <input type="file" class="mb-10" @input="form.image = $event.target.files[0]" />
+                                <input type="file" class="mb-10" @input="form.image = $event.target.files[0]" required />
                             </div>
                             
                             <div v-if="displayRemarks">
