@@ -150,15 +150,13 @@ class AdminController extends Controller
             'postal_code' => 'required|integer',
             'contact_no' => 'required|string|max:11',
             'status' => 'required',
+            'role' => 'required',
         ]);
 
         $fields = $validated; 
         unset($fields[0]);
 
-        $user = User::findorfail($request->id); 
-
-        if($user){ 
-            $user->update($fields); 
+        if(User::findorfail($request->id)->update($fields)){ 
             return redirect()->back()->with('success' , 'User Successfully updated ! ');
         }
 

@@ -28556,6 +28556,7 @@ var _hoisted_22 = {
 var _hoisted_23 = {
   "class": "border boder-2 px-5 py-4"
 };
+var _hoisted_24 = ["href"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
@@ -28603,16 +28604,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           innerHTML: 'Edit'
         }, null, 8
         /* PROPS */
-        , ["href"]), user.role === 'driver' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+        , ["href"]), user.role === 'driver' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
           key: 0,
-          href: _ctx.route('admin.view_driver_location', {
-            id: user.id
-          }),
-          "class": "border boder-2 font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800",
-          innerHTML: '🗺 View Driver Location'
-        }, null, 8
+          target: "_blank",
+          href: 'https://www.google.com/maps/dir/?q=' + user.lat + ',' + user.lon,
+          "class": "border boder-2 font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
+        }, " 🗺 View Driver Location ", 8
         /* PROPS */
-        , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
+        , _hoisted_24)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])])])])])])])];
@@ -32984,8 +32983,6 @@ var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_33 = [_hoisted_32];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _this = this;
-
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
   var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
@@ -33049,7 +33046,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
           "class": "mt-5 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800",
           target: "_blank",
-          href: 'https://www.google.com/maps/dir/?api=1&origin=' + _ctx.$page.props.auth.user.lat + ',' + _ctx.$page.props.auth.user.lon + '&destination=' + _this.orders[0].address
+          href: 'https://www.google.com/maps/dir/?api=1&origin=' + _ctx.$page.props.auth.user.lat + ',' + _ctx.$page.props.auth.user.lon + '&destination=' + order.address
         }, " 🗺 maps ", 8
         /* PROPS */
         , _hoisted_26)])) : order.status == 'delivered' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
@@ -33064,7 +33061,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
           "class": "mt-5 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800",
           target: "_blank",
-          href: 'https://www.google.com/maps/dir/?api=1&origin=' + _ctx.$page.props.auth.user.lat + ',' + _ctx.$page.props.auth.user.lon + '&destination=' + _this.orders[0].address
+          href: 'https://www.google.com/maps/dir/?api=1&origin=' + _ctx.$page.props.auth.user.lat + ',' + _ctx.$page.props.auth.user.lon + '&destination=' + order.address
         }, " 🗺 maps ", 8
         /* PROPS */
         , _hoisted_28)])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("td", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
@@ -33079,7 +33076,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
           "class": "mt-5 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800",
           target: "_blank",
-          href: 'https://www.google.com/maps/dir/?api=1&origin=' + _ctx.$page.props.auth.user.lat + ',' + _ctx.$page.props.auth.user.lon + '&destination=' + _this.orders[0].address
+          href: 'https://www.google.com/maps/dir/?api=1&origin=' + _ctx.$page.props.auth.user.lat + ',' + _ctx.$page.props.auth.user.lon + '&destination=' + order.address
         }, " 🗺 maps ", 8
         /* PROPS */
         , _hoisted_30)]))]);

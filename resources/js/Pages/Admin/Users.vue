@@ -90,8 +90,8 @@ export default {
                                     </td>
                                     <td class=" border boder-2 px-5 py-4" >
                                         <Link  :href="route('admin.edit_user' , {id : user.id})"  class=" border boder-2 font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Edit'" />
-                                     
-                                        <Link v-if="user.role === 'driver'"  :href="route('admin.view_driver_location' , {id : user.id})"  class=" border boder-2 font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'🗺 View Driver Location'" />
+                                        <a v-if="user.role === 'driver'" target="_blank"  :href="'https://www.google.com/maps/dir/?q=' + user.lat + ',' + user.lon"  class=" border boder-2 font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"> 🗺 View Driver Location </a>
+
 
                                     </td>
                                 </tr>
