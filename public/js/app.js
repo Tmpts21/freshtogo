@@ -25499,7 +25499,14 @@ __webpack_require__.r(__webpack_exports__);
 
       for (var i = 0; i < this.cart.length; i++) {
         if (this.cart[i].id === p_id) {
-          return this.cart[i].isAdded = false;
+          this.cart[i].isAdded = false;
+          return this.cart[i].quantity = 0;
+        }
+      }
+
+      for (var _i3 = 0; _i3 < this.freshToGo.length; _i3++) {
+        if (this.freshToGo[_i3].id === p_id) {
+          return this.freshToGo[_i3].quantity = 0;
         }
       }
     },
