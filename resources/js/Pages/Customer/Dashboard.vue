@@ -151,15 +151,17 @@ export default {
             for(let i = 0 ; i < this.cart.length ; i ++ ) { 
                 if(this.cart[i].id === p_id) { 
                      this.cart[i].isAdded = false ; 
-                     return this.cart[i].quantity = 0 ; 
+                     this.cart[i].quantity = 0 ; 
                 }
             }
 
             for(let i = 0 ; i < this.freshToGo.length ; i ++ ) { 
                 if(this.freshToGo[i].id === p_id) { 
-                    return this.freshToGo[i].quantity = 0 ; 
+                    this.freshToGo[i].quantity = 0 ; 
                 }
             }
+
+            return 
         },
         
         getTotalPrice() { 
