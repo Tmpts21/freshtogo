@@ -94,6 +94,11 @@ export default {
                             <span class="text-gray-500 text-md"> {{$page.props.auth.user.street_address + ' ' +user.barangay + ' ' +user.city + ' ' +user.postal_code}}</span>
                             </p>
 
+                            <p class="font-bold w-full border-t border-gray-100 text-gray-600 py-4 pl-6 pr-3 w-full block hover:bg-gray-100 transition duration-150">
+                                    Address :
+                            <span class="text-gray-500 text-md"> {{$page.props.auth.user.contact_no}} 📞</span>
+                            </p>
+
                          
                             
                         </div>

@@ -104,12 +104,14 @@ class AdminController extends Controller
     public function save_user(Request $request) { 
     
         $validated =  $request->validate([
-            'name' => 'required|string|max:255',
+            'firstName' => 'required|string|max:255',
+            'middleName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'barangay' => 'required|string|max:255',
             'street_address' => 'required|string|max:255',
             'postal_code' => 'required|integer',
-            'contact_no' => 'required|string|max:11',
+            'contact_no' => 'required|integer',
         ]);
 
         $fields = $validated;
@@ -117,6 +119,8 @@ class AdminController extends Controller
         //default password
         $fields['password'] = Hash::make('password123');
         $fields['email'] = $request->email;
+        $fields['name'] = "{$request->firstName} {$request->middleName} {$request->lastName} "; 
+
 
         // check if email is existing 
         if(User::where('email',$request->email)->count()) { 

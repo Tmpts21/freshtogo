@@ -17,7 +17,9 @@ export default {
 
   setup (props) {
     const form = reactive({
-      name: '',
+      firstName: '',
+      middleName: '',
+      lastName: '',
       city : '',
       barangay : '',
       street_address :'',
@@ -75,9 +77,23 @@ export default {
                         <form @submit.prevent="submit()"  class="bg-white rounded px-8 pt-6 pb-8 mb-4">
                             <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
-                                Name
+                                First Name
                             </label>
-                            <input v-model="form.name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter Name">
+                            <input v-model="form.firstName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter First Name">
+                            </div>
+
+                            <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                Middle Name
+                            </label>
+                            <input v-model="form.middleName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter Middle Name">
+                            </div>
+
+                            <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                Last Name
+                            </label>
+                            <input v-model="form.lastName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter Last Name">
                             </div>
 
                             <div class="mb-4">
@@ -113,14 +129,14 @@ export default {
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
                                 Postal Code
                             </label>
-                            <input v-model="form.postal_code" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter Postal Code">
+                            <input v-model="form.postal_code" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="number" placeholder="Enter Postal Code">
                             </div>
 
                             <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
                                 Mobile Number
                             </label>
-                            <input v-model="form.contact_no" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter Mobile Number ">
+                            <input v-model="form.contact_no" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="number" placeholder="Enter Mobile Number ">
                             </div>
 
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
@@ -143,3 +159,11 @@ export default {
         </div>
     </BreezeAuthenticatedLayout>
 </template>
+
+<style>
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none;
+}
+</style>

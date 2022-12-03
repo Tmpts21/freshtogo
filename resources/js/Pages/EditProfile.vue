@@ -162,14 +162,14 @@ export default {
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
                                 Postal Code
                             </label>
-                            <input v-model="form.postal_code" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter Postal Code ">
+                            <input v-model="form.postal_code" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="number" placeholder="Enter Postal Code ">
                             </div>
 
                             <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
                                 Mobile Number
                             </label>
-                            <input v-model="form.contact_no" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter Mobile number ">
+                            <input v-model="form.contact_no" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="number" placeholder="Enter Mobile number ">
                             </div>
 
                             
@@ -188,3 +188,11 @@ export default {
         </div>
     </BreezeAuthenticatedLayout>
 </template>
+
+<style>
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none;
+}
+</style>
