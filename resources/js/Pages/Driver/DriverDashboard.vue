@@ -103,8 +103,8 @@ export default {
 
                         <div v-if="displayOrders" class="overflow-x-auto relative">
 
-                            <table class="text-center w-full text-sm text-left text-gray-500 dark:text-gray-800 border ">
-                                <thead class="font-bold text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <table class="text-center w-full text-sm text-left text-gray-500  border ">
+                                <thead class="font-bold text-xs text-gray-700 uppercase bg-gray-50 ">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
                                         Order Id
@@ -139,7 +139,7 @@ export default {
                                 </thead>
 
                                 <tbody>
-                                    <tr v-for="order in listOfOrders" :key="order.id" class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+                                    <tr v-for="order in listOfOrders" :key="order.id" class="border-b odd:bg-white even:bg-gray-50 ">
                                          <td class="px-2 py-1 border border-2 " >
                                         {{order.unique_id}}
                                     </td>
@@ -172,20 +172,20 @@ export default {
                                     </td>
 
                                     <td v-if="order.status == 'pending' || order.status == 'assigned'" class="px-2 py-4 border border-2 " >
-                                           <Link :href="route('driver.view_orders' , {id : order.id , status : order.status })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
-                                           <Link :href="route('driver.edit_order' , {id : order.id })"  class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Update'" />
-                                           <a   class="mt-5 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800" target="_blank" :href="'https://www.google.com/maps/dir/?api=1&origin='+ $page.props.auth.user.lat + ',' +  $page.props.auth.user.lon + '&destination=' + order.address"> 🗺 maps </a>
+                                           <Link :href="route('driver.view_orders' , {id : order.id , status : order.status })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5   focus:outline-none  mr-2 "  v-html="'View'" />
+                                           <Link :href="route('driver.edit_order' , {id : order.id })"  class="font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2.5  focus:outline-none "  v-html="'Update'" />
+                                           <a   class="mt-5 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5   focus:outline-none " target="_blank" :href="'https://www.google.com/maps/dir/?api=1&origin='+ $page.props.auth.user.lat + ',' +  $page.props.auth.user.lon + '&destination=' + order.address"> 🗺 maps </a>
 
                                         </td>
                                     <td v-else-if="order.status == 'delivered'" class="px-2 py-4 border border-2 " >
-                                           <Link :href="route('driver.view_orders' , {id : order.id , status : order.status })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
-                                           <a   class="mt-5 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800" target="_blank" :href="'https://www.google.com/maps/dir/?api=1&origin='+ $page.props.auth.user.lat + ',' +  $page.props.auth.user.lon + '&destination=' + order.address"> 🗺 maps </a>
+                                           <Link :href="route('driver.view_orders' , {id : order.id , status : order.status })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5   focus:outline-none  mr-2 "  v-html="'View'" />
+                                           <a   class="mt-5 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none " target="_blank" :href="'https://www.google.com/maps/dir/?api=1&origin='+ $page.props.auth.user.lat + ',' +  $page.props.auth.user.lon + '&destination=' + order.address"> 🗺 maps </a>
 
                                         </td>
 
                                      <td v-else class="px-2 py-4 border border-2 " >
-                                        <Link :href="route('driver.view_orders' , {id : order.id , status : order.status })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mr-2 "  v-html="'View'" />
-                                        <a   class="mt-5 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800" target="_blank" :href="'https://www.google.com/maps/dir/?api=1&origin='+ $page.props.auth.user.lat + ',' +  $page.props.auth.user.lon + '&destination=' + order.address"> 🗺 maps </a>
+                                        <Link :href="route('driver.view_orders' , {id : order.id , status : order.status })"  class="font-bold text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5   focus:outline-none  mr-2 "  v-html="'View'" />
+                                        <a   class="mt-5 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5   focus:outline-none " target="_blank" :href="'https://www.google.com/maps/dir/?api=1&origin='+ $page.props.auth.user.lat + ',' +  $page.props.auth.user.lon + '&destination=' + order.address"> 🗺 maps </a>
                                     </td>
                                     
 

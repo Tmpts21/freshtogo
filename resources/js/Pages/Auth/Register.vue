@@ -8,7 +8,9 @@ import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import { deliveryFares } from '../Customer/Fares';
 
 const form = useForm({
-    name: '',
+    firstName: '',
+    middleName : '',
+    lastName : '',
     email: '',
     city : '',
     barangay : '',
@@ -34,9 +36,20 @@ const submit = () => {
         <BreezeValidationErrors class="mb-4" />
 
         <form @submit.prevent="submit">
-            <div>
-                <BreezeLabel for="name" value="Name" />
-                <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
+
+            <div class="mt-4">
+                <BreezeLabel for="firstName" value="First Name" />
+                <BreezeInput id="firstName" type="text" class="mt-1 block w-full" v-model="form.firstName" required autofocus autocomplete="First Name" />
+            </div>
+
+            <div class="mt-4">
+                <BreezeLabel for="middleName" value="Middle Name " />
+                <BreezeInput id="middleName" type="text" class="mt-1 block w-full" v-model="form.middleName" required autofocus autocomplete="Middle Name" />
+            </div>
+
+            <div class="mt-4">
+                <BreezeLabel for="lastName" value="Last Name" />
+                <BreezeInput id="lastName" type="text" class="mt-1 block w-full" v-model="form.lastName" required autofocus autocomplete="Last Name " />
             </div>
 
             <div class="mt-4">
@@ -62,12 +75,12 @@ const submit = () => {
 
               <div class="mt-4">
                 <BreezeLabel for="email" value="Postal Code " />
-                <BreezeInput type="text" class="mt-1 block w-full" v-model="form.postalCode" required autocomplete="username" />
+                <BreezeInput type="number" class="mt-1 block w-full" v-model="form.postalCode" required autocomplete="username" />
             </div>
 
              <div class="mt-4">
                 <BreezeLabel for="contact" value="Mobile Number" />
-                <BreezeInput type="text" class="mt-1 block w-full" v-model="form.contactNo" required autocomplete="username" />
+                <BreezeInput type="number" class="mt-1 block w-full" v-model="form.contactNo" required autocomplete="username" />
             </div>
 
             <div class="mt-4">
@@ -91,4 +104,13 @@ const submit = () => {
             </div>
         </form>
     </BreezeGuestLayout>
+
 </template>
+
+<style>
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none;
+}
+</style>

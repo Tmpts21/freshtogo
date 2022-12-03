@@ -60,6 +60,8 @@ Route::get('/guest/view/product/{id}', [DashboardController::class, 'guest_view_
 
 Route::get('/profile', [DashboardController::class, 'profile'])->name('profile')->middleware(['auth' , 'isActive']);
 
+Route::get('/edit/profile', [DashboardController::class, 'edit_profile'])->name('edit_profile')->middleware(['auth' , 'isActive']);
+
 Route::post('/profile/update', [DashboardController::class, 'update_profile'])->name('profile.update')->middleware(['auth' , 'isActive']);
 
 Route::get('/profile/update/creds', [DashboardController::class, 'change_password'])->name('change.password')->middleware(['auth' , 'isActive']);
@@ -73,8 +75,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth' ,'verified' , 'admin'
     Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/users/create', [AdminController::class, 'create_user'])->name('admin.create_user');
     Route::post('/users/save', [AdminController::class, 'save_user'])->name('admin.save_user');
-    Route::get('/users/edit/{id}', [AdminController::class, 'edit_user'])->name('admin.edit_user');
+    Route::get('/users/view/{id}', [AdminController::class, 'view_user'])->name('admin.view_user');
     Route::post('/users/update', [AdminController::class, 'update_user'])->name('admin.update_user');
+    Route::get('/users/edit/status/{id}', [AdminController::class, 'edit_status'])->name('admin.edit_status');
+    Route::post('/users/edit/status', [AdminController::class, 'update_status'])->name('admin.update_status');
 
 
     Route::get('/orders', [AdminController::class, 'orders'])->name('admin.orders');

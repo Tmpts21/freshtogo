@@ -51,9 +51,6 @@ export default {
                                         User name 
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Image 
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
                                         Email 
                                     </th>
                                     <th scope="col" class="px-6 py-3">
@@ -71,16 +68,6 @@ export default {
                                         {{user.name}}
                                     </th>
 
-
-                                     <td v-if="user.image" class="px-2 py-1 border border-2 "   >
-                                        <img :src="'/storage/' + user.image " class="ml-32 w-20 h-20 rounded-full">
-                                    </td>
-
-                                    <td v-else class="px-12">
-                                        <div class="rounded items-center text-sm font-bold px-4 py-3" role="alert">
-                                        <p>Not available 🙁  </p>
-                                        </div>
-                                    </td>
                                  
                                     <td class=" border boder-2 px-2 py-1" >
                                         {{user.email}}
@@ -89,9 +76,8 @@ export default {
                                         {{user.role}}
                                     </td>
                                     <td class=" border boder-2 px-5 py-4" >
-                                        <Link  :href="route('admin.edit_user' , {id : user.id})"  class=" border boder-2 font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Edit'" />
+                                        <Link  :href="route('admin.view_user' , {id : user.id})"  class=" border boder-2 font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'View 👀'" />
                                         <a v-if="user.role === 'driver'" target="_blank"  :href="'https://www.google.com/maps/dir/?q=' + user.lat + ',' + user.lon"  class=" border boder-2 font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"> 🗺 View Driver Location </a>
-
 
                                     </td>
                                 </tr>

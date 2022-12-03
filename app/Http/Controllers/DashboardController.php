@@ -99,10 +99,16 @@ class DashboardController extends Controller
         return Inertia::render('Profile'); 
     }
 
+    public function edit_profile() { 
+        return Inertia::render('EditProfile'); 
+    }
+
     public function update_profile(Request $request) { 
 
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'firstName' => 'required|string|max:255',
+            'middleName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'barangay' => 'required|string|max:255',
             'street_address' => 'required|string|max:255',
@@ -113,12 +119,14 @@ class DashboardController extends Controller
         if ($request->hasFile('image')) {
             $image_path = $request->file('image')->store('image/profile', 'public');
             $validated['image'] = $image_path ; 
+            $validated['name'] = "{$request->firstName} {$request->middleName} {$request->lastName}" ; 
+
         }
 
         
 
         if(Auth::user()->update($validated)) { 
-            return redirect()->back()->with('success' , 'Profile Successfully Updated ! ');
+            return redirect()->route('profile')->with('success' , 'Profile Successfully Updated ! ');
         }
 
         return redirect()->back()->with('error' , 'Something went wrong please check your inputs ! ');

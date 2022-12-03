@@ -44,14 +44,14 @@ export default {
     mounted() { 
         this.fillCart(); 
         this.getDeliveryFare();
-        console.log(this.fareSelect);
     },
     methods : {
         fillCart() { 
             for(let i = 0 ; i < this.freshToGo.length; i++ ) { 
+                this.freshToGo[i].quantity = 0 ; 
                 let product = { 
                     id : this.freshToGo[i].id , 
-                    quantity : 1 , 
+                    quantity : 0 , 
                     isAdded : false , 
                     categoryName : this.categories[this.freshToGo[i].category_id - 1 ].name , 
                     name : this.freshToGo[i].name , 
@@ -107,21 +107,39 @@ export default {
         },
 
 
-                increaseQuantity(p_id) { 
+        increaseQuantity(p_id) { 
+            var quantity ;
             for(let i = 0 ; i < this.cart.length ; i ++ ) { 
                 if(this.cart[i].id === p_id) { 
                     this.cart[i].quantity+=1  ;
+                    quantity = this.cart[i].quantity
                     this.cart[i].total += this.cart[i].price  ;
+                    
+                }
+            }
+
+            for(let i = 0 ; i < this.freshToGo.length ; i ++ ) { 
+                if(this.freshToGo[i].id === p_id) { 
+                    this.freshToGo[i].quantity = quantity ;
                 }
             }
         },
         decreaseQuantity(p_id) { 
+            var quantity ; 
             for(let i = 0 ; i < this.cart.length ; i ++ ) { 
                 if(this.cart[i].id === p_id) { 
                     if(this.cart[i].quantity > 1 ) { 
                         this.cart[i].quantity-=1  ;
+                        quantity = this.cart[i].quantity;
                         this.cart[i].total -= this.cart[i].price  ;
                     }
+                }
+            }
+
+            for(let i = 0 ; i < this.freshToGo.length ; i ++ ) { 
+                if(this.freshToGo[i].id === p_id) { 
+                    this.freshToGo[i].quantity = quantity ;
+                    return
                 }
             }
         },
@@ -270,6 +288,7 @@ export default {
                 this.freshToGo = this.products 
             }
             else { 
+            
                  this.freshToGo = this.products 
                  this.freshToGo = this.freshToGo.filter((product) => { 
                     return product.category_id == this.category
@@ -340,7 +359,7 @@ export default {
 
         <div  v-if="!displayCart  && !isCheckout">
              <Carousel :items-to-show="1" :wrap-around="true" class="bg-gray-100">
-                                <slide v-for="product in products" :key="product.id" class="mb-5">
+                                <slide v-for="product in freshToGo" :key="product.id" class="mb-5">
                                     <!-- <img :src="'/storage/' + product.image" width="500" height="300" class="rounded-3xl" alt=""> -->
                                     <div class="mt-8 group relative">
                                         <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
@@ -409,9 +428,17 @@ export default {
                             <button v-if="!isAddedToCart(product.id)" @click="addToCart(product.id)" class="mt-3 bg-lime-500 hover:bg-lime-700 text-white font-bold py-2 px-4 border border-lime-700 rounded">
                                 <span> add to cart 🛒</span>   
                             </button>
+                        
                             <button v-else @click="removeToCart(product.id)" class="mt-3 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 border border-gray-700 rounded">
                                 added to cart 🛒
                             </button>
+                            <div>
+                                <button @click="decreaseQuantity(product.id)"> <i class="fa-solid fa-minus text-red-500 text-lg ml-2 "></i></button>
+                                {{product.quantity}}
+                                <button @click="increaseQuantity(product.id)"> <i class="fa-solid fa-plus text-green-500 text-lg mr-2 "></i></button>
+
+                            </div>
+                          
                         </div>
 
                     </div>

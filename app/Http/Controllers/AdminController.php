@@ -135,10 +135,30 @@ class AdminController extends Controller
 
     }   
 
-    public function edit_user($id) { 
+    public function view_user($id) { 
         $user = User::findorfail($id); 
-        return Inertia::render('Admin/UserEdit' , ['user' => $user ]);
+        return Inertia::render('Admin/View' , ['user' => $user ]);
     }
+
+    public function edit_status($id) { 
+        $user = User::findorfail($id); 
+        return Inertia::render('Admin/EditStatus' , ['user' => $user ]);
+    }
+
+    public function update_status(Request $request) { 
+
+        $user = User::findorfail($request->id); 
+        $user->status = $request->status ;
+        $user->save(); 
+        if($user->save()) { 
+            return redirect()->route('admin.view_user' , ['id' => $user->id])->with('success' , 'User Update Successfully 🎉');
+        }
+
+        return redirect()->back()->with('error' , 'Something went wrong please contact your admin');
+
+    }
+
+    
 
     public function update_user(Request $request) { 
 
