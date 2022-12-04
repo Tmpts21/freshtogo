@@ -123,6 +123,33 @@ defineComponent ({
             </nav>
 
             <br><br>
+
+            <div class="w-full p-4  bg-gray-100  rounded-lg sm:p-8">
+                <div class="text-center">
+                    <h5 class="mb-2 text-3xl font-bold text-lime-500 ">Welcome to fresh2go 🎉</h5>
+                </div>
+                <div class="text-center">
+                    <p class="mb-5 text-base mb-12 text-gray-700 sm:text-lg font-bold">" 
+                        In fresh2go We serve happiness to our customers through delicious, quality meats and extraordinary quality  experience while working toward the greater good for our employees, community and environment.
+                        Our mission is to understand our customer’s changing needs and constantly improve our customer experience
+                    </p>
+                </div>
+              
+           
+
+
+
+                    <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+                        <img class="object-cover h-full w-96 rounded-lg " src="/storage/image/ads.png">
+                    </div>
+             
+                
+            </div>
+
+
+            <h3 class="font-bold p-4 text-2xl text-lime-500">FreshToGo Products 🥩 </h3>
+
+
             <Carousel :items-to-show="1" :wrap-around="true" class="bg-gray-200">
                                 <slide v-for="product in products" :key="product.id" class="mb-5">
                                     <!-- <img :src="'/storage/' + product.image" width="500" height="300" class="rounded-3xl" alt=""> -->
@@ -155,7 +182,6 @@ defineComponent ({
 
 
         <div class="mt-12 mx-5 max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <h3 class="font-bold text-2xl text-lime-500">FreshToGo Products </h3>
 
             <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
 

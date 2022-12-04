@@ -42,8 +42,7 @@ export default {
                         <div  class="overflow-x-auto relative">
                             <!-- component -->
 
-
-                            <table class="mt-5 text-center w-full text-sm text-left text-gray-500 dark:text-gray-800 border mx-auto ">
+                            <table class="font-bold mt-5 text-center w-full text-sm text-left text-gray-500 text-md border mx-auto ">
                                 <thead class="font-bold text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">

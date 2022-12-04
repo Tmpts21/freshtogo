@@ -313,25 +313,21 @@ export default {
     <Head title="Dashboard" />
 
     <BreezeAuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-lime-500 leading-tight">
-                Our Products ✨
-            </h2>
-        </template>
+     
 
         <div class="py-12">
             
-      
+            <button  v-if="!displayCart" @click="shoppingCart()" class="fixed rounded-full z-90 bottom-10 text-green-500 right-8 float-right bg-gray-100 hover:bg-gray-200 text-white font-bold py-2 px-4 border-2 border-gray-700 ">
+                           <span><i class="fa-solid fa-cart-shopping text-lime-500 text-lg "></i> </span>  View Shopping Cart
+            </button>
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white  sm:rounded-lg">
                        
-
+                    
                     <div class="p-6 bg-white border-b border-gray-200">
                                     
-
-                        <button  v-if="!displayCart" @click="shoppingCart()" class="fixed rounded-full z-90 bottom-10 text-green-500 right-8 float-right bg-gray-100 hover:bg-gray-200 text-white font-bold py-2 px-4 border-2 border-gray-700 ">
-                           <span><i class="fa-solid fa-cart-shopping text-lime-500 text-lg "></i> </span>  View Shopping Cart
-                         </button>
+                                
+                      
 
                           <button  v-if="displayCart" @click="shoppingCart()" class="fixed rounded-full z-90 bottom-10 text-green-500 right-8 float-right bg-gray-100 hover:bg-gray-200 text-white font-bold py-2 px-4 border-2 border-gray-700 ">
                            <span><i class="fa-solid fa-cart-shopping text-lime-500 text-lg "></i> </span>  Back to products
@@ -366,8 +362,26 @@ export default {
              </div>
         <Transition name="slide-fade">
 
-        <div  v-if="!displayCart  && !isCheckout">
-             <Carousel :items-to-show="1" :wrap-around="true" class="bg-gray-100">
+        <div class="content-center"  v-if="!displayCart  && !isCheckout">
+            
+
+            <div class="w-full p-4 text-center bg-white border rounded-lg sm:p-8">
+                <h5 class="mb-2 text-3xl font-bold text-lime-500 ">Welcome to fresh2go 🎉</h5>
+                <p class="mb-5 text-base mb-12 text-gray-700 sm:text-lg font-bold">" In The Meat Time, Steak With Us. We Meat Standard Quality. You Meat The World To Us. Choose The Best, Choose Us "</p>
+                <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+                    <div>
+                        <img class="object-cover h-full w-96 rounded-lg " src="/storage/image/ads.png">
+                    </div>
+                    
+                </div>
+                
+            </div>
+
+
+            <h5 class="p-4 text-3xl font-bold text-lime-500 ">Our Products 🥩</h5>
+
+
+             <Carousel :items-to-show="1" :wrap-around="false" class="bg-gray-100">
                                 <slide v-for="product in freshToGo" :key="product.id" class="mb-5">
                                     <!-- <img :src="'/storage/' + product.image" width="500" height="300" class="rounded-3xl" alt=""> -->
                                     <div class="mt-8 group relative">
@@ -401,8 +415,12 @@ export default {
                             </template>
                             
             </Carousel>
+
+           
         </div>
+     
     </transition>
+   
             <Transition name="slide-fade">
 
                         
@@ -649,7 +667,7 @@ export default {
                                             Amount Paid
                                         </label>
 
-                                        <input  v-model="gcashAmountPaid" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="street"  type="text" required placeholder="Enter Amount Paid" aria-label="Email">
+                                        <input  v-model="gcashAmountPaid" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="street"  type="number" required placeholder="Enter Amount Paid" aria-label="Email">
                                     </div>
                                     
                                     
@@ -658,7 +676,7 @@ export default {
                                             Reference Number <small>(Reference number can be found on your screenshot of proof of payment )</small> 
                                         </label>
 
-                                        <input  v-model="gcashRefNo" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="street"  type="text" required placeholder="Enter reference number of the payment" aria-label="Email">
+                                        <input  v-model="gcashRefNo" class="w-full px-2 py-2 text-gray-700 bg-gray-100 rounded" id="street"  type="number" required placeholder="Enter reference number of the payment" aria-label="Email">
                                     </div>
                                 </div>
                             </Transition>
@@ -747,6 +765,11 @@ export default {
 .slide-fade-leave-to {
   transform: translateY(50px);
   opacity: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none;
 }
 
 </style>

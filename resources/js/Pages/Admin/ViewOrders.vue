@@ -155,7 +155,7 @@ export default {
                             </table>
 
 
-                                <Link v-if="gcashInfo.status != 'delivered' &&  gcashInfo.status != 'cancelled'" :href="route('order.edit' , {id : gcashInfo.id })"  class="mt-5 mb-4 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Update 📝'" />
+                                <Link v-if="gcashInfo.status != 'delivered' &&  gcashInfo.status != 'cancelled'" :href="route('order.edit' , {id : gcashInfo.id })"  class="mt-5 mb-4 float-right font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"  v-html="'Approve 📝'" />
 
 
                              <div v-if="gcashInfo.status == 'cancelled'" class="mt-4 bg-lime-100 border border-lime-400 text-lime-700 px-4 py-3 rounded relative" role="alert">
