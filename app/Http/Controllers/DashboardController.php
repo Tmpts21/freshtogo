@@ -116,12 +116,13 @@ class DashboardController extends Controller
             'contact_no' => 'required|string|max:11',
         ]);
 
+        $validated['name'] = "{$request->firstName} {$request->middleName} {$request->lastName}" ; 
+
         if ($request->hasFile('image')) {
             $image_path = $request->file('image')->store('image/profile', 'public');
             $validated['image'] = $image_path ; 
-            $validated['name'] = "{$request->firstName} {$request->middleName} {$request->lastName}" ; 
-
         }
+
 
         
 
