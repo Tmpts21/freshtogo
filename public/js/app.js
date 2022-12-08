@@ -24672,10 +24672,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/Register.vue?vue&type=script&setup=true&lang=js":
-/*!*************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/Register.vue?vue&type=script&setup=true&lang=js ***!
-  \*************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/Register.vue?vue&type=script&lang=js":
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/Register.vue?vue&type=script&lang=js ***!
+  \**************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -24690,6 +24690,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_ValidationErrors_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/ValidationErrors.vue */ "./resources/js/Components/ValidationErrors.vue");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var _Customer_Fares__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Customer/Fares */ "./resources/js/Pages/Customer/Fares.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _address_json__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../address.json */ "./resources/js/Pages/address.json");
+
+
 
 
 
@@ -24698,10 +24702,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  __name: 'Register',
-  setup: function setup(__props, _ref) {
-    var expose = _ref.expose;
-    expose();
+  components: {
+    BreezeValidationErrors: _Components_ValidationErrors_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    BreezeLabel: _Components_Label_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    BreezeInput: _Components_Input_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    BreezeGuestLayout: _Layouts_Guest_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    BreezeButton: _Components_Button_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_5__.Head,
+    Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_5__.Link
+  },
+  setup: function setup() {
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_5__.useForm)({
       firstName: '',
       middleName: '',
@@ -24714,7 +24724,8 @@ __webpack_require__.r(__webpack_exports__);
       password: '',
       password_confirmation: '',
       contactNo: '',
-      terms: false
+      terms: false,
+      barangays: []
     });
 
     var submit = function submit() {
@@ -24725,24 +24736,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     };
 
-    var __returned__ = {
-      form: form,
+    var barangays = (0,vue__WEBPACK_IMPORTED_MODULE_7__.ref)();
+
+    var onChangeSelect = function onChangeSelect(event) {
+      barangays.value = _address_json__WEBPACK_IMPORTED_MODULE_8__[event.target.value];
+    };
+
+    return {
       submit: submit,
-      BreezeButton: _Components_Button_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-      BreezeGuestLayout: _Layouts_Guest_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-      BreezeInput: _Components_Input_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-      BreezeLabel: _Components_Label_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-      BreezeValidationErrors: _Components_ValidationErrors_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-      Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_5__.Head,
-      Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_5__.Link,
-      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_5__.useForm,
+      onChangeSelect: onChangeSelect,
+      barangays: barangays,
+      form: form,
       deliveryFares: _Customer_Fares__WEBPACK_IMPORTED_MODULE_6__.deliveryFares
     };
-    Object.defineProperty(__returned__, '__isScriptSetup', {
-      enumerable: false,
-      value: true
-    });
-    return __returned__;
   }
 });
 
@@ -26051,6 +26057,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 /* harmony import */ var _Customer_Fares__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Customer/Fares */ "./resources/js/Pages/Customer/Fares.js");
 /* harmony import */ var _Components_ValidationErrors_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ValidationErrors.vue */ "./resources/js/Components/ValidationErrors.vue");
+/* harmony import */ var _address_json__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./address.json */ "./resources/js/Pages/address.json");
+
+
 
 
 
@@ -26083,10 +26092,18 @@ __webpack_require__.r(__webpack_exports__);
       _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__.Inertia.post('/profile/update', form);
     }
 
+    var barangays = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)();
+
+    var onChangeSelect = function onChangeSelect(event) {
+      barangays.value = _address_json__WEBPACK_IMPORTED_MODULE_6__[event.target.value];
+    };
+
     return {
       form: form,
       submit: submit,
-      deliveryFares: _Customer_Fares__WEBPACK_IMPORTED_MODULE_4__.deliveryFares
+      deliveryFares: _Customer_Fares__WEBPACK_IMPORTED_MODULE_4__.deliveryFares,
+      barangays: barangays,
+      onChangeSelect: onChangeSelect
     };
   }
 });
@@ -29446,7 +29463,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = ["onSubmit"];
+var _hoisted_1 = {
+  "class": "mt-4"
+};
 var _hoisted_2 = {
   "class": "mt-4"
 };
@@ -29456,17 +29475,17 @@ var _hoisted_3 = {
 var _hoisted_4 = {
   "class": "mt-4"
 };
-var _hoisted_5 = {
-  "class": "mt-4"
-};
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "Choose your City",
   selected: ""
 }, "Choose your City ", -1
 /* HOISTED */
 );
 
+var _hoisted_6 = {
+  key: 0
+};
 var _hoisted_7 = {
   "class": "mt-4"
 };
@@ -29483,29 +29502,42 @@ var _hoisted_11 = {
   "class": "mt-4"
 };
 var _hoisted_12 = {
-  "class": "mt-4"
-};
-var _hoisted_13 = {
   "class": "flex items-center justify-between mt-4"
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Already registered? 🤔 ");
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Already registered? 🤔 ");
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Register ");
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Register ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["BreezeGuestLayout"], null, {
+  var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
+
+  var _component_BreezeValidationErrors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeValidationErrors");
+
+  var _component_BreezeLabel = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeLabel");
+
+  var _component_BreezeInput = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeInput");
+
+  var _component_Link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Link");
+
+  var _component_BreezeButton = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeButton");
+
+  var _component_BreezeGuestLayout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("BreezeGuestLayout");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_BreezeGuestLayout, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
         title: "Register"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeValidationErrors"], {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeValidationErrors, {
         "class": "mb-4"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-        onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.submit, ["prevent"])
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLabel"], {
+        onSubmit: _cache[12] || (_cache[12] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+          return $setup.submit && $setup.submit.apply($setup, arguments);
+        }, ["prevent"]))
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "firstName",
         value: "First Name"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeInput"], {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
         id: "firstName",
         type: "text",
         "class": "mt-1 block w-full",
@@ -29518,10 +29550,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         autocomplete: "First Name"
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLabel"], {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "middleName",
         value: "Middle Name "
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeInput"], {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
         id: "middleName",
         type: "text",
         "class": "mt-1 block w-full",
@@ -29534,10 +29566,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         autocomplete: "Middle Name"
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLabel"], {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "lastName",
         value: "Last Name"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeInput"], {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
         id: "lastName",
         type: "text",
         "class": "mt-1 block w-full",
@@ -29550,10 +29582,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         autocomplete: "Last Name "
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLabel"], {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "email",
         value: "Email"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeInput"], {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
         type: "email",
         "class": "mt-1 block w-full",
         modelValue: $setup.form.email,
@@ -29564,16 +29596,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         autocomplete: "username"
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLabel"], {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "email",
         value: "City",
         "class": "mt-2 mb-2"
       }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+        onChange: _cache[4] || (_cache[4] = function () {
+          return $setup.onChangeSelect && $setup.onChangeSelect.apply($setup, arguments);
+        }),
+        "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
           return $setup.form.city = $event;
         }),
         "class": "mt-1 mb-1 block appearance-none w-full rounded border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-      }, [_hoisted_6, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.deliveryFares, function (fare) {
+      }, [_hoisted_5, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.deliveryFares, function (fare) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
           key: fare.id
         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(fare.city), 1
@@ -29581,97 +29616,117 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         );
       }), 128
       /* KEYED_FRAGMENT */
-      ))], 512
-      /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.city]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLabel"], {
-        "for": "email",
-        value: "Barangay"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeInput"], {
-        type: "text",
-        "class": "mt-1 block w-full",
-        modelValue: $setup.form.barangay,
-        "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+      ))], 544
+      /* HYDRATE_EVENTS, NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.city]]), $setup.barangays ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
+        "for": "barangay",
+        value: "Barangay",
+        "class": "mt-2 mb-2"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+        id: "barangay",
+        "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
           return $setup.form.barangay = $event;
         }),
-        required: "",
-        autocomplete: "username"
-      }, null, 8
-      /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLabel"], {
+        "class": "mt-1 mb-1 block appearance-none w-full text-black rounded border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+      }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.barangays, function (barangay) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+          key: barangay.id
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(barangay), 1
+        /* TEXT */
+        );
+      }), 128
+      /* KEYED_FRAGMENT */
+      ))], 512
+      /* NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.barangay]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "email",
         value: "Street Address"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeInput"], {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
         type: "text",
         "class": "mt-1 block w-full",
         modelValue: $setup.form.streetAddress,
-        "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+        "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
           return $setup.form.streetAddress = $event;
         }),
         required: "",
         autocomplete: "username"
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLabel"], {
+      , ["modelValue"])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "email",
         value: "Postal Code "
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeInput"], {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
         type: "number",
         "class": "mt-1 block w-full",
         modelValue: $setup.form.postalCode,
-        "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+        "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
           return $setup.form.postalCode = $event;
         }),
         required: "",
         autocomplete: "username"
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLabel"], {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "contact",
         value: "Mobile Number"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeInput"], {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
         type: "number",
         "class": "mt-1 block w-full",
         modelValue: $setup.form.contactNo,
-        "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
+        "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
           return $setup.form.contactNo = $event;
         }),
         required: "",
         autocomplete: "username"
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLabel"], {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "password",
         value: "Password"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeInput"], {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
         id: "password",
         type: "password",
         "class": "mt-1 block w-full",
         modelValue: $setup.form.password,
-        "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
+        "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
           return $setup.form.password = $event;
         }),
         required: "",
         autocomplete: "new-password"
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeLabel"], {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeLabel, {
         "for": "password_confirmation",
         value: "Confirm Password"
-      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeInput"], {
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeInput, {
         id: "password_confirmation",
         type: "password",
         "class": "mt-1 block w-full",
         modelValue: $setup.form.password_confirmation,
-        "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
+        "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
           return $setup.form.password_confirmation = $event;
         }),
         required: "",
         autocomplete: "new-password"
       }, null, 8
       /* PROPS */
-      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+      , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
         href: _ctx.route('login'),
         "class": "underline text-md font-bold text-gray-600 hover:text-gray-900"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_13];
+        }),
+        _: 1
+        /* STABLE */
+
+      }, 8
+      /* PROPS */
+      , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_BreezeButton, {
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["ml-4 bg-lime-500", {
+          'opacity-25': $setup.form.processing
+        }]),
+        disabled: $setup.form.processing
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_14];
@@ -29681,23 +29736,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }, 8
       /* PROPS */
-      , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BreezeButton"], {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["ml-4 bg-lime-500", {
-          'opacity-25': $setup.form.processing
-        }]),
-        disabled: $setup.form.processing
-      }, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_15];
-        }),
-        _: 1
-        /* STABLE */
-
-      }, 8
-      /* PROPS */
-      , ["class", "disabled"])])], 40
-      /* PROPS, HYDRATE_EVENTS */
-      , _hoisted_1)];
+      , ["class", "disabled"])])], 32
+      /* HYDRATE_EVENTS */
+      )];
     }),
     _: 1
     /* STABLE */
@@ -34280,52 +34321,51 @@ var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_33 = ["value"];
-var _hoisted_34 = {
-  "class": "mb-4"
+var _hoisted_33 = {
+  key: 3
 };
 
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "block text-gray-700 text-sm font-bold mb-2",
-  "for": "category_name"
+  "for": "barangay"
 }, " Barangay ", -1
 /* HOISTED */
 );
 
-var _hoisted_36 = {
+var _hoisted_35 = {
   "class": "mb-4"
 };
 
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "block text-gray-700 text-sm font-bold mb-2",
   "for": "category_name"
 }, " Street Address ", -1
 /* HOISTED */
 );
 
-var _hoisted_38 = {
+var _hoisted_37 = {
   "class": "mb-4"
 };
 
-var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "block text-gray-700 text-sm font-bold mb-2",
   "for": "category_name"
 }, " Postal Code ", -1
 /* HOISTED */
 );
 
-var _hoisted_40 = {
+var _hoisted_39 = {
   "class": "mb-4"
 };
 
-var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "block text-gray-700 text-sm font-bold mb-2",
   "for": "category_name"
 }, " Mobile Number ", -1
 /* HOISTED */
 );
 
-var _hoisted_42 = ["disabled"];
+var _hoisted_41 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
@@ -34353,7 +34393,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }), 128
       /* KEYED_FRAGMENT */
       ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-        onSubmit: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+        onSubmit: _cache[11] || (_cache[11] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
           return $setup.submit();
         }, ["prevent"])),
         "class": "bg-white rounded px-8 pt-6 pb-8 mb-4"
@@ -34420,43 +34460,50 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 512
       /* NEED_PATCH */
       ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.email]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-        "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+        onChange: _cache[5] || (_cache[5] = function () {
+          return $setup.onChangeSelect && $setup.onChangeSelect.apply($setup, arguments);
+        }),
+        "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
           return $setup.form.city = $event;
         }),
         "class": "mt-1 mb-1 block appearance-none w-full rounded border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
       }, [_hoisted_32, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.deliveryFares, function (fare) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-          key: fare.id,
-          value: $setup.form.city
-        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(fare.city), 9
-        /* TEXT, PROPS */
-        , _hoisted_33);
+          key: fare.id
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(fare.city), 1
+        /* TEXT */
+        );
+      }), 128
+      /* KEYED_FRAGMENT */
+      ))], 544
+      /* HYDRATE_EVENTS, NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.city]])]), $setup.barangays ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+        id: "barangay",
+        "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+          return $setup.form.barangay = $event;
+        }),
+        "class": "mt-1 mb-1 block appearance-none w-full text-black rounded border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+      }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.barangays, function (barangay) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+          key: barangay.id
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(barangay), 1
+        /* TEXT */
+        );
       }), 128
       /* KEYED_FRAGMENT */
       ))], 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.city]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
-          return $setup.form.barangay = $event;
-        }),
-        "class": "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-        id: "category",
-        type: "text",
-        placeholder: "Enter Barangay"
-      }, null, 512
-      /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.barangay]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.barangay]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [_hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
           return $setup.form.street_address = $event;
         }),
         "class": "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-        id: "category",
         type: "text",
         placeholder: "Enter Street Address "
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.street_address]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.street_address]])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
           return $setup.form.postal_code = $event;
         }),
         "class": "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
@@ -34465,8 +34512,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         placeholder: "Enter Postal Code "
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.postal_code]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.postal_code]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
           return $setup.form.contact_no = $event;
         }),
         "class": "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
@@ -34481,7 +34528,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "float-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 font-bold"
       }, "Save 📁", 8
       /* PROPS */
-      , _hoisted_42)], 32
+      , _hoisted_41)], 32
       /* HYDRATE_EVENTS */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Link, {
         href: _ctx.route('change.password'),
@@ -37280,7 +37327,7 @@ var deliveryFares = [{
   city: 'Pasay',
   fare: '110'
 }, {
-  city: 'pasig',
+  city: 'Pasig',
   fare: '111'
 }, {
   city: 'Quezon City',
@@ -97832,7 +97879,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Register_vue_vue_type_template_id_e59c811e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Register.vue?vue&type=template&id=e59c811e */ "./resources/js/Pages/Auth/Register.vue?vue&type=template&id=e59c811e");
-/* harmony import */ var _Register_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Register.vue?vue&type=script&setup=true&lang=js */ "./resources/js/Pages/Auth/Register.vue?vue&type=script&setup=true&lang=js");
+/* harmony import */ var _Register_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Register.vue?vue&type=script&lang=js */ "./resources/js/Pages/Auth/Register.vue?vue&type=script&lang=js");
 /* harmony import */ var _Register_vue_vue_type_style_index_0_id_e59c811e_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Register.vue?vue&type=style&index=0&id=e59c811e&lang=css */ "./resources/js/Pages/Auth/Register.vue?vue&type=style&index=0&id=e59c811e&lang=css");
 /* harmony import */ var C_Users_ianta_OneDrive_Desktop_freshtogo_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
@@ -97842,7 +97889,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,C_Users_ianta_OneDrive_Desktop_freshtogo_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Register_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Register_vue_vue_type_template_id_e59c811e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Pages/Auth/Register.vue"]])
+const __exports__ = /*#__PURE__*/(0,C_Users_ianta_OneDrive_Desktop_freshtogo_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Register_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Register_vue_vue_type_template_id_e59c811e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Pages/Auth/Register.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -99049,18 +99096,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Auth/Register.vue?vue&type=script&setup=true&lang=js":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/Pages/Auth/Register.vue?vue&type=script&setup=true&lang=js ***!
-  \*********************************************************************************/
+/***/ "./resources/js/Pages/Auth/Register.vue?vue&type=script&lang=js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/Pages/Auth/Register.vue?vue&type=script&lang=js ***!
+  \**********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Register_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Register_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Register_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Register.vue?vue&type=script&setup=true&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/Register.vue?vue&type=script&setup=true&lang=js");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Register_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Register.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Auth/Register.vue?vue&type=script&lang=js");
  
 
 /***/ }),
@@ -102206,6 +102253,17 @@ webpackContext.id = "./resources/js/Pages sync recursive ^\\.\\/.*\\.vue$";
 
 "use strict";
 module.exports = JSON.parse('{"_from":"axios@^0.21.1","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/@inertiajs/inertia/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21.1","name":"axios","escapedName":"axios","rawSpec":"^0.21.1","saveSpec":null,"fetchSpec":"^0.21.1"},"_requiredBy":["/@inertiajs/inertia"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21.1","_where":"C:\\\\Users\\\\ianta\\\\OneDrive\\\\Desktop\\\\freshtogo\\\\node_modules\\\\@inertiajs\\\\inertia","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+
+/***/ }),
+
+/***/ "./resources/js/Pages/address.json":
+/*!*****************************************!*\
+  !*** ./resources/js/Pages/address.json ***!
+  \*****************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"Caloocan":["Barangay 1","Barangay 10","Barangay 100","Barangay 101","Barangay 102","Barangay 103","Barangay 104","Barangay 105","Barangay 106","Barangay 107","Barangay 108","Barangay 109","Barangay 11","Barangay 110","Barangay 111","Barangay 112","Barangay 113","Barangay 114","Barangay 115","Barangay 116","Barangay 117","Barangay 118","Barangay 119","Barangay 12","Barangay 120","Barangay 121","Barangay 122","Barangay 123","Barangay 124","Barangay 125","Barangay 126","Barangay 127","Barangay 128","Barangay 129","Barangay 13","Barangay 130","Barangay 131","Barangay 132","Barangay 133","Barangay 134","Barangay 135","Barangay 136","Barangay 137","Barangay 138","Barangay 139","Barangay 14","Barangay 140","Barangay 141","Barangay 142","Barangay 143","Barangay 144","Barangay 145","Barangay 146","Barangay 147","Barangay 148","Barangay 149","Barangay 15","Barangay 150","Barangay 151","Barangay 152","Barangay 153","Barangay 154","Barangay 155","Barangay 156","Barangay 157","Barangay 158","Barangay 159","Barangay 16","Barangay 160","Barangay 161","Barangay 162","Barangay 163","Barangay 164","Barangay 165","Barangay 166","Barangay 167","Barangay 168","Barangay 169","Barangay 17","Barangay 170","Barangay 171","Barangay 172","Barangay 173","Barangay 174","Barangay 175","Barangay 176","Barangay 177","Barangay 178","Barangay 179","Barangay 18","Barangay 180","Barangay 181","Barangay 182","Barangay 183","Barangay 184","Barangay 185","Barangay 186","Barangay 187","Barangay 188","Barangay 19","Barangay 2","Barangay 20","Barangay 21","Barangay 22","Barangay 23","Barangay 24","Barangay 25","Barangay 26","Barangay 27","Barangay 28","Barangay 29","Barangay 3","Barangay 30","Barangay 31","Barangay 32","Barangay 33","Barangay 34","Barangay 35","Barangay 36","Barangay 37","Barangay 38","Barangay 39","Barangay 4","Barangay 40","Barangay 41","Barangay 42","Barangay 43","Barangay 44","Barangay 45","Barangay 46","Barangay 47","Barangay 48","Barangay 49","Barangay 5","Barangay 50","Barangay 51","Barangay 52","Barangay 53","Barangay 54","Barangay 55","Barangay 56","Barangay 57","Barangay 58","Barangay 59","Barangay 6","Barangay 60","Barangay 61","Barangay 62","Barangay 63","Barangay 64","Barangay 65","Barangay 66","Barangay 67","Barangay 68","Barangay 69","Barangay 7","Barangay 70","Barangay 71","Barangay 72","Barangay 73","Barangay 74","Barangay 75","Barangay 76","Barangay 77","Barangay 78","Barangay 79","Barangay 8","Barangay 80","Barangay 81","Barangay 82","Barangay 83","Barangay 84","Barangay 85","Barangay 86","Barangay 87","Barangay 88","Barangay 89","Barangay 9","Barangay 90","Barangay 91","Barangay 92","Barangay 93","Barangay 94","Barangay 95","Barangay 96","Barangay 97","Barangay 98","Barangay 99"],"Las Pinas":["Almanza Dos","Almanza Uno","B. F. International Village","Daniel Fajardo","Elias Aldana","Ilaya","Manuyo Dos","Manuyo Uno","Pamplona Dos","Pamplona Tres","Pamplona Uno","Pilar","Pulang Lupa Dos","Pulang Lupa Uno","Talon Dos","Talon Kuatro","Talon Singko","Talon Tres","Talon Uno","Zapote"],"Makati":["Bangkal","Bel-Air","Carmona","Cembo","Comembo","Dasmarinas","East Rembo","Forbes Park","Guadalupe Nuevo","Guadalupe Viejo","Kasilawan","La Paz","Magallanes","Olympia","Palanan","Pembo","Pinagkaisahan","Pio del Pilar","Pitogo","Poblacion","Post Proper Northside","Post Proper Southside","Rizal","San Antonio","San Isidro","San Lorenzo","Santa Cruz","Singkamas","South Cembo","Tejeros","Urdaneta","Valenzuela","West Rembo"],"Malabon":["Acacia","Baritan","Bayan-bayanan","Catmon","Concepcion","Dampalit","Flores","Hulong Duhat","Ibaba","Longos","Maysilo","Muzon","Niugan","Panghulo","Potrero","San Agustin","Santolan","Tanong","Tinajeros","Tonsuya","Tugatog"],"Mandaluyong":["Addition Hills","Bagong Silang","Barangka Drive","Barangka Ibaba","Barangka Ilaya","Barangka Itaas","Buayang Bato","Burol","Daang Bakal","Hagdang Bato Itaas","Hagdang Bato Libis","Harapin Ang Bukas","Highway Hills","Hulo","Mabini-J. Rizal","Malamig","Mauway","Namayan","New Zaniga","Old Zaniga","Pag-asa","Plainview","Pleasant Hills","Poblacion","San Jose","Vergara","Wack-wack Greenhills"],"Manila":["Barangay 1","Barangay 10","Barangay 100","Barangay 101","Barangay 102","Barangay 103","Barangay 104","Barangay 105","Barangay 106","Barangay 107","Barangay 108","Barangay 109","Barangay 11","Barangay 110","Barangay 111","Barangay 112","Barangay 116","Barangay 117","Barangay 118","Barangay 119","Barangay 12","Barangay 120","Barangay 121","Barangay 122","Barangay 123","Barangay 124","Barangay 125","Barangay 126","Barangay 127","Barangay 128","Barangay 129","Barangay 13","Barangay 130","Barangay 131","Barangay 132","Barangay 133","Barangay 134","Barangay 135","Barangay 136","Barangay 137","Barangay 138","Barangay 139","Barangay 14","Barangay 140","Barangay 141","Barangay 142","Barangay 143","Barangay 144","Barangay 145","Barangay 146","Barangay 147","Barangay 148","Barangay 149","Barangay 15","Barangay 150","Barangay 151","Barangay 152","Barangay 153","Barangay 154","Barangay 155","Barangay 156","Barangay 157","Barangay 158","Barangay 159","Barangay 16","Barangay 160","Barangay 161","Barangay 162","Barangay 163","Barangay 164","Barangay 165","Barangay 166","Barangay 167","Barangay 168","Barangay 169","Barangay 17","Barangay 170","Barangay 171","Barangay 172","Barangay 173","Barangay 174","Barangay 175","Barangay 176","Barangay 177","Barangay 178","Barangay 179","Barangay 18","Barangay 180","Barangay 181","Barangay 182","Barangay 183","Barangay 184","Barangay 185","Barangay 186","Barangay 187","Barangay 188","Barangay 189","Barangay 19","Barangay 190","Barangay 191","Barangay 192","Barangay 193","Barangay 194","Barangay 195","Barangay 196","Barangay 197","Barangay 198","Barangay 199","Barangay 2","Barangay 20","Barangay 200","Barangay 201","Barangay 202","Barangay 202-A","Barangay 203","Barangay 204","Barangay 205","Barangay 206","Barangay 207","Barangay 208","Barangay 209","Barangay 210","Barangay 211","Barangay 212","Barangay 213","Barangay 214","Barangay 215","Barangay 216","Barangay 217","Barangay 218","Barangay 219","Barangay 220","Barangay 221","Barangay 222","Barangay 223","Barangay 224","Barangay 225","Barangay 226","Barangay 227","Barangay 228","Barangay 229","Barangay 230","Barangay 231","Barangay 232","Barangay 233","Barangay 234","Barangay 235","Barangay 236","Barangay 237","Barangay 238","Barangay 239","Barangay 240","Barangay 241","Barangay 242","Barangay 243","Barangay 244","Barangay 245","Barangay 246","Barangay 247","Barangay 248","Barangay 249","Barangay 25","Barangay 250","Barangay 251","Barangay 252","Barangay 253","Barangay 254","Barangay 255","Barangay 256","Barangay 257","Barangay 258","Barangay 259","Barangay 26","Barangay 260","Barangay 261","Barangay 262","Barangay 263","Barangay 264","Barangay 265","Barangay 266","Barangay 267","Barangay 268","Barangay 269","Barangay 270","Barangay 271","Barangay 272","Barangay 273","Barangay 274","Barangay 275","Barangay 276","Barangay 28","Barangay 281","Barangay 282","Barangay 283","Barangay 284","Barangay 285","Barangay 286","Barangay 287","Barangay 288","Barangay 289","Barangay 29","Barangay 290","Barangay 291","Barangay 292","Barangay 293","Barangay 294","Barangay 295","Barangay 296","Barangay 297","Barangay 298","Barangay 299","Barangay 3","Barangay 30","Barangay 300","Barangay 301","Barangay 302","Barangay 303","Barangay 304","Barangay 305","Barangay 306","Barangay 307","Barangay 308","Barangay 309","Barangay 31","Barangay 310","Barangay 311","Barangay 312","Barangay 313","Barangay 314","Barangay 315","Barangay 316","Barangay 317","Barangay 318","Barangay 319","Barangay 32","Barangay 320","Barangay 321","Barangay 322","Barangay 323","Barangay 324","Barangay 325","Barangay 326","Barangay 327","Barangay 328","Barangay 329","Barangay 33","Barangay 330","Barangay 331","Barangay 332","Barangay 333","Barangay 334","Barangay 335","Barangay 336","Barangay 337","Barangay 338","Barangay 339","Barangay 34","Barangay 340","Barangay 341","Barangay 342","Barangay 343","Barangay 344","Barangay 345","Barangay 346","Barangay 347","Barangay 348","Barangay 349","Barangay 35","Barangay 350","Barangay 351","Barangay 352","Barangay 353","Barangay 354","Barangay 355","Barangay 356","Barangay 357","Barangay 358","Barangay 359","Barangay 36","Barangay 360","Barangay 361","Barangay 362","Barangay 363","Barangay 364","Barangay 365","Barangay 366","Barangay 367","Barangay 368","Barangay 369","Barangay 37","Barangay 370","Barangay 371","Barangay 372","Barangay 373","Barangay 374","Barangay 375","Barangay 376","Barangay 377","Barangay 378","Barangay 379","Barangay 38","Barangay 380","Barangay 381","Barangay 382","Barangay 383","Barangay 384","Barangay 385","Barangay 386","Barangay 387","Barangay 388","Barangay 389","Barangay 39","Barangay 390","Barangay 391","Barangay 392","Barangay 393","Barangay 394","Barangay 395","Barangay 396","Barangay 397","Barangay 398","Barangay 399","Barangay 4","Barangay 400","Barangay 401","Barangay 402","Barangay 403","Barangay 404","Barangay 405","Barangay 406","Barangay 407","Barangay 408","Barangay 409","Barangay 41","Barangay 410","Barangay 411","Barangay 412","Barangay 413","Barangay 414","Barangay 415","Barangay 416","Barangay 417","Barangay 418","Barangay 419","Barangay 42","Barangay 420","Barangay 421","Barangay 422","Barangay 423","Barangay 424","Barangay 425","Barangay 426","Barangay 427","Barangay 428","Barangay 429","Barangay 43","Barangay 430","Barangay 431","Barangay 432","Barangay 433","Barangay 434","Barangay 435","Barangay 436","Barangay 437","Barangay 438","Barangay 439","Barangay 44","Barangay 440","Barangay 441","Barangay 442","Barangay 443","Barangay 444","Barangay 445","Barangay 446","Barangay 447","Barangay 448","Barangay 449","Barangay 45","Barangay 450","Barangay 451","Barangay 452","Barangay 453","Barangay 454","Barangay 455","Barangay 456","Barangay 457","Barangay 458","Barangay 459","Barangay 46","Barangay 460","Barangay 461","Barangay 462","Barangay 463","Barangay 464","Barangay 465","Barangay 466","Barangay 467","Barangay 468","Barangay 469","Barangay 47","Barangay 470","Barangay 471","Barangay 472","Barangay 473","Barangay 474","Barangay 475","Barangay 476","Barangay 477","Barangay 478","Barangay 479","Barangay 48","Barangay 480","Barangay 481","Barangay 482","Barangay 483","Barangay 484","Barangay 485","Barangay 486","Barangay 487","Barangay 488","Barangay 489","Barangay 49","Barangay 490","Barangay 491","Barangay 492","Barangay 493","Barangay 494","Barangay 495","Barangay 496","Barangay 497","Barangay 498","Barangay 499","Barangay 5","Barangay 50","Barangay 500","Barangay 501","Barangay 502","Barangay 503","Barangay 504","Barangay 505","Barangay 506","Barangay 507","Barangay 508","Barangay 509","Barangay 51","Barangay 510","Barangay 511","Barangay 512","Barangay 513","Barangay 514","Barangay 515","Barangay 516","Barangay 517","Barangay 518","Barangay 519","Barangay 52","Barangay 520","Barangay 521","Barangay 522","Barangay 523","Barangay 524","Barangay 525","Barangay 526","Barangay 527","Barangay 528","Barangay 529","Barangay 53","Barangay 530","Barangay 531","Barangay 532","Barangay 533","Barangay 534","Barangay 535","Barangay 536","Barangay 537","Barangay 538","Barangay 539","Barangay 54","Barangay 540","Barangay 541","Barangay 542","Barangay 543","Barangay 544","Barangay 545","Barangay 546","Barangay 547","Barangay 548","Barangay 549","Barangay 55","Barangay 550","Barangay 551","Barangay 552","Barangay 553","Barangay 554","Barangay 555","Barangay 556","Barangay 557","Barangay 558","Barangay 559","Barangay 56","Barangay 560","Barangay 561","Barangay 562","Barangay 563","Barangay 564","Barangay 565","Barangay 566","Barangay 567","Barangay 568","Barangay 569","Barangay 57","Barangay 570","Barangay 571","Barangay 572","Barangay 573","Barangay 574","Barangay 575","Barangay 576","Barangay 577","Barangay 578","Barangay 579","Barangay 58","Barangay 580","Barangay 581","Barangay 582","Barangay 583","Barangay 584","Barangay 585","Barangay 586","Barangay 587","Barangay 587-A","Barangay 588","Barangay 589","Barangay 59","Barangay 590","Barangay 591","Barangay 592","Barangay 593","Barangay 594","Barangay 595","Barangay 596","Barangay 597","Barangay 598","Barangay 599","Barangay 6","Barangay 60","Barangay 600","Barangay 601","Barangay 602","Barangay 603","Barangay 604","Barangay 605","Barangay 606","Barangay 607","Barangay 608","Barangay 609","Barangay 61","Barangay 610","Barangay 611","Barangay 612","Barangay 613","Barangay 614","Barangay 615","Barangay 616","Barangay 617","Barangay 618","Barangay 619","Barangay 62","Barangay 620","Barangay 621","Barangay 622","Barangay 623","Barangay 624","Barangay 625","Barangay 626","Barangay 627","Barangay 628","Barangay 629","Barangay 63","Barangay 630","Barangay 631","Barangay 632","Barangay 633","Barangay 634","Barangay 635","Barangay 636","Barangay 637","Barangay 638","Barangay 639","Barangay 64","Barangay 640","Barangay 641","Barangay 642","Barangay 643","Barangay 644","Barangay 645","Barangay 646","Barangay 647","Barangay 648","Barangay 649","Barangay 65","Barangay 650","Barangay 651","Barangay 652","Barangay 653","Barangay 654","Barangay 655","Barangay 656","Barangay 657","Barangay 658","Barangay 659","Barangay 659-A","Barangay 66","Barangay 660","Barangay 660-A","Barangay 661","Barangay 662","Barangay 663","Barangay 663-A","Barangay 664","Barangay 664-A","Barangay 666","Barangay 667","Barangay 668","Barangay 669","Barangay 67","Barangay 670","Barangay 671","Barangay 672","Barangay 673","Barangay 674","Barangay 675","Barangay 676","Barangay 677","Barangay 678","Barangay 679","Barangay 68","Barangay 680","Barangay 681","Barangay 682","Barangay 683","Barangay 684","Barangay 685","Barangay 686","Barangay 687","Barangay 688","Barangay 689","Barangay 69","Barangay 690","Barangay 691","Barangay 692","Barangay 693","Barangay 694","Barangay 695","Barangay 696","Barangay 697","Barangay 698","Barangay 699","Barangay 7","Barangay 70","Barangay 700","Barangay 701","Barangay 702","Barangay 703","Barangay 704","Barangay 705","Barangay 706","Barangay 707","Barangay 708","Barangay 709","Barangay 71","Barangay 710","Barangay 711","Barangay 712","Barangay 713","Barangay 714","Barangay 715","Barangay 716","Barangay 717","Barangay 718","Barangay 719","Barangay 72","Barangay 720","Barangay 721","Barangay 722","Barangay 723","Barangay 724","Barangay 725","Barangay 726","Barangay 727","Barangay 728","Barangay 729","Barangay 73","Barangay 730","Barangay 731","Barangay 732","Barangay 733","Barangay 734","Barangay 735","Barangay 736","Barangay 737","Barangay 738","Barangay 739","Barangay 74","Barangay 740","Barangay 741","Barangay 742","Barangay 743","Barangay 744","Barangay 745","Barangay 746","Barangay 747","Barangay 748","Barangay 749","Barangay 75","Barangay 750","Barangay 751","Barangay 752","Barangay 753","Barangay 754","Barangay 755","Barangay 756","Barangay 757","Barangay 758","Barangay 759","Barangay 76","Barangay 760","Barangay 761","Barangay 762","Barangay 763","Barangay 764","Barangay 765","Barangay 766","Barangay 767","Barangay 768","Barangay 769","Barangay 77","Barangay 770","Barangay 771","Barangay 772","Barangay 773","Barangay 774","Barangay 775","Barangay 776","Barangay 777","Barangay 778","Barangay 779","Barangay 78","Barangay 780","Barangay 781","Barangay 782","Barangay 783","Barangay 784","Barangay 785","Barangay 786","Barangay 787","Barangay 788","Barangay 789","Barangay 79","Barangay 790","Barangay 791","Barangay 792","Barangay 793","Barangay 794","Barangay 795","Barangay 796","Barangay 797","Barangay 798","Barangay 799","Barangay 8","Barangay 80","Barangay 800","Barangay 801","Barangay 802","Barangay 803","Barangay 804","Barangay 805","Barangay 806","Barangay 807","Barangay 808","Barangay 809","Barangay 81","Barangay 810","Barangay 811","Barangay 812","Barangay 813","Barangay 814","Barangay 815","Barangay 816","Barangay 817","Barangay 818","Barangay 818-A","Barangay 819","Barangay 82","Barangay 820","Barangay 821","Barangay 822","Barangay 823","Barangay 824","Barangay 825","Barangay 826","Barangay 827","Barangay 828","Barangay 829","Barangay 83","Barangay 830","Barangay 831","Barangay 832","Barangay 833","Barangay 834","Barangay 835","Barangay 836","Barangay 837","Barangay 838","Barangay 839","Barangay 84","Barangay 840","Barangay 841","Barangay 842","Barangay 843","Barangay 844","Barangay 845","Barangay 846","Barangay 847","Barangay 848","Barangay 849","Barangay 85","Barangay 850","Barangay 851","Barangay 852","Barangay 853","Barangay 855","Barangay 856","Barangay 857","Barangay 858","Barangay 859","Barangay 86","Barangay 860","Barangay 861","Barangay 862","Barangay 863","Barangay 864","Barangay 865","Barangay 866","Barangay 867","Barangay 868","Barangay 869","Barangay 87","Barangay 870","Barangay 871","Barangay 872","Barangay 873","Barangay 874","Barangay 875","Barangay 876","Barangay 877","Barangay 878","Barangay 879","Barangay 88","Barangay 880","Barangay 881","Barangay 882","Barangay 883","Barangay 884","Barangay 885","Barangay 886","Barangay 887","Barangay 888","Barangay 889","Barangay 89","Barangay 890","Barangay 891","Barangay 892","Barangay 893","Barangay 894","Barangay 895","Barangay 896","Barangay 897","Barangay 898","Barangay 899","Barangay 9","Barangay 90","Barangay 900","Barangay 901","Barangay 902","Barangay 903","Barangay 904","Barangay 905","Barangay 91","Barangay 92","Barangay 93","Barangay 94","Barangay 95","Barangay 96","Barangay 97","Barangay 98","Barangay 99"],"Marikina":["Barangka","Calumpang","Concepcion Dos","Concepcion Uno","Fortune","Industrial Valley","Jesus de La Pena","Malanday","Marikina Heights","Nangka","Parang","San Roque","Santa Elena","Santo Nino","Tanong","Tumana"],"Muntinlupa":["Alabang","Bayanan","Buli","Cupang","New Alabang Village","Poblacion","Putatan","Sucat","Tunasan"],"Navotas":["Bagumbayan North","Bagumbayan South","Bangculasi","Daanghari","NBBS Dagat-dagatan","NBBS Kaunlaran","NBBS Proper","Navotas East","Navotas West","North Bay Boulevard North","San Jose","San Rafael Village","San Roque","Sipac-Almacen","Tangos North","Tangos South","Tanza 1","Tanza 2"],"Paranaque":["B. F. Homes","Baclaran","Don Bosco","Don Galo","La Huerta","Marcelo Green Village","Merville","Moonwalk","San Antonio","San Dionisio","San Isidro","San Martin de Porres","Santo Nino","Sun Valley","Tambo","Vitalez"],"Pasay":["Barangay 1","Barangay 10","Barangay 100","Barangay 101","Barangay 102","Barangay 103","Barangay 104","Barangay 105","Barangay 106","Barangay 107","Barangay 108","Barangay 109","Barangay 11","Barangay 110","Barangay 111","Barangay 112","Barangay 113","Barangay 114","Barangay 115","Barangay 116","Barangay 117","Barangay 118","Barangay 119","Barangay 12","Barangay 120","Barangay 121","Barangay 122","Barangay 123","Barangay 124","Barangay 125","Barangay 126","Barangay 127","Barangay 128","Barangay 129","Barangay 13","Barangay 130","Barangay 131","Barangay 132","Barangay 133","Barangay 134","Barangay 135","Barangay 136","Barangay 137","Barangay 138","Barangay 139","Barangay 14","Barangay 140","Barangay 141","Barangay 142","Barangay 143","Barangay 144","Barangay 145","Barangay 146","Barangay 147","Barangay 148","Barangay 149","Barangay 15","Barangay 150","Barangay 151","Barangay 152","Barangay 153","Barangay 154","Barangay 155","Barangay 156","Barangay 157","Barangay 158","Barangay 159","Barangay 16","Barangay 160","Barangay 161","Barangay 162","Barangay 163","Barangay 164","Barangay 165","Barangay 166","Barangay 167","Barangay 168","Barangay 169","Barangay 17","Barangay 170","Barangay 171","Barangay 172","Barangay 173","Barangay 174","Barangay 175","Barangay 176","Barangay 177","Barangay 178","Barangay 179","Barangay 18","Barangay 180","Barangay 181","Barangay 182","Barangay 183","Barangay 184","Barangay 185","Barangay 186","Barangay 187","Barangay 188","Barangay 189","Barangay 19","Barangay 190","Barangay 191","Barangay 192","Barangay 193","Barangay 194","Barangay 195","Barangay 196","Barangay 197","Barangay 198","Barangay 199","Barangay 2","Barangay 20","Barangay 200","Barangay 201","Barangay 21","Barangay 22","Barangay 23","Barangay 24","Barangay 25","Barangay 26","Barangay 27","Barangay 28","Barangay 29","Barangay 3","Barangay 30","Barangay 31","Barangay 32","Barangay 33","Barangay 34","Barangay 35","Barangay 36","Barangay 37","Barangay 38","Barangay 39","Barangay 4","Barangay 40","Barangay 41","Barangay 42","Barangay 43","Barangay 44","Barangay 45","Barangay 46","Barangay 47","Barangay 48","Barangay 49","Barangay 5","Barangay 50","Barangay 51","Barangay 52","Barangay 53","Barangay 54","Barangay 55","Barangay 56","Barangay 57","Barangay 58","Barangay 59","Barangay 6","Barangay 60","Barangay 61","Barangay 62","Barangay 63","Barangay 64","Barangay 65","Barangay 66","Barangay 67","Barangay 68","Barangay 69","Barangay 7","Barangay 70","Barangay 71","Barangay 72","Barangay 73","Barangay 74","Barangay 75","Barangay 76","Barangay 77","Barangay 78","Barangay 79","Barangay 8","Barangay 80","Barangay 81","Barangay 82","Barangay 83","Barangay 84","Barangay 85","Barangay 86","Barangay 87","Barangay 88","Barangay 89","Barangay 9","Barangay 90","Barangay 91","Barangay 92","Barangay 93","Barangay 94","Barangay 95","Barangay 96","Barangay 97","Barangay 98","Barangay 99"],"Pasig":["Bagong Ilog","Bagong Katipunan","Bambang","Buting","Caniogan","Dela Paz","Kalawaan","Kapasigan","Kapitolyo","Malinao","Manggahan","Maybunga","Oranbo","Palatiw","Pinagbuhatan","Pineda","Rosario","Sagad","San Antonio","San Joaquin","San Jose","San Miguel","San Nicolas","Santa Cruz","Santa Lucia","Santa Rosa","Santo Tomas","Santolan","Sumilang","Ugong"],"Pateros":["Aguho","Magtanggol","Martires del 96","Poblacion","San Pedro","San Roque","Santa Ana","Santo Rosario-Kanluran","Santo Rosario-Silangan","Tabacalera"],"Quezon City":["Alicia","Amihan","Apolonio Samson","Aurora","Baesa","Bagbag","Bagong Lipunan ng Crame","Bagong Pag-asa","Bagong Silangan","Bagumbayan","Bagumbuhay","Bahay Toro","Balingasa","Balong Bato","Batasan Hills","Bayanihan","Blue Ridge A","Blue Ridge B","Botocan","Bungad","Camp Aguinaldo","Capri","Central","Claro","Commonwealth","Culiat","Damar","Damayan","Damayang Lagi","Del Monte","Dioquino Zobel","Don Manuel","Dona Imelda","Dona Josefa","Duyan-duyan","E. Rodriguez","East Kamias","Escopa I","Escopa II","Escopa III","Escopa IV","Fairview","Greater Lagro","Gulod","Holy Spirit","Horseshoe","Immaculate Concepcion","Kaligayahan","Kalusugan","Kamuning","Katipunan","Kaunlaran","Kristong Hari","Krus na Ligas","Laging Handa","Libis","Lourdes","Loyola Heights","Maharlika","Malaya","Mangga","Manresa","Mariana","Mariblo","Marilag","Masagana","Masambong","Matandang Balara","Milagrosa","N. S. Amoranto","Nagkaisang Nayon","Nayong Kanluran","New Era","North Fairview","Novaliches Proper","Obrero","Old Capitol Site","Paang Bundok","Pag-ibig sa Nayon","Paligsahan","Paltok","Pansol","Paraiso","Pasong Putik Proper","Pasong Tamo","Payatas","Phil-Am","Pinagkaisahan","Pinyahan","Project 6","Quirino 2-A","Quirino 2-B","Quirino 2-C","Quirino 3-A","Ramon Magsaysay","Roxas","Sacred Heart","Saint Ignatius","Saint Peter","Salvacion","San Agustin","San Antonio","San Bartolome","San Isidro","San Isidro Labrador","San Jose","San Martin de Porres","San Roque","San Vicente","Sangandaan","Santa Cruz","Santa Lucia","Santa Monica","Santa Teresita","Santo Cristo","Santo Domingo","Santo Nino","Santol","Sauyo","Sienna","Sikatuna Village","Silangan","Socorro","South Triangle","Tagumpay","Talayan","Talipapa","Tandang Sora","Tatalon","Teachers Village East","Teachers Village West","U.P. Campus","U.P. Village","Ugong Norte","Unang Sigaw","Valencia","Vasra","Veterans Village","Villa Maria Clara","West Kamias","West Triangle","White Plains"],"San Juan":["Addition Hills","Balong-Bato","Batis","Corazon de Jesus","Ermitano","Greenhills","Halo-halo","Isabelita","Kabayanan","Little Baguio","Maytunas","Onse","Pasadena","Pedro Cruz","Progreso","Rivera","Salapan","San Perfecto","Santa Lucia","Tibagan","West Crame"],"Taguig":["Bagumbayan","Bambang","Calzada","Central Bicutan","Central Signal Village","Fort Bonifacio","Hagonoy","Ibayo-Tipas","Katuparan","Ligid-Tipas","Lower Bicutan","Maharlika Village","Napindan","New Lower Bicutan","North Daang Hari","North Signal Village","Palingon","Pinagsama","San Miguel","Santa Ana","South Daang Hari","South Signal Village","Tanyag","Tuktukan","Upper Bicutan","Ususan","Wawa","Western Bicutan"],"Valenzuela":["Arkong Bato","Bagbaguin","Balangkas","Bignay","Bisig","Canumay East","Canumay West","Coloong","Dalandanan","Gen. T. de Leon","Isla","Karuhatan","Lawang Bato","Lingunan","Mabolo","Malanday","Malinta","Mapulang Lupa","Marulas","Maysan","Palasan","Parada","Pariancillo Villa","Paso de Blas","Pasolo","Poblacion","Pulo","Punturin","Rincon","Tagalag","Ugong","Viente Reales","Wawang Pulo"]}');
 
 /***/ })
 

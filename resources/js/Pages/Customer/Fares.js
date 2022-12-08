@@ -45,7 +45,7 @@ var deliveryFares = [
             fare : '110',
         },
         {
-            city : 'pasig',
+            city : 'Pasig',
             fare : '111',
         },
         {

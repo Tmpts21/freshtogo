@@ -6,6 +6,8 @@ import { Inertia } from '@inertiajs/inertia'
 import { usePage } from '@inertiajs/inertia-vue3'
 import { deliveryFares } from './Customer/Fares'
 import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
+import address from "./address.json"
+import { ref } from 'vue'
 
 
 
@@ -31,12 +33,16 @@ export default {
       image :usePage().props.value.auth.user.image,
     })
 
-
     function submit() { 
          Inertia.post('/profile/update', form)
     }
+    
+    let barangays = ref(); 
+    const onChangeSelect = (event) => { 
+            barangays.value = address[event.target.value]
+        }
 
-    return { form , submit , deliveryFares}
+    return { form , submit , deliveryFares , barangays , onChangeSelect}
   },
 }
 </script>
@@ -138,24 +144,26 @@ export default {
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
                                 City
                             </label>
-                            <select v-model="form.city" class="mt-1 mb-1 block appearance-none w-full  rounded border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                            <select @change="onChangeSelect"  v-model="form.city" class="mt-1 mb-1 block appearance-none w-full  rounded border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                                 <option  value='Choose your City' selected>Choose your City </option>
-                                <option v-for="fare in deliveryFares" :key="fare.id" :value="form.city">{{fare.city}}</option>
+                                <option v-for="fare in deliveryFares" :key="fare.id" >{{fare.city}}</option>
                             </select>
                             </div>
 
-                            <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
-                                Barangay
-                            </label>
-                            <input v-model="form.barangay" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter Barangay">
-                            </div>
+                            <div v-if="barangays">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="barangay">
+                                    Barangay
+                                </label>
+                                <select id="barangay"  v-model="form.barangay" class="mt-1 mb-1 block appearance-none w-full text-black  rounded border border-gray-400 hover:border-gray-500 px-2 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                <option v-for="barangay in barangays" :key="barangay.id" >{{barangay}}</option>
+                                </select> 
 
-                            <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
-                                Street Address
-                            </label>
-                            <input v-model="form.street_address" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter Street Address ">
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                        Street Address  
+                                    </label>
+                                    <input v-model="form.street_address" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" placeholder="Enter Street Address ">
+                                </div>
                             </div>
 
                             <div class="mb-4">
