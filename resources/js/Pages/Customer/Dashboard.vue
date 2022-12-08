@@ -67,7 +67,12 @@ export default {
         addToCart(p_id){ 
             for(let i = 0 ; i < this.cart.length ; i ++ ) { 
                 if(this.cart[i].id === p_id) { 
-                    return this.cart[i].isAdded = true ;
+                    if(this.cart[i].quantity == 0 ) { 
+                        return 
+                    }
+                    else { 
+                        return this.cart[i].isAdded = true ;
+                    }
                 }
             }
 
@@ -128,11 +133,14 @@ export default {
             var quantity ; 
             for(let i = 0 ; i < this.cart.length ; i ++ ) { 
                 if(this.cart[i].id === p_id) { 
+
                     if(this.cart[i].quantity > 1 ) { 
                         this.cart[i].quantity-=1  ;
                         quantity = this.cart[i].quantity;
                         this.cart[i].total -= this.cart[i].price  ;
                     }
+                    else {this.cart[i].isAdded = false ; }
+                
                 }
             }
 

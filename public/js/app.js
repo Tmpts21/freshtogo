@@ -25429,7 +25429,11 @@ __webpack_require__.r(__webpack_exports__);
     addToCart: function addToCart(p_id) {
       for (var i = 0; i < this.cart.length; i++) {
         if (this.cart[i].id === p_id) {
-          return this.cart[i].isAdded = true;
+          if (this.cart[i].quantity == 0) {
+            return;
+          } else {
+            return this.cart[i].isAdded = true;
+          }
         }
       }
     },
@@ -25487,6 +25491,8 @@ __webpack_require__.r(__webpack_exports__);
             this.cart[i].quantity -= 1;
             quantity = this.cart[i].quantity;
             this.cart[i].total -= this.cart[i].price;
+          } else {
+            this.cart[i].isAdded = false;
           }
         }
       }
