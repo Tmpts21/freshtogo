@@ -650,6 +650,9 @@ export default {
                             <Transition name="slide-fade">
                                 <div v-if="displayGcashPayment" class="mt-8 bg-blue-100 border blue-red-400 text-blue-700 px-4 py-3 rounded relative" role="alert">
                                      <div class="mt-4 bg-lime-100 border border-lime-400 text-lime-700 px-4 py-3 rounded relative" role="alert">
+                                        <br>
+                                        <span class="block sm:inline">Note: <b>As our beloved customer. The minimum amount for Gcash E Payment is half of the total Price. You can pay it full once your order is delivered ! Thank you 🙏  </b> </span>
+                                        <br>
                                         <strong class="font-bold">Payment Procedure 💳</strong>
 
                                             <ol class="list-decimal ml-5 ">
