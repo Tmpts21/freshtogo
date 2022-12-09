@@ -69,6 +69,7 @@ export default {
                             <select v-model="status" @change="onChangeSelect()" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                             <option value="all" selected >All</option>
                             <option value="pending"  >Pending</option>
+                            <option value="assigned"  >Assigned</option>
                             <option value="delivered"  >Delivered</option>
                             <option value="cancelled"  >Cancelled</option>
                         </select>

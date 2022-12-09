@@ -119,8 +119,8 @@ class AdminController extends Controller
         //default password
         $fields['password'] = Hash::make('password123');
         $fields['email'] = $request->email;
-        $fields['name'] = "{$request->firstName} {$request->middleName} {$request->lastName} "; 
-
+        $fields['name'] = "{$request->firstName} {$request->middleName} {$request->lastName}"; 
+        $fields['role'] = $request->role;
 
         // check if email is existing 
         if(User::where('email',$request->email)->count()) { 
