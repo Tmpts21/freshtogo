@@ -31024,10 +31024,16 @@ var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Welcome to fresh2go 🎉"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "mb-5 text-base mb-12 text-gray-700 sm:text-lg font-bold"
 }, "\" In The Meat Time, Steak With Us. We Meat Standard Quality. You Meat The World To Us. Choose The Best, Choose Us \""), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4"
+  "class": "space-y-4 sm:flex sm:space-y-0 sm:space-x-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   "class": "object-cover h-full w-96 rounded-lg",
-  src: "/storage/image/ads.png"
+  src: "/storage/image/ads1.png"
+})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  "class": "object-cover h-full w-96 rounded-lg",
+  src: "/storage/image/ads2.png"
+})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  "class": "object-cover h-full w-96 rounded-lg",
+  src: "/storage/image/ads3.png"
 })])])], -1
 /* HOISTED */
 );

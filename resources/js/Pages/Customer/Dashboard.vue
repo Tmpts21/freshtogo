@@ -376,12 +376,21 @@ export default {
             <div class="w-full p-4 text-center bg-white border rounded-lg sm:p-8">
                 <h5 class="mb-2 text-3xl font-bold text-lime-500 ">Welcome to fresh2go 🎉</h5>
                 <p class="mb-5 text-base mb-12 text-gray-700 sm:text-lg font-bold">" In The Meat Time, Steak With Us. We Meat Standard Quality. You Meat The World To Us. Choose The Best, Choose Us "</p>
-                <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+                <div class=" space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
                     <div>
-                        <img class="object-cover h-full w-96 rounded-lg " src="/storage/image/ads.png">
+                        <img class="object-cover h-full w-96 rounded-lg " src="/storage/image/ads1.png">
                     </div>
-                    
+
+                    <div>
+                        <img class="object-cover h-full w-96 rounded-lg " src="/storage/image/ads2.png">
+                    </div>
+
+                    <div>
+                        <img class="object-cover h-full w-96 rounded-lg " src="/storage/image/ads3.png">
+                    </div>
                 </div>
+
+            
                 
             </div>
 
