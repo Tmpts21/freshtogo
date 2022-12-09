@@ -139,9 +139,22 @@ defineComponent ({
 
 
 
-                    <div class="items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
-                        <img class="object-cover h-full w-96 rounded-lg " src="/storage/image/ads.png">
+                    <div class=" justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+
+                        <div>
+                            <img class="object-cover h-full w-96 rounded-lg " src="/storage/image/ads1.png">
+                        </div>
+
+                        <div>
+                            <img class="object-cover h-full w-96 rounded-lg " src="/storage/image/ads2.png">
+                        </div>
+
+                        <div>
+                            <img class="object-cover h-full w-96 rounded-lg " src="/storage/image/ads3.png">
+                        </div>
                     </div>
+
+
              
                 
             </div>
