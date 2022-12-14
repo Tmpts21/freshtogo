@@ -61,6 +61,15 @@ export default {
                             <input  readonly :value="product.name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
                             </div>
 
+                            <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                Product Description
+                            </label>
+
+
+                            <input  readonly :value="product.description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
+                            </div>
+
                                 <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
                                 Category 

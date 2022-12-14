@@ -19,6 +19,7 @@ export default {
       name: props.product.name,
       category_id : props.product.category_id , 
       brand : props.product.brand , 
+      description : props.product.description , 
       stock : props.product.stock , 
       price : props.product.price ,
       image : null ,
@@ -96,6 +97,18 @@ export default {
                             </div>
 
                             <input  required v-model="form.name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
+                            </div>
+
+                            <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                Product Description
+                            </label>
+
+                            <div v-if="errors.description" class="text-red-700 " role="alert">
+                                    <li>{{errors.description }}</li>
+                            </div>
+
+                            <textarea required v-model="form.description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name"></textarea>      
                             </div>
 
                                 <div class="mb-4">
