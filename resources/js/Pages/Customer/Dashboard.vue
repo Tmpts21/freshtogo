@@ -402,10 +402,10 @@ export default {
                                 <slide v-for="product in freshToGo" :key="product.id" class="mb-5">
                                     <!-- <img :src="'/storage/' + product.image" width="500" height="300" class="rounded-3xl" alt=""> -->
                                     <div class="mt-8 group relative">
-                                        <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
+                                        <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-96">
                                        
                                             <Link  :href="route('customer.view_product' , {id : product.id })" >
-                                            <img :src="'/storage/' + product.image" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+                                            <img :src="'/storage/' + product.image" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-fit object-center lg:h-full lg:w-full">
                                         </Link>
                                         </div>
                                         <div class="mt-4 flex justify-between">
@@ -421,6 +421,11 @@ export default {
 
                                       
                                         <p class="font-bold  text-lime-600">{{product.sold}}kg(sold) 🙌</p>
+                                        </div>
+
+                                        <div class="bg-lime-100 border border-lime-400 text-lime-700 px-4 py-3 rounded relative" role="alert">
+                                            <strong class="font-bold">Holy smokes!</strong>
+                                            <span class="block sm:inline">{{product.description}}</span>
                                         </div>
                                     </div>
                              
@@ -453,7 +458,7 @@ export default {
                             <div v-for="product in freshToGo" :key="product.id" class=" border-2 border-lime-600 rounded-md p-4 " >
                                
                                <div class="w-full min-h-80 rounded-md  lg:h-80 lg:aspect-none">
-                                <img :src="'/storage/' + product.image "  class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+                                <img :src="'/storage/' + product.image "  class="w-full h-full object-center object-fit lg:w-full lg:h-full">
                                 </div>
 
                                 <div class="mt-4 flex justify-between">
@@ -652,6 +657,7 @@ export default {
                                      <div class="mt-4 bg-lime-100 border border-lime-400 text-lime-700 px-4 py-3 rounded relative" role="alert">
                                         <br>
                                         <span class="block sm:inline">Note: <b>As our beloved customer. The minimum amount for Gcash E Payment is half of the total Price. You can pay it full once your order is delivered ! Thank you 🙏  </b> </span>
+                                        <br>        
                                         <br>
                                         <strong class="font-bold">Payment Procedure 💳</strong>
 

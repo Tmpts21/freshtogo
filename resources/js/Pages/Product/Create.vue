@@ -21,6 +21,7 @@ export default {
       stock : null , 
       price : null ,
       image : null , 
+      description : null , 
     })
 
 
@@ -75,6 +76,18 @@ export default {
                             <input required v-model="form.name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name">
                             </div>
 
+                            <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
+                                Product Description
+                            </label>
+
+                            <div v-if="errors.description" class="text-red-700 " role="alert">
+                                    <li>{{errors.description }}</li>
+                            </div>
+
+                            <textarea required v-model="form.description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Product Name"></textarea>      
+                            </div>
+
                                 <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="category_name">
                                 Category 
@@ -113,7 +126,7 @@ export default {
                                     <li>{{errors.stock }}</li>
                             </div>
 
-                            <input required v-model="form.stock" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter how many Stock">
+                            <input required v-model="form.stock" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="number" placeholder="Enter how many Stock">
                             </div>
 
                             <div class="mb-4">
@@ -125,7 +138,7 @@ export default {
                                     <li>{{errors.price }}</li>
                             </div>
 
-                            <input required v-model="form.price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter product price">
+                            <input required v-model="form.price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="number" placeholder="Enter product price">
                             </div>
 
                             <div class="mb-4">
@@ -154,3 +167,10 @@ export default {
         </div>
     </BreezeAuthenticatedLayout>
 </template>
+
+<style>
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none;
+}
+</style>

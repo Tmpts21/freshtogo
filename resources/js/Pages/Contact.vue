@@ -135,8 +135,8 @@ defineComponent ({
                         </div>
 
                         <p class="p-2 font-semibold">📧 Email : freshtogo@mail.com</p>
-                        <p class="p-2 font-semibold">📞 Telephone  : + (02) 123 456 </p>
-                        <p class="p-2 font-semibold mb-8">📱  Mobile Number : +63 123456789</p>
+                        <p class="p-2 font-semibold">📞 Telephone  : + 63 (2) 6336328 or 8926-1424 </p>
+                        <p class="p-2 font-semibold mb-8">📱  Mobile Number : +63 9161376243</p>
 
                         <div class="py-3 px-6 border-t font-bold border-lime-400 text-lime-400">
                              Follow us on

@@ -23,6 +23,7 @@ class ProductFactory extends Factory
             'brand' => $this->faker->randomElement(['Magnolia' ,'tender juicy','Monterey']),
             'stock' => $this->faker->numberBetween(5 , 50),
             'price' => $this->faker->numberBetween(100 , 115),
+            'description' =>'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam accusantium dolor, omnis provident rem dolore unde incidunt neque explicabo quos numquam, sed sunt? Iusto doloribus enim nam ab suscipit ratione!',
         ];
     }
 }

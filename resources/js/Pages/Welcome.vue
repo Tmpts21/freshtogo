@@ -164,25 +164,29 @@ defineComponent ({
 
 
             <Carousel :items-to-show="1" :wrap-around="true" class="bg-gray-200">
-                                <slide v-for="product in products" :key="product.id" class="mb-5">
+                                <slide v-for="product in products" :key="product.id" class="mb-5 p-12">
                                     <!-- <img :src="'/storage/' + product.image" width="500" height="300" class="rounded-3xl" alt=""> -->
-                                    <Link class="group relative " :href="route('login')"> 
-                                        <div class="mt-8 min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md  lg:aspect-none lg:h-80">
-                                        <img :src="'/storage/' + product.image" class="p-5 rounded-xl h-full w-full object-cover object-center rounded-lg lg:h-full lg:w-full">
-                                        </div>
-                                        <div class="mt-4 flex justify-between">
-                                        <div>
-                                            <h3 class="text-sm text-gray-700">
-                                            <a href="#" class="font-bold text-lg text-lime-600">
-                                                <span aria-hidden="true" class="absolute inset-0"></span>
-                                                {{product.name}} 
-                                            </a>
-                                           </h3>
-                                        </div>
-                                        <p class="font-bold  text-lime-600">{{product.sold}}kg(sold) 🙌</p>
-                                        </div>
+                                    <Link :href="route('login')">
+                                            <div class="mt-8 min-h-80 aspect-w-1 aspect-h-1 overflow-hidden rounded-md  lg:aspect-none lg:h-96 ">
+                                                <img :src="'/storage/' + product.image" class="p-5 rounded-xl h-full w-full object-fit object-center rounded-lg lg:h-full lg:w-full">
+                                            </div>
+                                            <div class="mt-4 flex justify-between">
+                                            <div>
+                                                <h3 class="text-sm text-gray-700">
+                                                <a href="#" class="font-bold text-lg text-lime-600">
+                                                    <span aria-hidden="true" class="absolute inset-0"></span>
+                                                    {{product.name}} 
+                                                </a>
+                                            </h3>
+                                            </div>
+                                            <p class="font-bold  text-lime-600">{{product.sold}}kg(sold) 🙌</p>
+                                            </div>
+
+                                            <div class=" text-justify bg-lime-100 border border-lime-400 text-lime-700 px-4 py-3 rounded relative" role="alert">
+                                                <span class="block sm:inline">{{product.description}}</span>
+                                             </div>
                                     </Link>
-                             
+                                   
                                 </Slide>
                             <template #addons class="pt-5">
                                 <p class="font-bold text-lg pt-5">✨ </p>
@@ -203,7 +207,7 @@ defineComponent ({
                             <div v-for="product in products" :key="product.id" class=" border-2 border-lime-600 rounded-md p-4 " >
                                
                                <div class="w-full min-h-80 rounded-md  lg:h-80 lg:aspect-none">
-                                <img :src="'/storage/' + product.image "  class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+                                <img :src="'/storage/' + product.image "  class="w-full h-full object-center object-fit lg:w-full lg:h-full">
                                 </div>
 
                                 <div class="mt-4 flex justify-between">

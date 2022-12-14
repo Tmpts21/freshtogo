@@ -135,7 +135,7 @@ export default {
                                     </td>
 
                                     <td class="px-2 py-1 border border-2" >
-                                        {{diffForHumans(order.created_at)}} 
+                                        {{order.created_at}} 
                                     </td>
 
 
