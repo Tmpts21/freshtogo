@@ -112,7 +112,7 @@ Route::group(['prefix' => 'customer', 'middleware' => ['auth' ,'verified','custo
     Route::post('/save/feedback', [CustomerController::class, 'save_feedback'])->name('customer.save_feedback');
     Route::get('/view/orders/{id}/{status}', [CustomerController::class, 'viewOrders'])->name('customer.view_orders');
     Route::get('/cancel_order/{orderId}/{status}', [CustomerController::class, 'cancel_order'])->name('cancel_order');
-    Route::post('/cancel_order/{orderId}/{status}', [CustomerController::class, 'update_cancelled_order']);
+    Route::post('/cancel_order/{orderId}/{reason}', [CustomerController::class, 'update_cancelled_order']);
 });
 
 

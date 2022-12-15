@@ -25326,6 +25326,10 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     cancelOrder: function cancelOrder() {
+      if (this.reason == '') {
+        this.reason = 'No reason provided since the Customer cancelled while the order is not assigned';
+      }
+
       _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.post('/customer/cancel_order/' + this.orderId + '/' + this.reason);
     }
   }

@@ -20,6 +20,9 @@
         },
         methods :  {
             cancelOrder() { 
+                if (this.reason == '') { 
+                    this.reason = 'No reason provided since the Customer cancelled while the order is not assigned'
+                }
                     Inertia.post('/customer/cancel_order/' + this.orderId + '/' + this.reason  )
             } 
         }

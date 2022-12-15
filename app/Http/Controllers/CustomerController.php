@@ -180,7 +180,6 @@ class CustomerController extends Controller
 
     public function update_cancelled_order($orderId , $reason) { 
         $order = Order::findOrFail($orderId); 
-
         if ($order->status == 'assigned') { 
             $order->remarks = $reason ;
         }
