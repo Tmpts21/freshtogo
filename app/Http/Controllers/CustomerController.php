@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Order;
-use App\Models\Delivery;
+use App\Models\User;
 use App\Models\Feedback;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -153,6 +153,7 @@ class CustomerController extends Controller
     
     public function viewOrders($id , $status) { 
         $order = Order::findorfail($id); 
+        $driver = User::findorfail($order->driver_id);
         $orders = Order::all()
                         ->where('unique_id', $order->unique_id)
                         ->where('driver_id' , $order->driver_id);
@@ -168,8 +169,23 @@ class CustomerController extends Controller
         return Inertia::render('Customer/ViewOrders' , [
                 'orders' => $orders ,
                 'deliveryFee' => $deliveryFee , 
-                'totalPrice' => $totalPrice + $deliveryFee
+                'totalPrice' => $totalPrice + $deliveryFee,
+                'driver' => $driver
             ]) ;
     }
 
+    public function cancel_order($orderId , $status){ 
+        return Inertia::render('Customer/CancelOrder' , ['orderId' => $orderId , 'orderStatus' => $status]);
+    }
+
+    public function update_cancelled_order($orderId , $reason) { 
+        $order = Order::findOrFail($orderId); 
+
+        if ($order->status == 'assigned') { 
+            $order->remarks = $reason ;
+        }
+        $order->status = 'cancelled';
+        $order->save(); 
+        return redirect()->route('customer.orders')->with('success' , 'Order Has been successfully cancelled');
+    }
 }

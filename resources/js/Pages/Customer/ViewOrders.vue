@@ -4,7 +4,7 @@
     import moment from 'moment' 
     
     export default { 
-        props : ['orders' , 'totalPrice' ,'deliveryFee'] ,
+        props : ['orders' , 'totalPrice' ,'deliveryFee' ,'driver'] ,
         components : { 
             BreezeAuthenticatedLayout , 
             Head ,Link 
@@ -79,6 +79,10 @@
 		</div>			
 	</div>
 </div>
+                <div class="flex justify-center">
+                    <a v-if="Object.values(this.orders)[0].status === 'assigned'" target="_blank"  :href="'https://www.google.com/maps/dir/?q=' + driver.lat + ',' + driver.lon"  class=" border boder-2 font-bold text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"> 🗺 View Driver Location </a>
+                </div>
+
     
                                 <table class="mt-5 text-center w-full text-sm text-left text-gray-500 dark:text-gray-800 border mx-auto ">
                                     <thead class="font-bold text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

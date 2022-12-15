@@ -424,7 +424,6 @@ export default {
                                         </div>
 
                                         <div class="bg-lime-100 border border-lime-400 text-lime-700 px-4 py-3 rounded relative" role="alert">
-                                            <strong class="font-bold">Holy smokes!</strong>
                                             <span class="block sm:inline">{{product.description}}</span>
                                         </div>
                                     </div>
