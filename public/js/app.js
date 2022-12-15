@@ -32581,9 +32581,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           innerHTML: '➕ feedback '
         }, null, 8
         /* PROPS */
-        , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), order.status == 'pending' || order.status == 'assigned' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+        , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), order.status == 'assigned' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
           key: 1,
-          href: _ctx.route('customer.cancel_order', {
+          href: _ctx.route('cancel_order', {
+            orderId: order.id,
+            status: order.status
+          }),
+          "class": "font-bold text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800 mr-2",
+          innerHTML: 'Cancel'
+        }, null, 8
+        /* PROPS */
+        , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), order.status == 'pending' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+          key: 2,
+          href: _ctx.route('cancel_order', {
             orderId: order.id,
             status: order.status
           }),
