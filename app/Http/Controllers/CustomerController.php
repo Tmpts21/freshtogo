@@ -180,9 +180,7 @@ class CustomerController extends Controller
 
     public function update_cancelled_order($orderId , $reason) { 
         $order = Order::findOrFail($orderId); 
-        if ($order->status == 'assigned') { 
-            $order->remarks = $reason ;
-        }
+        $order->remarks = $reason ;
         $order->status = 'cancelled';
         $order->save(); 
         return redirect()->route('customer.orders')->with('success' , 'Order Has been successfully cancelled');

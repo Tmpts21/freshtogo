@@ -12,7 +12,9 @@
         } ,
         data () { 
             return { 
-                reason : ''
+                reason : '' ,
+                otherReason : '' ,
+                isOther : false
                
             }
         }, 
@@ -20,11 +22,19 @@
         },
         methods :  {
             cancelOrder() { 
-                if (this.reason == '') { 
-                    this.reason = 'No reason provided since the Customer cancelled while the order is not assigned'
+                    if(this.isOther == true ) { 
+                        this.reason = this.otherReason;
+                        return Inertia.post('/customer/cancel_order/' + this.orderId + '/' + this.otherReason  )
+                    }
+                    return Inertia.post('/customer/cancel_order/' + this.orderId + '/' + this.reason  )
+            },
+            onChangeSelect(event) { 
+                if (event.target.value === 'other') { 
+                    this.isOther = true ;
                 }
-                    Inertia.post('/customer/cancel_order/' + this.orderId + '/' + this.reason  )
-            } 
+                else this.isOther = false ;
+
+            }
         }
     }
     </script>
@@ -53,13 +63,30 @@
                                         <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                                             <span class="block sm:inline">Are you sure you want to cancel this order ? </span>
                                         </div>
-                                        <label v-if="this.orderStatus == 'assigned' " for="exampleFormControlTextarea1" class="font-bold form-label inline-block mb-2 text-gray-700"
-                                        >Please state the reason  🤔</label
+                                        <label for="exampleFormControlTextarea1" class="font-bold form-label inline-block mb-2 text-gray-700"
+                                        >Please choose the reason  🤔</label
                                         >
 
-                                        <textarea v-model="reason" v-if="this.orderStatus == 'assigned' "
+                                      
+
+                                        <div class="inline-block relative w-64">
+                                        <select @change="onChangeSelect($event)" v-model="this.reason" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                            <option value="Product is taking too long to be delivered.">1.Product is taking too long to be delivered.</option>
+                                            <option value="Customer discovered the same product on another website or a shop at a lower price than the order price.">2.Customer discovered the same product on another website or a shop at a lower price than the order price.</option>
+                                            <option value="Customer changes his mind and opts for another brand instead.">3.Customer changes his mind and opts for another brand instead.</option>
+                                            <option value="Customer has ordered it for someone else but the other person has it already or bought something else.">4.Customer has ordered it for someone else but the other person has it already or bought something else.</option>
+                                            <option value="other">5.Others</option>
+                                        </select>
+                                    </div>
+
+                                    <div v-if="this.isOther" for="exampleFormControlTextarea1" class="font-bold form-label inline-block mb-2 text-gray-700">
+                                        <p class="font-bold mt-4 ">Other reason please specify</p>
+                                    </div>
+                                    <textarea v-model="this.otherReason" 
+                                        v-if = "this.isOther" 
                                         required
                                         class="
+                                            mt-2 
                                             form-control
                                             block
                                             w-full
@@ -84,8 +111,13 @@
                                             <button @click="cancelOrder()"  type="submit" class=" float-right mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 font-bold">Cancel 📁</button>
                                         </div>
                                     </div>
+
+
+                                    
                                    
                                     </div>
+
+                                    
                                     
 
 
