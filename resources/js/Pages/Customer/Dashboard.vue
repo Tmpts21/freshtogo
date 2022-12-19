@@ -321,17 +321,20 @@ export default {
     <Head title="Dashboard" />
 
     <BreezeAuthenticatedLayout>
-     
-
         <div class="py-12">
-            
             <button  v-if="!displayCart" @click="shoppingCart()" class="fixed rounded-full z-90 bottom-10 text-green-500 right-8 float-right bg-gray-100 hover:bg-gray-200 text-white font-bold py-2 px-4 border-2 border-gray-700 ">
                            <span><i class="fa-solid fa-cart-shopping text-lime-500 text-lg "></i> </span>  View Shopping Cart
             </button>
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white  sm:rounded-lg">
                        
-                    
+                    <div class="flex justify-start">
+                        <div class="mt-5">
+                            <img :src="'/storage/image/logo.png'" class="ml-12 w-60 h-30 rounded-full">
+                        </div>
+                    </div>
+                   
+
                     <div class="p-6 bg-white border-b border-gray-200">
                                     
                                 
@@ -420,7 +423,6 @@ export default {
                                         </div>
 
                                       
-                                        <p class="font-bold  text-lime-600">{{product.sold}}kg(sold) 🙌</p>
                                         </div>
 
                                         <div class="bg-lime-100 border border-lime-400 text-lime-700 px-4 py-3 rounded relative" role="alert">

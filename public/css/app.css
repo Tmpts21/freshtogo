@@ -726,9 +726,6 @@ select {
   white-space: nowrap;
   border-width: 0;
 }
-.pointer-events-none {
-  pointer-events: none;
-}
 .fixed {
   position: fixed;
 }
@@ -743,10 +740,6 @@ select {
   right: 0px;
   bottom: 0px;
   left: 0px;
-}
-.inset-y-0 {
-  top: 0px;
-  bottom: 0px;
 }
 .left-0 {
   left: 0px;
@@ -1017,6 +1010,12 @@ select {
 .w-1\/4 {
   width: 25%;
 }
+.w-40 {
+  width: 10rem;
+}
+.w-60 {
+  width: 15rem;
+}
 .min-w-0 {
   min-width: 0px;
 }
@@ -1121,6 +1120,9 @@ select {
 }
 .items-stretch {
   align-items: stretch;
+}
+.justify-start {
+  justify-content: flex-start;
 }
 .justify-end {
   justify-content: flex-end;

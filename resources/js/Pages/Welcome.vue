@@ -124,6 +124,11 @@ defineComponent ({
 
             <br><br>
 
+            <div class="flex justify-center">
+                        <div class="mt-5">
+                            <img :src="'/storage/image/logo.png'" class="ml-12 w-60 h-30 rounded-full">
+                        </div>
+                    </div>
             <div class="w-full p-4  bg-gray-100  rounded-lg sm:p-8">
                 <div class="text-center">
                     <h5 class="mb-2 text-3xl font-bold text-lime-500 ">Welcome to fresh2go 🎉</h5>
@@ -179,7 +184,6 @@ defineComponent ({
                                                 </a>
                                             </h3>
                                             </div>
-                                            <p class="font-bold  text-lime-600">{{product.sold}}kg(sold) 🙌</p>
                                             </div>
 
                                             <div class=" text-justify bg-lime-100 border border-lime-400 text-lime-700 px-4 py-3 rounded relative" role="alert">
